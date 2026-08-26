@@ -1,0 +1,24 @@
+{
+  "model_requested": "gemini-3.7-flash",
+  "model_version": "gemini-3.7-flash",
+  "prompt_version": "extract_v1",
+  "input_file": "data/interim/passages/frey-2019-technology-trap-p325.txt",
+  "input_sha256": "bff5a3a13370d7d82ea5f00c8dbe1c4d40684fc7a08e1f160425f1f61e734d9b",
+  "run_utc": "2026-08-26T20:23:42+00:00",
+  "source_meta": {
+    "title": "The Technology Trap: Capital, Labor, and Power in the Age of Automation",
+    "author": "Carl Benedikt Frey",
+    "publisher": "Princeton University Press",
+    "pub_date": "2019",
+    "source_type": "book",
+    "chapter": "12. Artificial Intelligence",
+    "page": "325",
+    "language_original": "en"
+  },
+  "warnings": [],
+  "result": {
+    "contains_prediction": false,
+    "record": null,
+    "reason_if_absent": "Retrospective historical analysis of computer adoption, past automation anxiety in the 1950s-1960s, and the productivity paradox; contains no forward-looking prediction regarding employment or labor outcomes."
+  }
+}

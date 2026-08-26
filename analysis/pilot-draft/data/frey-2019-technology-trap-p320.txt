@@ -1,0 +1,9 @@
+Figure 17 plots the exposure of major occupational categories to automation by their employment share. Office and administrative support, production, transportation and logistics, food preparation, and
+retail jobs loom large in terms of both their exposure to automation and
+the percentage of Americans they support. Overall, our algorithm predicted that 47 ­percent of American jobs are susceptible to automation,
+meaning that they are potentially automatable from a technological
+point of view, given the latest computer-­controlled equipment and sufficient relevant data for the algorithm to draw upon. What most of ­these
+jobs have in common is that they are low-­income jobs that d­ o not require
+high levels of education (figure 18).
+
+

@@ -1,0 +1,573 @@
+---
+title: "Keeping score on two centuries of tech panic"
+subtitle: "A pilot corpus, and the shape of a paper — Tech-Panic Tracker"
+author:
+  - Jonathan Jayes
+  - Ben Schneider (IAKH, University of Oslo)
+date: 2026-08-26
+format:
+  typst:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    papersize: a4
+    fontsize: 10pt
+    margin:
+      x: 2.2cm
+      y: 2.4cm
+    fig-format: png
+    fig-dpi: 200
+mermaid-format: png
+engine: knitr
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(scales)
+library(ggrepel)
+library(knitr)
+
+D <- "../../data/processed/"
+rd <- function(f) read_csv(paste0(D, f), show_col_types = FALSE,
+                           col_types = cols(.default = col_character()))
+
+predictions <- rd("predictions.csv")
+sources     <- rd("sources.csv")
+authors     <- rd("authors.csv")
+pred_auth   <- rd("prediction_authors.csv")
+pred_tech   <- rd("prediction_technologies.csv")
+evaluations <- rd("evaluations.csv")
+evidence    <- rd("outcome_evidence.csv")
+revisits    <- rd("revisits.csv")
+
+# Era binning mirrors pipeline/summary.py exactly: E4 ends 1994, E5 starts 1995.
+# Plain hyphens in the labels - Typst mangles en-dashes inside table cells.
+era_of <- function(year) {
+  cut(year,
+      breaks = c(-Inf, 1869, 1919, 1954, 1994, Inf),
+      labels = c("E1", "E2", "E3", "E4", "E5"))
+}
+
+era_bands <- tibble(
+  era   = c("E1", "E2", "E3", "E4", "E5"),
+  start = c(1800, 1870, 1920, 1955, 1995),
+  end   = c(1870, 1920, 1955, 1995, 2026)
+)
+
+# Short display names. Derived surnames mangle institutional authors
+# ("Deloitte LLP" -> "LLP"), so the lookup is explicit.
+short_name <- c(
+  auth_nedludd = "Ned Ludd", auth_byron = "Byron", auth_ricardo = "Ricardo",
+  auth_ure = "Ure", auth_wright = "Wright", auth_wells = "Wells",
+  auth_gompers = "Gompers", auth_keynes = "Keynes", auth_compton = "Compton",
+  auth_wiener = "Wiener", auth_reuther = "Reuther", auth_simon = "Simon",
+  auth_leontief = "Leontief", auth_rifkin = "Rifkin", auth_frey = "Frey & Osborne",
+  auth_deloitte = "Deloitte", auth_autor = "Autor", auth_arntz = "OECD / Arntz",
+  auth_hinton = "Hinton", auth_pwc = "PwC", auth_atkinson = "ITIF / Atkinson",
+  auth_goldman = "Goldman Sachs", auth_amodei = "Amodei"
+)
+
+lead_author <- pred_auth |>
+  filter(author_role %in% c("sole", "lead", "institutional")) |>
+  group_by(prediction_id) |> slice(1) |> ungroup() |>
+  left_join(authors, by = "author_id")
+
+primary_tech <- pred_tech |>
+  filter(is_primary == "true") |> select(prediction_id, tech_id)
+
+pred <- predictions |>
+  mutate(year = as.integer(substr(prediction_date, 1, 4)), era = era_of(year)) |>
+  left_join(sources |> select(source_id, source_type), by = "source_id") |>
+  left_join(lead_author |> select(prediction_id, author_id,
+                                  author_type = author_type_at_prediction),
+            by = "prediction_id") |>
+  left_join(primary_tech, by = "prediction_id") |>
+  mutate(who = unname(short_name[author_id]),
+         label = paste0(who, " ", year)) |>
+  arrange(year)
+
+valence_cols <- c(alarm = "#B5443A", reassurance = "#2E6F73",
+                  neutral_forecast = "#8A7B4F")
+
+theme_tpt <- theme_minimal(base_size = 9) +
+  theme(panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold", size = 10),
+        plot.subtitle = element_text(colour = "grey35", size = 8),
+        plot.caption = element_text(colour = "grey45", size = 7, hjust = 0),
+        legend.position = "bottom", legend.title = element_blank())
+
+n_pred <- nrow(pred)
+n_eval <- nrow(evaluations)
+n_evid <- nrow(evidence)
+```
+
+::: {.callout-note}
+**A draft, not a result.** Every row of data here carries `record_status = draft`. The corpus was put together with AI assistance and has not yet had the human verification the project constitution requires before anything may be analysed, and the verdicts in §5 were graded under a rubric we have not registered. Please don't cite any of it. What it is meant to show is the shape of the paper: that the schema holds real historical material, that the pipeline runs end to end, and where the hard decisions are waiting for us.
+:::
+
+# A well-known economist called Bill
+
+In the preface to *The Technology Trap*, Carl Frey describes giving a talk in Geneva a few months after the 47 percent paper came out. A well-known economist in the audience — Frey calls him Bill — came up afterwards and remarked, dismissively, "Is this not just like the Industrial Revolution in England? … Didn't machines" replace workers then too, and didn't it all work out?
+
+Bill has a point, and it is the point of this project. People have been predicting that machines will take the jobs for over two hundred years. We know the anecdotes. What we don't have is a dataset.
+
+So that is what we are building: every claim we can find, from roughly 1800 to now, that a technology will destroy or create human employment — classified on one scheme, and then **scored against what actually happened**. Mokyr, Vickers and Ziebarth told the story of technological anxiety in 2015. We want to build the sampling frame and keep score.
+
+This document is the pilot. It has 23 predictions in it, six trial verdicts, and one finding that I think changes the search protocol.
+
+## What are we actually asking?
+
+Four questions, in the order we'd answer them.
+
+**RQ1, descriptive.** How are these predictions distributed — over time, by technology, by who made them, by how specific they were?
+
+**RQ2, evaluative.** Of the predictions whose horizons have passed, what share were right, and how right?
+
+**RQ3, explanatory.** What predicts accuracy? Horizon length, technology generality, author type, whether a mechanism was given, whether the claim carried a number?
+
+**RQ4, behavioural.** Do authors ever go back to their own predictions — reaffirm, moderate, quietly extend the deadline, retract — and does revisiting have anything to do with being right?
+
+The pilot touches all four. §3 does the distributions, §5 grades six predictions, the recorded fields make the RQ3 regressions expressible, and §4.1 catches Frey and Osborne going back to their own number eleven years later.
+
+## Don't bury the lede
+
+Here is the corpus, and here is the discourse it sits inside.
+
+```{r fig-waves, fig.width=7.2, fig.height=4.4}
+#| fig-cap: "Three vocabularies, three waves. Each line is indexed to its own peak, so the small series stay visible. Ticks along the bottom mark the 23 pilot predictions. Source: Google Books Ngram, English corpus, smoothing 3."
+ngram <- read_csv("data/ngram-cache.csv", show_col_types = FALSE) |>
+  mutate(phrase = recode(phrase,
+                         "labour - saving machinery" = "labour-saving machinery")) |>
+  group_by(phrase) |>
+  mutate(indexed = frequency / max(frequency)) |>
+  ungroup()
+
+peaks <- ngram |> group_by(phrase) |> slice_max(frequency, n = 1) |> ungroup()
+
+ggplot() +
+  geom_rect(data = era_bands, inherit.aes = FALSE,
+            aes(xmin = start, xmax = end, ymin = -Inf, ymax = Inf),
+            fill = rep(c("grey96", "white"), length.out = 5), colour = NA) +
+  geom_text(data = era_bands, inherit.aes = FALSE,
+            aes(x = (start + end) / 2, y = Inf, label = era),
+            vjust = 1.5, size = 2.5, colour = "grey55") +
+  geom_line(data = ngram, aes(year, indexed, colour = phrase), linewidth = 0.5) +
+  geom_point(data = peaks, aes(year, indexed, colour = phrase), size = 1.4) +
+  geom_text(data = peaks, aes(year, indexed, colour = phrase, label = year),
+            vjust = -0.9, size = 2.4, show.legend = FALSE) +
+  geom_rug(data = pred, aes(x = year), inherit.aes = FALSE,
+           sides = "b", length = unit(0.045, "npc"),
+           colour = "grey25", linewidth = 0.4) +
+  scale_y_continuous(labels = label_percent(), limits = c(-0.02, 1.1)) +
+  scale_x_continuous(breaks = seq(1800, 2020, 40), expand = c(0, 0)) +
+  scale_colour_manual(values = c("technological unemployment" = "#B5443A",
+                                 "automation" = "#2E6F73",
+                                 "labour-saving machinery" = "#8A7B4F")) +
+  labs(x = NULL, y = "share of the phrase's own peak",
+       title = "Each panic gets its own vocabulary",
+       subtitle = "Google Books Ngram, English corpus, 1800-2022, each series indexed to its own maximum",
+       caption = "Ticks along the bottom are the 23 pilot predictions.\nNgram frequency is a proxy for discourse, not for how many predictions were made - the paper will report\nnormalised rates per million digitised pages per archive-year from the registered sources instead.") +
+  theme_tpt
+```
+
+The first version of this chart plotted the raw Ngram shares, and it was no good. "Automation" is roughly twenty-five times more common in print at its peak than "technological unemployment" ever was, so the two older phrases sat flat on the axis and you could not see them at all. Indexing each series to its own maximum fixes it, at the cost of throwing away the comparison of absolute volume — which is a comparison about the English language, not about panics, so I don't think we lose much.
+
+What it shows: "labour-saving machinery" peaks in **1904**, "technological unemployment" in **1933**, and "automation" in **1986**. Three vocabularies, three waves, each one largely done before the next begins. The discourse has a shape, and it is not a straight line.
+
+# How is the corpus built?
+
+## The data model
+
+Nine tables and three logs. The core table is `predictions`, and the decision that matters most is that a *source* and a *prediction* are different things: one report can carry several distinct claims, and one claim can be reported by dozens of documents.
+
+```{mermaid}
+%%| fig-width: 6.2
+erDiagram
+    sources ||--o{ predictions : "carries"
+    predictions }o--o{ authors : "prediction_authors"
+    predictions }o--o{ technologies : "prediction_technologies"
+    predictions ||--o{ evaluations : "graded by"
+    evaluations ||--o{ outcome_evidence : "cites"
+    predictions ||--o{ revisits : "revisited in"
+    predictions ||--o| predictions : "derived_from"
+    coders ||--o{ predictions : "created_by"
+```
+
+That loop at the bottom right — `derived_from` pointing from `predictions` back to itself — is there for a specific reason, and §4.1 is about it.
+
+## The pipeline
+
+```{mermaid}
+%%| fig-width: 6.6
+flowchart LR
+    A[ingest<br/>source text] --> B[LLM detect<br/>high-recall spans]
+    B --> C[LLM extract<br/>structured record]
+    C --> D{human verification<br/>100% of fields}
+    D -->|corrections logged| E[verified]
+    E --> F[locked<br/>immutable]
+    D -.->|verification_log| G[(reliability<br/>statistics)]
+    style D fill:#B5443A,color:#fff
+    style F fill:#2E6F73,color:#fff
+```
+
+The red diamond is the constitutional constraint: **the model drafts, a human decides.** Nothing sitting in `data/interim/` is ever analysed, and every field a human changes gets written to `verification_log`. That log is what later gives us honest agreement rates between the model and the coder, rather than an assurance that we were careful. §5 shows what it catches.
+
+## Which words, in which decade?
+
+Track A is a set of reproducible database queries against registered sources. Track B is a documented snowball and institutional-publisher sweep, because strict PRISMA is simply not achievable for nineteenth-century newspapers or consultancy PDFs. We cap screening at 2,000 hits per stratum × database, sample randomly within stratum × year above the cap, and carry the sampling weights into every corpus statistic.
+
+The search vocabulary has to change by era, because the words change:
+
+| Stratum | Period | Technology terms | Displacement terms |
+|:--|:--|:------|:------|
+| E1 | 1800-1870 | labour-saving machinery, the machinery question, power loom | thrown out of work, superfluous workmen, distress of the operatives |
+| E2 | 1870-1920 | mechanisation, the machine age, automatic machinery | displacement of labour, machinery and unemployment |
+| E3 | 1920-1955 | technological unemployment, automation (from 1947), robot (from 1921) | men replaced by machines, permanent unemployment |
+| E4 | 1955-1995 | automation, cybernation, robotics, microelectronics | jobs destroyed, end of work, silicon collar |
+| E5 | 1995- | computerisation, artificial intelligence, machine learning, generative AI | jobs at risk, automation of jobs, replace workers |
+
+: The era-stratified query vocabulary, abridged.
+
+### Where do the era boundaries come from?
+
+We had these five bands written down but not sourced, so the pilot went looking for an economic historian to stand behind each one. Three of them hold up nicely. One is a convention. And one, I think, has to move.
+
+**1870 holds.** Mokyr dates the Second Industrial Revolution to 1870–1914; Gordon's growth periodization breaks at 1770 / 1870 / 1970. One caution, though, and it caught me out. *The Unbound Prometheus* gets cited for this break constantly, but Landes's own chapter seam is **1873**, he treats it as the *end* of the first industrial revolution rather than the beginning of a second, and he puts the second cluster in the 1890s while keeping the label at arm's length ("some writers have come to call"). He is a good citation for 1870 as a break — in his preface, as the moment continental Europe caught up with Britain — and a bad one for anything else.
+
+**1955 holds, and it is the strongest one we have.** Delmar Harder set up an Automation Department at Ford in April 1947. The word first appeared in print in *American Machinist* in October 1948, Diebold's *Automation* followed in 1952, and by October 1955 Congress was running nine days of hearings on it. Wright Patman, chairing, noted from the chair that the word "does not appear in recent dictionaries although we can scarcely pick up a magazine without finding a reference to it." A word that is missing from the dictionaries and already generating congressional hearings is exactly what an era boundary should look like.
+
+**1995 holds**, on Oliner and Sichel's productivity dating — but note that Gordon's own break is **1994**, so he is the wrong person to cite for it.
+
+**1800 is a convention**, not a break. The debate runs back at least to Steuart in 1767. We should say so rather than let the table imply otherwise.
+
+**1920 does not hold.** I could not find anything supporting it. The evidence points to **1928** instead, and it points there from four directions at once. The first appearance in print of "technological unemployment" is a *New Republic* article of 8 February 1928, reprinted into the *Congressional Record* on 21 February 1928 at Senator Wagner's request — and there it sits, in scare quotes: "the problem of ' technological ' unemployment will be with us permanently." The Hoover Committee was still calling it "this newer problem" in 1929, still in scare quotes. The peer-reviewed literature dates "the famous Debate on Technological Unemployment" to 1928–1933. And Amy Sue Bix's history of the American debate opens in 1929.
+
+> **Ben — this one is for you.** Do we move E2/E3 from 1920 to 1928? The cost of moving is one line in the search protocol and a re-run of the era queries. The cost of not moving is a boundary we can't defend in a seminar. All the evidence is in `docs/decisions/DR-003-era-strata.md`.
+
+# What is in the pilot corpus?
+
+`r n_pred` predictions, drawn from the landmark seed list. They were picked to cover the corners of the schema rather than to be representative of anything — all five eras, and as many awkward cases as we could find. All `r n_pred` rows pass the frictionless schema and the six cross-table rules.
+
+```{r tbl-coverage}
+#| tbl-cap: "Where the pilot corpus sits: source type by era."
+pred |>
+  count(era, source_type) |>
+  tidyr::pivot_wider(names_from = era, values_from = n, values_fill = 0) |>
+  arrange(source_type) |>
+  rename(`source type` = source_type) |>
+  kable()
+```
+
+The corners are the point. There is a pseudonymous threatening letter in there and a Goldman Sachs research note; a maiden speech in the House of Lords and a recording of a conference talk on YouTube; six reassurances against fourteen alarms; all four specificity tiers; all three claim types; and both of the `author_type` values we added this month.
+
+```{r tbl-corpus-1}
+#| tbl-cap: "The pilot corpus, 1812-1949."
+corpus_tbl <- function(eras) {
+  pred |>
+    filter(era %in% eras) |>
+    transmute(Year = year, Who = who,
+              `Author type` = gsub("_", " ", author_type),
+              Source = gsub("_", " ", source_type),
+              Tier = sub("_.*", "", specificity_tier),
+              Posture = recode(panic_valence, alarm = "alarm",
+                               reassurance = "reassures",
+                               neutral_forecast = "neutral")) |>
+    kable()
+}
+corpus_tbl(c("E1", "E2", "E3"))
+```
+
+```{r tbl-corpus-2}
+#| tbl-cap: "The pilot corpus, 1955-2025."
+corpus_tbl(c("E4", "E5"))
+```
+
+An earlier version of these two tables carried the full one-sentence claim summary as a sixth column. Typst rendered the headers and then silently dropped every row — the cell was simply too wide to lay out, and no error was raised anywhere. Worth knowing, because it is the failure mode that would quietly delete a results table in the actual paper. The claims live in the CSV; the table shows what fits.
+
+## Who was panicking, and when?
+
+```{r fig-timeline, fig.width=7.2, fig.height=4.2}
+#| fig-cap: "The pilot corpus in time. Vertical position is the rhetorical posture and the shape marks the claim type."
+pred_plot <- pred |>
+  mutate(posture = factor(panic_valence,
+                          levels = c("alarm", "neutral_forecast", "reassurance"),
+                          labels = c("alarm", "neutral forecast", "reassurance")),
+         claim = factor(claim_type,
+                        levels = c("employment_outcome", "exposure_risk",
+                                   "capability_milestone"),
+                        labels = c("employment outcome", "exposure risk",
+                                   "capability milestone")))
+
+ggplot(pred_plot, aes(year, posture)) +
+  geom_rect(data = era_bands, inherit.aes = FALSE,
+            aes(xmin = start, xmax = end, ymin = -Inf, ymax = Inf),
+            fill = rep(c("grey96", "white"), length.out = 5), colour = NA) +
+  geom_text(data = era_bands, inherit.aes = FALSE,
+            aes(x = (start + end) / 2, y = Inf, label = era),
+            vjust = 1.5, size = 2.5, colour = "grey55") +
+  geom_point(aes(colour = panic_valence, shape = claim), size = 2.3) +
+  geom_text_repel(aes(label = label), size = 2.2, colour = "grey25",
+                  max.overlaps = 40, segment.size = 0.2, seed = 42,
+                  box.padding = 0.35) +
+  scale_colour_manual(values = valence_cols, guide = "none") +
+  scale_x_continuous(breaks = seq(1800, 2020, 40), expand = c(0.03, 0)) +
+  labs(x = NULL, y = NULL, title = "Twenty-three predictions across five eras",
+       caption = "Pilot corpus only, selected to cover the schema rather than to be representative.") +
+  theme_tpt
+```
+
+Have a look at the middle row, and then at the top one. Reassurance is not a modern reaction to modern alarm — Andrew Ure was defending the factory system in 1835, and the US Commissioner of Labor was calling displacement "only a temporary displacement of labor" in 1886. Six of our 23 are reassurances, and they are spread across all five eras. Any calibration analysis needs them, which is why the scope statement lets them in.
+
+```{r fig-tiers, fig.width=7.2, fig.height=2.8}
+#| fig-cap: "Specificity tier by era. T1 means both a magnitude and a horizon; T4 means no operationalisable claim at all."
+pred |>
+  count(era, specificity_tier) |>
+  mutate(tier = factor(specificity_tier,
+                       levels = c("T4_rhetorical", "T3_directional",
+                                  "T2_semi_quantified", "T1_quantified"),
+                       labels = c("T4 rhetorical", "T3 directional",
+                                  "T2 semi-quantified", "T1 quantified"))) |>
+  ggplot(aes(era, n, fill = tier)) +
+  geom_col(width = 0.65) +
+  scale_fill_manual(values = c("T4 rhetorical" = "#D9CBB3",
+                               "T3 directional" = "#8A7B4F",
+                               "T2 semi-quantified" = "#2E6F73",
+                               "T1 quantified" = "#B5443A")) +
+  scale_y_continuous(breaks = seq(0, 12, 2)) +
+  labs(x = NULL, y = "predictions", title = "Putting a number on it is a modern habit") +
+  theme_tpt
+```
+
+Quantification turns out to be recent. Every T1 claim in the pilot comes from 1960 or later, and everything before 1900 is directional or rhetorical. This is a small sample and I wouldn't lean on the exact proportions, but the direction is unmistakable and it justifies the design: we tier claims rather than excluding the unquantified ones. Drop T3 and T4 and you delete the first century and a half of the record.
+
+```{r fig-magnitude, fig.width=7.2, fig.height=3.4}
+#| fig-cap: "The quantified claims that we can actually plot: a stated horizon on the x-axis against the headline percentage the source itself foregrounded on the y-axis."
+quant <- pred |>
+  filter(!is.na(magnitude_headline), !is.na(horizon_end_year),
+         magnitude_unit != "", as.numeric(magnitude_headline) <= 100) |>
+  mutate(horizon = as.integer(horizon_end_year) - as.integer(horizon_start_year),
+         magnitude = as.numeric(magnitude_headline),
+         claim = recode(claim_type, employment_outcome = "employment outcome",
+                        exposure_risk = "exposure risk",
+                        capability_milestone = "capability milestone"))
+
+ggplot(quant, aes(horizon, magnitude, colour = claim)) +
+  geom_point(size = 2.6) +
+  geom_text_repel(aes(label = label), size = 2.4, seed = 1, max.overlaps = 20,
+                  segment.size = 0.2, box.padding = 0.5) +
+  scale_x_continuous(breaks = seq(0, 25, 5), limits = c(0, 25)) +
+  scale_y_continuous(labels = label_percent(scale = 1), limits = c(0, 60)) +
+  scale_colour_manual(values = c("employment outcome" = "#B5443A",
+                                 "exposure risk" = "#2E6F73",
+                                 "capability milestone" = "#8A7B4F")) +
+  labs(x = "stated horizon, in years", y = "headline magnitude",
+       title = "How much, over how long",
+       caption = paste0("Only claims carrying both an explicit magnitude and an explicit horizon appear - ",
+                        nrow(quant), " of ", n_pred, ".")) +
+  theme_tpt
+```
+
+`r nrow(quant)` points, out of `r n_pred` predictions. That is the honest yield, and it is the most useful thing this figure tells us.
+
+The others fall out for reasons worth naming, because each one is a design question in disguise. The OECD's 9 percent carries a number but only "over the next decades" for a horizon. Simon 1960 has a horizon but no number — "any work that a man can do" is a magnitude of a sort, but not one you can put on an axis. Frey and Osborne have the number but their horizon is "perhaps a decade or two", which the extraction protocol quite rightly refuses to turn into a year. Goldman's 300 million jobs is an absolute count rather than a share, so it is off this scale entirely. Hinton gave five years and no percentage.
+
+H1 asks whether accuracy falls as the horizon lengthens, and H5 asks whether realised over claimed is systematically below one. With three, neither is estimable. What the figure shows is the shape of the test and how many claims will survive to take it — which is the number we need before we can guess at statistical power for the full corpus.
+
+## One estimate, four headlines
+
+Several of the most-quoted automation numbers are not independent estimates. Frey and Osborne's 47 percent was crosswalked onto UK occupational data by Deloitte in 2014 and extended by PwC in 2017, and the World Bank's 2016 *World Development Report* and the ILO's ASEAN study lean on it too. Count those as four corroborating forecasts and you overstate the consensus badly, as well as breaking the independence assumption underneath every accuracy statistic we might compute.
+
+Hence `derived_from_prediction_id`, and hence a robustness specification that drops the derivatives entirely.
+
+```{mermaid}
+%%| fig-width: 6.4
+flowchart TD
+    FO["Frey & Osborne 2013<br/>47% of US employment<br/>exposure_risk"]
+    DL["Deloitte 2014<br/>35% of UK jobs"]
+    PW["PwC 2017<br/>30% UK / 38% US"]
+    WB["World Bank WDR 2016<br/>(not yet entered)"]
+    OE["OECD / Arntz et al. 2016<br/>9% - task-based"]
+    IT["ITIF 2022<br/>retrospective reassurance"]
+    RV["Frey & Osborne 2024<br/>reappraisal - reaffirmed"]
+    FO -->|derived_from| DL
+    FO -->|derived_from| PW
+    FO -.->|derived_from| WB
+    OE -.->|rebuts| FO
+    IT -.->|evaluates| FO
+    FO -.->|revisits row| RV
+    style FO fill:#B5443A,color:#fff
+    style RV fill:#2E6F73,color:#fff
+```
+
+The dashed edges are deliberately not lineage. The OECD's task-based re-estimate puts the figure at 9 percent rather than 47 — that is a rebuttal, not a derivative — and ITIF's 2022 piece evaluates the claim rather than restating it. Only the solid arrows set `derived_from_prediction_id`.
+
+Deloitte is a nice illustration of why the field needs this. Their report never printed an absolute number, only the 35 percent. On launch day the *Telegraph* multiplied it by the ONS employment count and ran "Ten million jobs at risk"; *Silicon* did the same sum and got eleven million. Neither figure is Deloitte's, and neither is Frey and Osborne's. We record the 35 percent.
+
+### RQ4, in miniature
+
+In February 2024 Frey and Osborne went back to their own number in the *Brown Journal of World Affairs*. They restate it as "47% of jobs are **exposed** to the recent advances in machine learning and advanced robotics" — exposed, not predicted to be lost — and conclude that "the bottlenecks we outlined in our 2013 paper [continue] to constrain our automation possibilities for the foreseeable future."
+
+That is a `revisits` row, stance `reaffirmed`. It is also a warning about what we are measuring. An author's own framing of a claim can drift over a decade, so the `revisits` table records what they said later without touching what they said at the time. Whether the drift here is a clarification or a softening is exactly the sort of judgement RQ4 exists to make, and it is not ours to make silently.
+
+# How do we grade a prediction?
+
+Verdicts are **outcome-based**: did the predicted employment state happen, in the stated place, by the stated date, regardless of what caused it? Demanding causal attribution would turn every single verdict into its own research project and fill the dataset with `insufficient_evidence`. It is a real limitation and we state it openly rather than engineering around it.
+
+| Verdict | Ratio *r* = realised / claimed at the horizon year |
+|:--|:--|
+| `clearly_correct` | 2/3 ≤ *r* ≤ 3/2 |
+| `mostly_correct` | 0.4 to 2/3, or 3/2 to 2.5 |
+| `mixed` | 0.1 to 0.4 or 2.5 to 10, or right direction and wrong locus |
+| `mostly_wrong` | *r* below 0.1 or above 10, direction intact |
+| `clearly_wrong` | direction contradicted |
+
+: The verdict bands, two-sided and log-symmetric. The terminal codes `too_early_to_tell`, `unfalsifiable` and `insufficient_evidence` sit outside the scale. T3 claims are capped at `mostly_correct`; T4 claims are `unfalsifiable` by construction.
+
+Three rules do the real work here.
+
+**Exposure claims get their own track.** "47 percent at risk" is graded on whether high-exposure occupations declined *relative to* low-exposure ones — not on whether 47 percent of jobs vanished. Grading it the second way scores a claim the authors never made, and it is the single most predictable referee objection to this whole project.
+
+**Capability claims are tested on capability**, not on employment counts. Simon said machines would be *able* to do the work; whether firms then hired fewer people is a different question.
+
+**Every ordinal verdict has to cite evidence.** This one is enforced in code, not in good intentions: the validation pipeline rejects a graded verdict with no `outcome_evidence` row, and rejects a `clearly_*` verdict whose evidence is not official statistics, a census series, or an academic study.
+
+```{r tbl-verdicts}
+#| tbl-cap: "Six trial evaluations under the draft rubric. Illustrative - these are not registered verdicts."
+evaluations |>
+  left_join(pred |> select(prediction_id, label), by = "prediction_id") |>
+  left_join(evidence |> count(evaluation_id, name = "evid"), by = "evaluation_id") |>
+  transmute(Prediction = label,
+            Verdict = gsub("_", " ", verdict),
+            Resolved = ifelse(is.na(resolution_year_used) | resolution_year_used == "",
+                              "-", resolution_year_used),
+            `Evidence rows` = ifelse(is.na(evid), 0L, evid)) |>
+  kable()
+```
+
+**Simon 1960 — clearly wrong.** By 1980, deployed AI was a handful of narrow rule-based expert systems: DENDRAL reading mass spectra, MYCIN picking antibiotics but never actually used on a patient, XCON configuring VAX orders at Digital. Nothing did general-purpose robotics, open-domain language, or commonsense reasoning. The direction is contradicted, not merely over-scaled. Worth noting that we grade this on capability alone and stay out of the "first AI winter" argument, which historians of the field are still having.
+
+**Rifkin 1995 — mostly wrong.** US nonfarm employment rose 21 percent by 2020 and 35 percent by 2025 (BLS series CES0000000001), and the employment-to-population ratio fell just 2.1 points between 1995 and 2019. But manufacturing employment did fall 30 percent over the same window. The aggregate claim fails and the sectoral version of it survives, which is precisely why this is not `clearly_wrong`.
+
+**Compton 1938 — mostly correct.** US employment went from 47.5 million in 1940 to 78.6 million in 1970 while unemployment fell from 14.6 percent to 4.9 percent. Capped at `mostly_correct` because the claim is directional and because "in the long run" had to be given a horizon by default. One thing to flag: the 1940 unemployment rate is Lebergott's, and Darby's treatment, which counts relief workers as employed, gives 9.5 percent instead. A five-point spread on the baseline year. We name the series we used.
+
+**Frey & Osborne 2013 — mixed.** The differential test passes: across 21 OECD countries between 2012 and 2019, employment in the riskiest half of occupations grew 6.1 percent against 17.8 percent for the least risky half. But no country saw net job destruction, and Coelli and Borland find the risk scores add no forecasting value over ordinary routine-task-intensity measures. The ranking held. The implied scale did not.
+
+**Hinton 2016 — mostly wrong.** By 2021 deep learning had not displaced radiologists, and the specialty was in its largest recorded shortage. The direction of travel was not contradicted and Hinton has since conceded the timing while keeping the direction, so this is not `clearly_wrong`. The evidence row here is the weakest in the set — a piece by a radiology resident in the *New Republic*. It would not be accepted for a `clearly_*` verdict, and it shouldn't be. We need an occupational employment series for radiologists.
+
+**Amodei 2025 — too early to tell.** The horizon runs to 2030. It goes in as right-censored, and a later cohort appends a graded verdict rather than overwriting this row.
+
+## What did grading six predictions teach us?
+
+Two things, and both of them are about the rubric rather than about the predictions.
+
+Both `mostly_wrong` cases turn on **locus**. An aggregate claim fails while its sectoral version survives, in both instances. The rubric has a "right direction, wrong locus" band, but the pilot suggests the harder problem is upstream: deciding *which* claim was being made when the author was vague about scope. That belongs in the codebook as a decision rule, not in the evaluator's head.
+
+And two of the six needed a **defaulted horizon**. Compton's "in the long run" and Rifkin's "in the years ahead" are not dates, and the rubric turns them into dates by convention. The robustness suite has to be able to drop every defaulted-horizon verdict and report what survives. Six trial cases already produced two. In the full corpus this will not be a footnote.
+
+# Does the extraction pipeline actually work?
+
+The stage that makes a full corpus feasible rather than fantastical is LLM extraction. So let's have a look at a real run, on a passage the model had never seen.
+
+The model is `gemini-3.7-flash` at temperature zero, constrained to a Pydantic schema that mirrors `predictions.csv`, with the system prompt read at run time out of the registered `protocol/prompts/extract_v1.md`. Pinning the exact model matters: an alias that silently rolls forward would mean the preregistration no longer describes what ran.
+
+The input is a passage from Frey's *The Technology Trap*, p. 320:
+
+```{r}
+# Soft hyphens (U+00AD) are stripped for display only - Typst renders them as
+# escape sequences. The stored passage and the model's quote both keep them.
+passage <- paste(readLines("data/frey-2019-technology-trap-p320.txt",
+                           encoding = "UTF-8"), collapse = "\n")
+cat(gsub("\u00ad", "", passage, fixed = TRUE, useBytes = FALSE))
+```
+
+Here is what came back:
+
+```{r}
+library(jsonlite)
+demo <- fromJSON("data/gemini-demo-extraction.json", simplifyVector = FALSE)
+rec <- demo$result$record
+show <- c("claim_type", "level", "geography", "direction", "magnitude_type",
+          "magnitude_value", "specificity_tier", "horizon_type",
+          "mechanism_type", "panic_valence", "is_secondary_report")
+for (k in show) {
+  v <- rec[[k]]
+  cat(sprintf("%-20s %s\n", k, ifelse(is.null(v), "null", as.character(v))))
+}
+```
+
+A well-formed record, and typed as `exposure_risk` rather than `employment_outcome` — which is the distinction the entire evaluation protocol hangs on. It also flagged its own uncertainty without being asked to:
+
+> `coder_notes`: *"Author Carl Benedikt Frey is reflecting on and restating the well-known Frey & Osborne (2013/2017) finding ('our algorithm predicted...'). The horizon of 10-20 years from the original 2013 paper is not mentioned in this excerpt. Soft hyphens from OCR preserved in verbatim quote."*
+
+That note is the pipeline working properly. It identifies exactly the boundary case a human has to resolve — this passage is an author restating his own earlier prediction, so it belongs in `revisits` and not as a new prediction — and it noticed on its own that the quote carries OCR soft hyphens that must not be cleaned up.
+
+## What did the human verifier have to catch?
+
+Three things, in this one record.
+
+First, **an invented vocabulary term**. It suggested `tech_id = ai_machine_learning`, which does not exist. Our controlled vocabulary has `artificial_intelligence` and `machine_learning` as separate entries. Schema-constrained generation stops the model inventing *structure*; it does not stop it inventing *values* in a free-text field.
+
+Second, **a contestable field**. It set `is_secondary_report = false`. An author restating his own published finding is arguably exactly a secondary report, and the codebook needs a rule that settles it.
+
+Third, **a date that isn't in the passage**. It set `prediction_date = 2019`, the book's year. The prediction is from 2013.
+
+A separate smoke test made the point more sharply than I expected. Given Simon's twenty-year claim with no metadata attached at all, the model produced a clean record and added: *"Famous Herbert Simon (1965) quote."* The quote is genuine. The date is the standard misattribution, and correcting it is one of the reasons our seed list exists — it is from *The New Science of Management Decision* (1960), reprinted in 1965. A model that is right about the substance and confidently wrong about the provenance is the whole argument for verifying every field rather than spot-checking a sample.
+
+## And when there's nothing there?
+
+Given a retrospective passage from the same book, about computer adoption in the 1980s, the model declined to extract anything:
+
+> `contains_prediction: false` — *"Retrospective historical analysis of computer adoption, past automation anxiety in the 1950s-1960s, and the productivity paradox; contains no forward-looking prediction regarding employment or labor outcomes."*
+
+That is the scope rule from the plan, applied correctly and unprompted. Retrospective statements are out; only forward-looking claims are in. It is the behaviour the detection-recall check will measure at scale, and it is encouraging to see it for free.
+
+# What else did the pilot turn up?
+
+**The 1920 boundary doesn't hold.** That is the substantive finding, and it needs a decision before Registration 1.
+
+**E2 might be genuinely thin, rather than under-searched.** 1870–1920 is the hardest stratum to populate and the obvious reading is that our queries are failing. But Woirol reports that after mid-century "the employment effects of technological change ceased to be seen as a relevant problem" for the economics profession, even while congressional and popular concern carried on. If that's right, the thinness is a finding about the discourse rather than a hole in our method, and the limitations section should say so instead of apologising.
+
+**Archive permalinks are a real cost.** Every source URL in the pilot needed a Wayback snapshot to satisfy the validation rule. Eighteen of nineteen already had one and the last had to be triggered by hand. At corpus scale that is a pipeline stage, not a chore. And one live URL in the pilot — Deloitte's own copy of its own 2014 report — is already an infinite redirect loop, recoverable only because a byte-identical copy happens to sit on a server in Oxford.
+
+**Some boundary cases need ruling on.** Mill 1848 is excluded as retrospective rather than predictive, though it gets quoted as a prediction constantly. ITIF 2022 is a retrospective *reassurance*: a claim about the past that functions as a forecast about the future. And Goldman Sachs is now `author_type = financial_institution` but `source_type = consultancy_report`, because we split one vocabulary and not the other.
+
+::: {.callout-important}
+**A note on quotations.** Four of the most-quoted lines in this literature should never enter the corpus in the form they circulate. Warren Bennis's "factory of the future… a man and a dog" is an anonymous *Datamation* joke from 1978 that Bennis himself disclaimed. The Reuther/Ford "how will you get robots to buy cars?" exchange is folklore with no documented source. Keynes's 1930 passage is genuine, but it explicitly calls technological unemployment "only a temporary phase of maladjustment" — the opposite of the way it usually gets deployed. And Simon's twenty-year claim is 1960, not 1965.
+
+A dataset of predictions is a dataset of quotations, and quotations are where this field's errors live.
+:::
+
+# Next steps
+
+| Phase | Work | Target |
+|:--|:--|:--|
+| P1 | Pilot: 30-50 landmark predictions, trial evaluations, per-database yields | Aug-Sep 2026 |
+| P2 | Registration 1 — search and extraction protocols frozen | Oct 2026 |
+| P3 | Systematic search and screening, PRISMA accounting | Oct-Nov 2026 |
+| P4 | Extraction and 100% human verification, reliability report | Nov 2026 |
+| P5 | Registration 2, then evaluation | Nov-Dec 2026 |
+| P6 | Registered analyses, and a **working paper draft** | Dec 2026 |
+| P7 | Dataset v1.0.0, Zenodo DOI, OSF links | Q1 2027 |
+
+: The roadmap. Two of us, no research assistants, and a lot of disclosed AI assistance.
+
+## Six things I'd like from you
+
+1. **Decide the 1928 boundary.** It is the one substantive question the pilot raised, and everything downstream of the search protocol waits on it.
+2. **Verify the 23 draft rows.** None of this can be analysed until a human has checked every field against the source. The Compton 1938 quote especially — I took it from a 2024 retrospective and somebody needs to read the December 1938 issue of *Technology Review*.
+3. **Sanity-check the verdict bands** against the six trial evaluations in §5, before Registration 2 freezes them. Do the two `mostly_wrong` cases feel right to you, given that both turn on aggregate versus sectoral scope?
+4. **Sign off the vocabulary additions** — `financial_institution`, `think_tank_private`, `think_tank_govt` — and tell me whether `source_type` should be split to match.
+5. **Confirm what Oslo licenses.** ProQuest Historical Newspapers, the Gale *Times* and *Economist* archives, JSTOR, EconLit, the British Newspaper Archive. I no longer have Lund access, so every gap becomes a stated coverage limitation rather than a quiet one.
+6. **E2 targets.** The US Industrial Commission reports, Powderly, Gunton and Atkinson, the TUC proceedings — or, if Woirol is right, a decision to report the thinness as a finding in its own right.
+
+Thanks for reading this far. The whole thing rebuilds from `data/processed/` with one command, so if a number in here looks wrong, it is wrong in the data and we can fix it there.
+
+---
+
+*Repository:* `github.com/j-jayes/tech-panic-tracker` · *Data* CC-BY-4.0, *code* MIT. Generated from `data/processed/` by `analysis/pilot-draft/tech-panic-pilot.qmd`. Every count in this document is computed at render time; none are typed by hand.

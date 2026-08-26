@@ -1,0 +1,67 @@
+{
+  "model_requested": "gemini-3.7-flash",
+  "model_version": "gemini-3.7-flash",
+  "prompt_version": "extract_v1",
+  "input_file": "data/interim/passages/frey-2019-technology-trap-p320.txt",
+  "input_sha256": "cbc819dddb5c0e2cd70f5e2aa039a096481ece40eb9c222402ca178d5b459b71",
+  "run_utc": "2026-08-26T20:23:37+00:00",
+  "source_meta": {
+    "title": "The Technology Trap: Capital, Labor, and Power in the Age of Automation",
+    "author": "Carl Benedikt Frey",
+    "publisher": "Princeton University Press",
+    "pub_date": "2019",
+    "source_type": "book",
+    "chapter": "12. Artificial Intelligence",
+    "page": "320",
+    "language_original": "en"
+  },
+  "warnings": [],
+  "result": {
+    "contains_prediction": true,
+    "record": {
+      "quote_verbatim": "Overall, our algorithm predicted that 47 ­percent of American jobs are susceptible to automation,\nmeaning that they are potentially automatable from a technological\npoint of view, given the latest computer-­controlled equipment and sufficient relevant data for the algorithm to draw upon.",
+      "quote_locator": "page 320, paragraph 1",
+      "prediction_date": "2019",
+      "claim_summary": "47 percent of American jobs are susceptible to automation based on technological capability.",
+      "claim_type": "exposure_risk",
+      "level": "country_region",
+      "geography": "USA",
+      "geography_text": "American",
+      "occupation_code": null,
+      "occupation_system": "none",
+      "industry_code": null,
+      "industry_system": "none",
+      "direction": "displacement",
+      "magnitude_type": "percent_of_jobs",
+      "estimate_type": "point",
+      "magnitude_value": 47.0,
+      "magnitude_low": null,
+      "magnitude_high": null,
+      "magnitude_headline": 47.0,
+      "magnitude_unit": "%",
+      "specificity_tier": "T2_semi_quantified",
+      "horizon_stated_text": null,
+      "horizon_type": "none",
+      "horizon_start_year": null,
+      "horizon_end_year": null,
+      "mechanism_specified": true,
+      "mechanism_text": "potentially automatable from a technological point of view, given the latest computer-­controlled equipment and sufficient relevant data for the algorithm to draw upon",
+      "mechanism_type": "capability_parity",
+      "is_conditional": true,
+      "panic_valence": "neutral_forecast",
+      "is_secondary_report": false,
+      "coder_notes": "Author Carl Benedikt Frey is reflecting on and restating the well-known Frey & Osborne (2013/2017) finding ('our algorithm predicted...'). The horizon of 10-20 years from the original 2013 paper is not mentioned in this excerpt. Soft hyphens from OCR preserved in verbatim quote.",
+      "suggested_technologies": [
+        {
+          "tech_id": "ai_machine_learning",
+          "is_primary": true
+        },
+        {
+          "tech_id": "automation_general",
+          "is_primary": false
+        }
+      ]
+    },
+    "reason_if_absent": null
+  }
+}
