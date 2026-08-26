@@ -8,7 +8,9 @@ authors:
     email: jonathan.jayes@nexergroup.com
   - family-names: Schneider
     given-names: Ben
-repository-code: "https://github.com/jonathan-jayes/tech-panic-tracker"
+    email: benjamin.schneider@iakh.uio.no
+    affiliation: "Department of Archaeology, Conservation and History (IAKH), University of Oslo"
+repository-code: "https://github.com/j-jayes/tech-panic-tracker"
 license: CC-BY-4.0
 version: 0.0.1
 date-released: "2026-08-03"

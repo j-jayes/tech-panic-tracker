@@ -603,16 +603,18 @@ Re-run headline analyses: excluding operationalised-horizon defaults; excluding 
 
 Mapped to the spec-kit workflow; each pipeline build is a spec-kit feature (`/specify` → `/plan` → `/tasks`).
 
-| phase | name | key work | exit criteria |
-|---|---|---|---|
-| **P0** | Foundations | `specify init --here`; write the **constitution** (principles below); repo scaffold per §2; `datapackage.json` + CI validation; merge project context into CLAUDE.md | Constitution merged; CI green on empty CSVs |
-| **P1** | Pilot | `/specify` the schema + pipeline; hand-collect **30–50 landmark predictions** (§4 seed list) spanning all five eras; run the full pipeline end-to-end **including ~10 trial evaluations**; stress-test enums, horizon defaults, and rubric bands; **run every draft query and measure per-database yields** (feeds the §4.1 screening cap and sampling design); revise schema freely | Codebook v1.0; ≥1 schema revision cycle completed; pilot human–human α computed; rubric worked examples written; yield table per stratum × database |
-| **P2** | Preregister I | Finalise `search-protocol.md` + `extraction-protocol.md`; file OSF Registration 1 | Reg 1 timestamped |
-| **P3** | Systematic search & screening | Track A (with stratified sampling where capped) + Track B; S1/S2 screening incl. 10% dual-screened sample; per-era retrieval validation; PRISMA accounting | `screening_log` complete; recall estimates per era; included-source corpus frozen |
-| **P4** | Extraction & verification | LLM pipeline + 100% human verification; 20% double-coding; reliability report | All records `locked`; α ≥ thresholds (or codebook-revision loop documented) |
-| **P5** | Preregister II + Evaluation | File OSF Registration 2; evaluations + evidence collection; second-evaluator subsample | Every prediction has a verdict or terminal code |
-| **P6** | Analysis & paper | Registered analyses; exploratory clearly separated; paper draft | `analysis/` reproduces end-to-end from `data/processed/` |
-| **P7** | Release | Dataset v1.0.0 tag; Zenodo DOI; OSF links; announcement | DOI minted; CITATION.cff final |
+**Staffing and target dates (DR-001):** two PIs, no research assistants, with extensive disclosed AI assistance for search, drafting, and LLM-assisted extraction. The target is a **working paper draft by the end of 2026**; the dates below are targets, not commitments, and the pilot's yield measurements may move them.
+
+| phase | name | key work | exit criteria | target |
+|---|---|---|---|---|
+| **P0** | Foundations | `specify init --here`; write the **constitution** (principles below); repo scaffold per §2; `datapackage.json` + CI validation; merge project context into CLAUDE.md | Constitution merged; CI green on empty CSVs | done 2026-08 |
+| **P1** | Pilot | `/specify` the schema + pipeline; hand-collect **30–50 landmark predictions** (§4 seed list) spanning all five eras; run the full pipeline end-to-end **including ~10 trial evaluations**; stress-test enums, horizon defaults, and rubric bands; **run every draft query and measure per-database yields** (feeds the §4.1 screening cap and sampling design); revise schema freely | Codebook v1.0; ≥1 schema revision cycle completed; pilot human–human α computed; rubric worked examples written; yield table per stratum × database | Aug–Sep 2026 |
+| **P2** | Preregister I | Finalise `search-protocol.md` + `extraction-protocol.md`; file OSF Registration 1 | Reg 1 timestamped | Oct 2026 |
+| **P3** | Systematic search & screening | Track A (with stratified sampling where capped) + Track B; S1/S2 screening incl. 10% dual-screened sample; per-era retrieval validation; PRISMA accounting | `screening_log` complete; recall estimates per era; included-source corpus frozen | Oct–Nov 2026 |
+| **P4** | Extraction & verification | LLM pipeline + 100% human verification; 20% double-coding; reliability report | All records `locked`; α ≥ thresholds (or codebook-revision loop documented) | Nov 2026 |
+| **P5** | Preregister II + Evaluation | File OSF Registration 2; evaluations + evidence collection; second-evaluator subsample | Every prediction has a verdict or terminal code | Nov–Dec 2026 |
+| **P6** | Analysis & paper | Registered analyses; exploratory clearly separated; paper draft | `analysis/` reproduces end-to-end from `data/processed/` | Dec 2026 |
+| **P7** | Release | Dataset v1.0.0 tag; Zenodo DOI; OSF links; announcement | DOI minted; CITATION.cff final | Q1 2027 |
 
 **The pilot deliberately precedes preregistration** so that schema and rubric changes are cheap and honest — this sequencing is stated openly in the registrations (reviewers regard piloting-before-registering as good practice, not a weakness).
 

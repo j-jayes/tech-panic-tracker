@@ -1,35 +1,36 @@
 # Open questions — need author input
 
-Running list of decisions I could not (or should not) make autonomously. Date opened: 2026-08-03. Remove items as they're decided (log material ones in `docs/decisions/`).
+Running list of decisions I could not (or should not) make autonomously. Date opened: 2026-08-03. Last pruned: 2026-08-26. Remove items as they're decided (log material ones in `docs/decisions/`). **Item numbers are stable** — decided items are struck from the list rather than renumbered, so references in decision records keep working.
 
-## Administrative
+## Decided on 2026-08-26
 
-1. **Ben Schneider's affiliation + email + ORCID** for `CITATION.cff` (currently name-only), and Jonathan's ORCID/affiliation line. Also: which institutional affiliation goes on the paper (matters for archive access, #7).
-2. **GitHub repo URL**: `CITATION.cff` guesses `github.com/jonathan-jayes/tech-panic-tracker` — correct or fix. Is the repo public yet / when should it be?
-3. **OSF project**: who creates it, under which account(s); link Zenodo + GitHub when created.
-4. **Timeline/budget**: PLAN has no dates against P1–P7 and no LLM API budget. Rough quarter-level targets would discipline scoping. Any RA support, or strictly two-PI?
+Items 1–12, 14, 15 and 16 are closed. See:
 
-## Protocol decisions (provisional values in place — confirm or change)
+- **[DR-001](decisions/DR-001-administrative.md)** — affiliations, repository URL, OSF ownership, timeline, archive access (closes 1, 2, 3, 4, 14)
+- **[DR-002](decisions/DR-002-author-type-enums.md)** — `financial_institution`, `think_tank_private`, `think_tank_govt` added (closes 9)
+- **[DR-003](decisions/DR-003-era-strata.md)** — era strata justified per boundary (closes 8 **except** the E2/E3 boundary, now item 21 below)
+- **[DR-004](decisions/DR-004-protocol-confirmations.md)** — screening cap, verdict bands, cohort date, H1–H5, journal strategy (closes 5, 6, 7, 10, 11)
+- **[DR-005](decisions/DR-005-llm-infrastructure.md)** — Gemini API, model pinning, secret handling (closes 12, 16)
+- **[DR-006](decisions/DR-006-file-naming.md)** — file naming convention and skill
 
-5. **Screening cap = 2,000 hits per stratum × database** (decision D11, `protocol/search-protocol.md` §1.3) — provisional per your instruction; revisit after P1 yield measurements.
-6. **Verdict band edges** (2/3–3/2 clearly correct; 0.4–2.5 mostly; 0.1–10 mixed) and horizon defaults ("soon"=10y, "generation"=30y, "lifetime"=40y) are my proposals — pilot stress-tests them (T018–T021), but sanity-check as economists before Reg 2.
-7. **Evaluation cohort date**: `evaluated_as_of = 2026-12-31` assumed. Confirm.
-8. **Era strata boundaries** (1800–1870–1920–1955–1995–) — confirm before Reg 1.
-9. **`author_type` for financial institutions** (Goldman Sachs, IMF-as-forecaster): currently folded into `consultancy`/`igo`. Add a `financial_institution` enum value, or keep? (Vocabulary is append-only after Reg 1 — decide before.)
-10. **H1–H5 directional forms** are placeholders written by me (PLAN §8.2) — you two must own them before Registration 2.
-11. **Journal strategy sign-off**: Scientific Data companion + AER: Insights flagship + EEH backup (PLAN §1.7, research doc) — agree/adjust before writing begins.
+Item 15 (Playwright) is **resolved**: a Playwright MCP server is now connected, and was used during the pilot to read bot-blocked publisher pages.
 
-## Access & infrastructure (action items, mostly registrations)
+## Still open
 
-12. **Free API keys to register** (any account works; store in `.env`, never commit): congress.gov, GovInfo, Trove (annual renewal!), FRASER/FRED, Europeana, NYT, IPUMS (+ API key), BLS v2. Signup URLs in `docs/research/archives-and-apis.md` and `outcome-data-inventory.md`.
+### Access & infrastructure
+
 13. **UK Data Service account** (I-CeM, Cambridge Group deposits) — start early; the Special Licence variant takes weeks if ever needed.
-14. **Institutional subscriptions**: which does your institution license — ProQuest Historical Newspapers (+ TDM Studio?), Gale Times/Economist archives (+ Digital Scholar Lab?), JSTOR, EconLit, British Newspaper Archive? This determines how much of Tier B is feasible and whether TDM budgets are needed.
-15. **Playwright**: no Playwright MCP server is connected to this Claude Code environment (checked). To let me drive bot-blocked sites (weforum.org, bls.gov, loc.gov-from-datacenter) and logged-in archive UIs, add it: `claude mcp add playwright -- npx @playwright/mcp@latest` (browsers install on first run). Until then those sites are manual.
-16. **Anthropic API key + model choice** for the P1 LLM dry run (T023–T026); agree a spend cap.
-17. **Chronicling America trials** returned 403 from this datacenter IP — re-run the live trial from a university/home network to confirm throughput before Reg 1 freezes it as a registered source.
+17. **Chronicling America trials** returned 403 from this datacenter IP — re-run the live trial from a university or home network to confirm throughput before Reg 1 freezes it as a registered source.
 
-## Substantive research follow-ups (flagged in research docs)
+### For Ben specifically
 
-18. Three seed items need primary verbatim confirmation before leaving `draft`: Paul Douglas 1930 (*American Federationist*, HathiTrust), Emil Lederer (ILO 1938 translation), Nora–Minc ~30% banking figure (MIT Press 1980).
-19. E2 (1870–1920) is the thinnest stratum — targets listed in `docs/research/landmark-seed-list.md` (US Industrial Commission vol. 19, Powderly, Gunton/Atkinson, TUC proceedings).
+21. **E2/E3 boundary: move 1920 → 1928?** No scholarly support was found for 1920; the term's first print use (February 1928), the Hoover Committee's 1929 scare quotes, the peer-reviewed "Debate on Technological Unemployment (1928-1933)" dating, and Bix's 1929 all converge on 1928. Full evidence in [DR-003](decisions/DR-003-era-strata.md). Substantive enough that both PIs should own it; decide before Registration 1.
+22. **Which archives does the University of Oslo license?** ProQuest Historical Newspapers (and TDM Studio?), Gale *Times* / *Economist* archives (and Digital Scholar Lab?), JSTOR, EconLit, British Newspaper Archive. This determines how much of Tier B is feasible and whether text-mining budgets are needed. With no Lund affiliation the default is open-access-first (DR-001), so every gap here becomes a stated coverage limitation.
+23. **`source_type` has no financial-institution value.** A Goldman Sachs *Global Economics Analyst* note is currently typed `consultancy_report`, whose definition does cover financial institutions — but `author_type` now splits them (DR-002). Either accept the asymmetry or split `source_type` too, before Registration 1 freezes the vocabulary.
+
+### Substantive research follow-ups
+
+18. Three seed items need primary verbatim confirmation before leaving `draft`: Paul Douglas 1930 (*American Federationist*, HathiTrust), Emil Lederer (ILO 1938 translation), Nora–Minc ~30% banking figure (MIT Press 1980). **None is in the pilot corpus** — they stay out until confirmed.
+19. E2 (1870–1920) is the thinnest stratum — targets listed in `docs/research/landmark-seed-list.md` (US Industrial Commission vol. 19, Powderly, Gunton/Atkinson, TUC proceedings). Note the DR-003 finding that E2 may be genuinely thin in the professional literature rather than merely under-retrieved.
 20. Decide whether public-domain pilot full texts (Ricardo, Keynes 1930 UK-PD status check!, Wiener letter) may be committed to `data/raw/` as exceptions, or all kept external. (Keynes 1930: PD status differs by jurisdiction — check before committing.)
+24. **Compton 1938 verbatim is unconfirmed.** The pilot record quotes the claim as relayed by *MIT Technology Review*'s 2024 retrospective; the December 1938 *Technology Review* original has not been consulted. The row carries `primary_source_status = secondary_only` and must not leave `draft` until someone reads the issue.

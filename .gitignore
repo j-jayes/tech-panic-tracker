@@ -226,3 +226,13 @@ data/interim/*
 !data/interim/.gitkeep
 # Claude Code local settings may hold credentials
 .claude/settings.local.json
+
+# Quarto / R analysis artefacts
+.quarto/
+analysis/**/*_files/
+analysis/**/*.typ
+.Rhistory
+.RData
+
+# Playwright MCP session artefacts
+.playwright-mcp/

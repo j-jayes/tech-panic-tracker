@@ -1,6 +1,6 @@
 # Tech-Panic Tracker Codebook
 
-**GENERATED FILE — do not edit by hand.** Regenerate with `python -m pipeline.codebook`. Source of truth: `schemas/datapackage.json` + `data/vocab/`. Generated 2026-08-03.
+**GENERATED FILE — do not edit by hand.** Regenerate with `python -m pipeline.codebook`. Source of truth: `schemas/datapackage.json` + `data/vocab/`. Generated 2026-08-26.
 
 Prose coding rules (inclusion criteria, revisit-vs-new-prediction rule, apocryphal-quote hazards, worked examples) live in `docs/PLAN.md` and `protocol/`; this file documents the machine schema.
 
@@ -77,14 +77,17 @@ Path: `data/processed/authors.csv`
 | `academic` | University or research-institute researcher (as of prediction date) |
 | `government_agency` | National/subnational government body or official speaking for it |
 | `igo` | Intergovernmental organization (OECD, ILO, IMF, World Bank, WEF) |
-| `consultancy` | Commercial consultancy, analyst firm, or financial-institution research arm |
-| `think_tank` | Non-profit policy research institute |
+| `consultancy` | Commercial consultancy or analyst firm (financial-institution research arms take financial_institution from v0.2) |
+| `think_tank` | Legacy umbrella for non-profit policy research institutes; prefer think_tank_private or think_tank_govt from v0.2 |
 | `journalist` | Reporter, columnist, or popular non-fiction writer |
 | `futurist` | Professional forecaster/commentator outside academia and industry |
 | `industry_executive` | Executive or investor in a technology-producing or -using firm |
 | `labor_organization` | Union, workers' association, or labour movement figure |
 | `politician` | Elected or campaigning political figure |
 | `anonymous_institutional` | Unsigned institutional voice (editorials, anonymous reports) |
+| `financial_institution` | Bank, asset manager, or insurer research arm publishing forecasts (Goldman Sachs Global Investment Research); an IGO forecasting in its official capacity stays igo |
+| `think_tank_private` | Privately funded non-profit policy research institute (ITIF, Brookings, RAND) |
+| `think_tank_govt` | Government-funded or government-affiliated policy research institute (JRC, national productivity commissions) |
 | `other` | Fits no category; explain in notes |
 
 ## Table: `prediction_authors`
@@ -114,14 +117,17 @@ Path: `data/processed/prediction_authors.csv`
 | `academic` | University or research-institute researcher (as of prediction date) |
 | `government_agency` | National/subnational government body or official speaking for it |
 | `igo` | Intergovernmental organization (OECD, ILO, IMF, World Bank, WEF) |
-| `consultancy` | Commercial consultancy, analyst firm, or financial-institution research arm |
-| `think_tank` | Non-profit policy research institute |
+| `consultancy` | Commercial consultancy or analyst firm (financial-institution research arms take financial_institution from v0.2) |
+| `think_tank` | Legacy umbrella for non-profit policy research institutes; prefer think_tank_private or think_tank_govt from v0.2 |
 | `journalist` | Reporter, columnist, or popular non-fiction writer |
 | `futurist` | Professional forecaster/commentator outside academia and industry |
 | `industry_executive` | Executive or investor in a technology-producing or -using firm |
 | `labor_organization` | Union, workers' association, or labour movement figure |
 | `politician` | Elected or campaigning political figure |
 | `anonymous_institutional` | Unsigned institutional voice (editorials, anonymous reports) |
+| `financial_institution` | Bank, asset manager, or insurer research arm publishing forecasts (Goldman Sachs Global Investment Research); an IGO forecasting in its official capacity stays igo |
+| `think_tank_private` | Privately funded non-profit policy research institute (ITIF, Brookings, RAND) |
+| `think_tank_govt` | Government-funded or government-affiliated policy research institute (JRC, national productivity commissions) |
 | `other` | Fits no category; explain in notes |
 
 ## Table: `technologies`

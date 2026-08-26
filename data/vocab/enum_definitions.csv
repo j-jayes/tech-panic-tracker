@@ -58,8 +58,8 @@ record_status,deprecated,"Superseded by a correction row",0.1-draft
 author_type,academic,"University or research-institute researcher (as of prediction date)",0.1-draft
 author_type,government_agency,"National/subnational government body or official speaking for it",0.1-draft
 author_type,igo,"Intergovernmental organization (OECD, ILO, IMF, World Bank, WEF)",0.1-draft
-author_type,consultancy,"Commercial consultancy, analyst firm, or financial-institution research arm",0.1-draft
-author_type,think_tank,"Non-profit policy research institute",0.1-draft
+author_type,consultancy,"Commercial consultancy or analyst firm (financial-institution research arms take financial_institution from v0.2)",0.1-draft
+author_type,think_tank,"Legacy umbrella for non-profit policy research institutes; prefer think_tank_private or think_tank_govt from v0.2",0.1-draft
 author_type,journalist,"Reporter, columnist, or popular non-fiction writer",0.1-draft
 author_type,futurist,"Professional forecaster/commentator outside academia and industry",0.1-draft
 author_type,industry_executive,"Executive or investor in a technology-producing or -using firm",0.1-draft
@@ -67,6 +67,9 @@ author_type,labor_organization,"Union, workers' association, or labour movement 
 author_type,politician,"Elected or campaigning political figure",0.1-draft
 author_type,anonymous_institutional,"Unsigned institutional voice (editorials, anonymous reports)",0.1-draft
 author_type,other,"Fits no category; explain in notes",0.1-draft
+author_type,financial_institution,"Bank, asset manager, or insurer research arm publishing forecasts (Goldman Sachs Global Investment Research); an IGO forecasting in its official capacity stays igo",0.2-draft
+author_type,think_tank_private,"Privately funded non-profit policy research institute (ITIF, Brookings, RAND)",0.2-draft
+author_type,think_tank_govt,"Government-funded or government-affiliated policy research institute (JRC, national productivity commissions)",0.2-draft
 author_role,sole,"Only author",0.1-draft
 author_role,lead,"First/lead author of several",0.1-draft
 author_role,coauthor,"Non-lead co-author",0.1-draft

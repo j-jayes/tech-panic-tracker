@@ -45,7 +45,7 @@
         "fields": [
           { "name": "author_id", "type": "string", "constraints": { "required": true, "pattern": "^auth_[a-z0-9]+$" } },
           { "name": "display_name", "type": "string", "constraints": { "required": true } },
-          { "name": "author_type", "type": "string", "constraints": { "required": true, "enum": ["academic", "government_agency", "igo", "consultancy", "think_tank", "journalist", "futurist", "industry_executive", "labor_organization", "politician", "anonymous_institutional", "other"] }, "description": "Canonical/most-associated type; analyses use prediction_authors.author_type_at_prediction" },
+          { "name": "author_type", "type": "string", "constraints": { "required": true, "enum": ["academic", "government_agency", "igo", "consultancy", "think_tank", "journalist", "futurist", "industry_executive", "labor_organization", "politician", "anonymous_institutional", "financial_institution", "think_tank_private", "think_tank_govt", "other"] }, "description": "Canonical/most-associated type; analyses use prediction_authors.author_type_at_prediction" },
           { "name": "orcid_or_viaf", "type": "string" },
           { "name": "notes", "type": "string" }
         ],
@@ -61,7 +61,7 @@
           { "name": "prediction_id", "type": "string", "constraints": { "required": true } },
           { "name": "author_id", "type": "string", "constraints": { "required": true } },
           { "name": "author_role", "type": "string", "constraints": { "required": true, "enum": ["sole", "lead", "coauthor", "institutional"] } },
-          { "name": "author_type_at_prediction", "type": "string", "constraints": { "required": true, "enum": ["academic", "government_agency", "igo", "consultancy", "think_tank", "journalist", "futurist", "industry_executive", "labor_organization", "politician", "anonymous_institutional", "other"] } }
+          { "name": "author_type_at_prediction", "type": "string", "constraints": { "required": true, "enum": ["academic", "government_agency", "igo", "consultancy", "think_tank", "journalist", "futurist", "industry_executive", "labor_organization", "politician", "anonymous_institutional", "financial_institution", "think_tank_private", "think_tank_govt", "other"] } }
         ],
         "primaryKey": ["prediction_id", "author_id"],
         "foreignKeys": [
