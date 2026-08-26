@@ -1,0 +1,26 @@
+Creative Commons Attribution 4.0 International (CC-BY 4.0)
+
+The DATASET in this repository — all files under data/processed/ and
+data/vocab/, the logs under data/logs/, the codebook (docs/codebook.md), and
+the protocol documents (protocol/) — is licensed under the Creative Commons
+Attribution 4.0 International License.
+
+You are free to:
+  Share — copy and redistribute the material in any medium or format
+  Adapt — remix, transform, and build upon the material for any purpose,
+          even commercially.
+
+Under the following terms:
+  Attribution — You must give appropriate credit (cite the dataset as
+  specified in CITATION.cff), provide a link to the license, and indicate
+  if changes were made.
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Note on third-party content: verbatim quotations of predictions inside the
+dataset are short excerpts of their original sources, included under fair
+use/fair dealing for scholarship; copyright in the quoted passages remains
+with their original holders. Full texts of copyrighted sources are NOT
+distributed with this repository (see data/raw/README).
+
+Code in this repository is separately licensed under MIT — see LICENSE.

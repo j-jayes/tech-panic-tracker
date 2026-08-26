@@ -1,0 +1,146 @@
+enum_name,value,definition,added_version
+claim_type,employment_outcome,"Asserts jobs will be lost/created/transformed in quantity",0.1-draft
+claim_type,exposure_risk,"Asserts a share of jobs is at risk/susceptible/exposed, without asserting realised loss (Frey-Osborne style)",0.1-draft
+claim_type,capability_milestone,"Asserts machines will be able to perform some human work by a horizon, without an employment quantity",0.1-draft
+specificity_tier,T1_quantified,"Explicit magnitude AND explicit horizon",0.1-draft
+specificity_tier,T2_semi_quantified,"Magnitude XOR horizon explicit",0.1-draft
+specificity_tier,T3_directional,"Clear direction and locus, no numbers",0.1-draft
+specificity_tier,T4_rhetorical,"Vague alarm or reassurance with no operationalizable claim",0.1-draft
+direction,displacement,"Gross claim: technology will displace workers in the stated locus",0.1-draft
+direction,creation,"Gross claim: technology will create jobs in the stated locus",0.1-draft
+direction,net_negative,"Net claim: overall employment falls",0.1-draft
+direction,net_positive,"Net claim: overall employment rises (more created than destroyed)",0.1-draft
+direction,transformation_neutral,"Work changes character without an asserted quantity change (boundary case)",0.1-draft
+direction,ambiguous,"Direction not determinable from the text",0.1-draft
+panic_valence,alarm,"Presented as a warning/threat",0.1-draft
+panic_valence,reassurance,"Presented as debunking or calming replacement fears",0.1-draft
+panic_valence,neutral_forecast,"Presented as dispassionate projection",0.1-draft
+level,task,"Specific tasks within jobs",0.1-draft
+level,firm,"A named firm or workplace",0.1-draft
+level,occupation,"A named occupation",0.1-draft
+level,industry,"A named industry/sector",0.1-draft
+level,country_region,"A country or sub-national region economy-wide",0.1-draft
+level,global,"World economy",0.1-draft
+generality,narrow,"Single-purpose technology (ATM, power loom)",0.1-draft
+generality,domain,"Spans one broad activity domain (industrial robots, expert systems)",0.1-draft
+generality,general_purpose,"Pervasive across sectors with complementary innovation (electricity, computing, AI)",0.1-draft
+estimate_type,point,"Single-number claim",0.1-draft
+estimate_type,range,"Explicit low-high interval or scenario band",0.1-draft
+estimate_type,scenario_conditional,"Magnitude conditional on named scenario/policy",0.1-draft
+estimate_type,none,"No numeric estimate",0.1-draft
+mechanism_type,cost_substitution,"Machine cheaper than labour at same output",0.1-draft
+mechanism_type,capability_parity,"Machine reaches human capability level",0.1-draft
+mechanism_type,scale_speed,"Machine speed/scale advantages",0.1-draft
+mechanism_type,deskilling,"Technology reduces skill requirements, enabling substitution",0.1-draft
+mechanism_type,demand_shift,"Demand-side changes triggered by the technology",0.1-draft
+mechanism_type,other,"Mechanism stated but fits no category",0.1-draft
+verdict,clearly_correct,"Direction, rough magnitude (ratio 2/3-3/2), and timing all borne out",0.1-draft
+verdict,mostly_correct,"Direction correct; magnitude or timing off by <= one band (ratio 0.4-2/3 or 3/2-2.5)",0.1-draft
+verdict,mixed,"Partially realised (ratio 0.1-0.4 or 2.5-10, or right direction wrong locus)",0.1-draft
+verdict,mostly_wrong,"Direction weakly wrong or magnitude off by > one band (ratio <0.1 or >10)",0.1-draft
+verdict,clearly_wrong,"Direction contradicted or claimed outcome plainly did not occur in horizon",0.1-draft
+verdict,too_early_to_tell,"Horizon extends beyond evaluation cohort year",0.1-draft
+verdict,unfalsifiable,"No operationalizable claim even after horizon defaults",0.1-draft
+verdict,insufficient_evidence,"Falsifiable but no adequate outcome data found; data search logged",0.1-draft
+blinding_status,blinded,"Evaluator saw only the redacted packet and did not recognise the prediction",0.1-draft
+blinding_status,partially_blinded,"Evaluator suspects but is not certain of the source",0.1-draft
+blinding_status,unblindable,"Prediction identifiable from the claim itself (landmark items)",0.1-draft
+revisit_stance,reaffirmed,"Author restates the claim with same or greater confidence",0.1-draft
+revisit_stance,moderated,"Author weakens magnitude or confidence",0.1-draft
+revisit_stance,deadline_extended,"Author pushes the horizon later",0.1-draft
+revisit_stance,retracted,"Author explicitly withdraws the claim",0.1-draft
+revisit_stance,reversed,"Author asserts the opposite",0.1-draft
+revisit_stance,silent_contradiction,"Author later writes something incompatible without acknowledgment",0.1-draft
+record_status,draft,"LLM or human draft, not yet verified; lives in interim only",0.1-draft
+record_status,verified,"Human-verified against source text",0.1-draft
+record_status,locked,"Immutable; corrections via new row + deprecated",0.1-draft
+record_status,deprecated,"Superseded by a correction row",0.1-draft
+author_type,academic,"University or research-institute researcher (as of prediction date)",0.1-draft
+author_type,government_agency,"National/subnational government body or official speaking for it",0.1-draft
+author_type,igo,"Intergovernmental organization (OECD, ILO, IMF, World Bank, WEF)",0.1-draft
+author_type,consultancy,"Commercial consultancy, analyst firm, or financial-institution research arm",0.1-draft
+author_type,think_tank,"Non-profit policy research institute",0.1-draft
+author_type,journalist,"Reporter, columnist, or popular non-fiction writer",0.1-draft
+author_type,futurist,"Professional forecaster/commentator outside academia and industry",0.1-draft
+author_type,industry_executive,"Executive or investor in a technology-producing or -using firm",0.1-draft
+author_type,labor_organization,"Union, workers' association, or labour movement figure",0.1-draft
+author_type,politician,"Elected or campaigning political figure",0.1-draft
+author_type,anonymous_institutional,"Unsigned institutional voice (editorials, anonymous reports)",0.1-draft
+author_type,other,"Fits no category; explain in notes",0.1-draft
+author_role,sole,"Only author",0.1-draft
+author_role,lead,"First/lead author of several",0.1-draft
+author_role,coauthor,"Non-lead co-author",0.1-draft
+author_role,institutional,"Institution credited as author",0.1-draft
+source_type,journal_article,"Peer-reviewed journal article",0.1-draft
+source_type,working_paper,"Working/discussion paper",0.1-draft
+source_type,book,"Monograph",0.1-draft
+source_type,book_chapter,"Chapter in edited volume",0.1-draft
+source_type,government_report,"Report by a government body",0.1-draft
+source_type,igo_report,"Report by an intergovernmental organization",0.1-draft
+source_type,consultancy_report,"Report by a consultancy or financial institution",0.1-draft
+source_type,think_tank_report,"Report by a think tank",0.1-draft
+source_type,newspaper_article,"Newspaper item",0.1-draft
+source_type,magazine_article,"Magazine/periodical item",0.1-draft
+source_type,speech_transcript,"Speech, lecture, press conference, or interview transcript",0.1-draft
+source_type,testimony,"Parliamentary/congressional testimony or debate",0.1-draft
+source_type,pamphlet,"Pamphlet, petition, letter, or broadside",0.1-draft
+source_type,blog_post,"Blog/newsletter/social post",0.1-draft
+source_type,other,"Fits no category; explain in notes",0.1-draft
+retrieval_track,database,"Found via a registered Track A database query",0.1-draft
+retrieval_track,snowball,"Found via citation chasing from a seed",0.1-draft
+retrieval_track,expert_source,"Found via institutional publisher sweep",0.1-draft
+retrieval_track,pilot_seed,"Hand-collected landmark item (P1 pilot)",0.1-draft
+evidence_type,official_statistics,"Government statistical series (BLS, ONS, ILOSTAT...)",0.1-draft
+evidence_type,census_series,"Population census occupation/industry tabulations or microdata",0.1-draft
+evidence_type,industry_association,"Industry body or firm-reported statistics",0.1-draft
+evidence_type,academic_study,"Peer-reviewed retrospective study",0.1-draft
+evidence_type,news_retrospective,"Journalistic retrospective account",0.1-draft
+evidence_type,other,"Fits no category; explain in notes",0.1-draft
+exclusion_reason,no_prediction,"No forward-looking claim present",0.1-draft
+exclusion_reason,not_labor_replacement,"Forward-looking but no employment-quantity/capability claim",0.1-draft
+exclusion_reason,out_of_scope_language,"Not English and no published English translation",0.1-draft
+exclusion_reason,out_of_period,"Before 1800",0.1-draft
+exclusion_reason,duplicate,"Reprint/syndication of an already-screened source",0.1-draft
+exclusion_reason,inaccessible,"Full text unobtainable after documented attempts",0.1-draft
+extraction_method,llm_assisted,"LLM draft, human-verified",0.1-draft
+extraction_method,human_manual,"Coded directly by a human",0.1-draft
+horizon_type,explicit_year,"Names a calendar year",0.1-draft
+horizon_type,explicit_duration,"Names a duration (within twenty years)",0.1-draft
+horizon_type,vague_phrase,"Vague temporal phrase (soon, within a generation)",0.1-draft
+horizon_type,conditional,"Horizon conditional on events/policy",0.1-draft
+horizon_type,none,"No temporal reference",0.1-draft
+occupation_system,soc2018,"US Standard Occupational Classification 2018",0.1-draft
+occupation_system,hisco,"Historical International Standard Classification of Occupations",0.1-draft
+occupation_system,none,"No occupation code applicable",0.1-draft
+industry_system,naics2022,"North American Industry Classification System 2022",0.1-draft
+industry_system,sic1987,"US Standard Industrial Classification 1987",0.1-draft
+industry_system,none,"No industry code applicable",0.1-draft
+magnitude_type,percent_of_jobs,"Share of jobs/employment",0.1-draft
+magnitude_type,absolute_jobs,"Absolute number of jobs/workers",0.1-draft
+magnitude_type,share_of_tasks,"Share of tasks/work activities",0.1-draft
+magnitude_type,qualitative_total,"Qualitative claim of total/near-total replacement",0.1-draft
+magnitude_type,qualitative_partial,"Qualitative claim of partial replacement",0.1-draft
+magnitude_type,none,"No magnitude stated",0.1-draft
+primary_source_status,primary_located,"Primary source found and used",0.1-draft
+primary_source_status,secondary_only,"Only the secondary report located after documented attempt",0.1-draft
+primary_source_status,not_chased,"Primary chase not yet attempted",0.1-draft
+attribution_confidence,high,"Strong evidence the technology drove the outcome",0.1-draft
+attribution_confidence,medium,"Plausible but contested attribution",0.1-draft
+attribution_confidence,low,"Outcome likely driven by other factors",0.1-draft
+attribution_confidence,not_assessed,"Attribution not examined",0.1-draft
+evaluator_confidence,high,"Evaluator confident in the verdict",0.1-draft
+evaluator_confidence,medium,"Some judgment calls involved",0.1-draft
+evaluator_confidence,low,"Verdict rests on thin or ambiguous evidence",0.1-draft
+role,pi,"Principal investigator",0.1-draft
+role,ra,"Research assistant",0.1-draft
+role,llm,"Language-model coder configuration",0.1-draft
+stage,S1_title,"Title/snippet screen",0.1-draft
+stage,S2_fulltext,"Full-text screen",0.1-draft
+stage,S3_extraction,"Prediction extraction",0.1-draft
+decision,include,"Passes this screening stage",0.1-draft
+decision,exclude,"Excluded at this stage (reason recorded)",0.1-draft
+era_stratum,E1,"1800-1870: the machinery question",0.1-draft
+era_stratum,E2,"1870-1920: mechanisation and the machine age",0.1-draft
+era_stratum,E3,"1920-1955: technological unemployment debate",0.1-draft
+era_stratum,E4,"1955-1995: automation, cybernation, microelectronics",0.1-draft
+era_stratum,E5,"1995-present: computerisation and AI",0.1-draft

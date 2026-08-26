@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- tech-panic-tracker project rules ---
+# Copyrighted full texts and LLM drafts never enter the public repo
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/README.md
+data/interim/*
+!data/interim/.gitkeep
+# Claude Code local settings may hold credentials
+.claude/settings.local.json

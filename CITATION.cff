@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this dataset or code, please cite it as below."
+title: "Tech-Panic Tracker: two centuries of predictions about technology replacing human labour, classified and evaluated"
+type: dataset
+authors:
+  - family-names: Jayes
+    given-names: Jonathan
+    email: jonathan.jayes@nexergroup.com
+  - family-names: Schneider
+    given-names: Ben
+repository-code: "https://github.com/jonathan-jayes/tech-panic-tracker"
+license: CC-BY-4.0
+version: 0.0.1
+date-released: "2026-08-03"
+keywords:
+  - technological unemployment
+  - automation
+  - forecasting evaluation
+  - economic history
+  - labour economics
+  - open data
+abstract: >-
+  A systematic, preregistered, open dataset of predictions about technology
+  replacing human labour, from the industrial revolution to the present,
+  classified by level, technology generality, time horizon, mechanism, and
+  author type, and evaluated against employment outcome data with a graded,
+  evidence-cited rubric.

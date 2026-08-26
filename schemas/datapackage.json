@@ -1,0 +1,320 @@
+{
+  "name": "tech-panic-tracker",
+  "title": "Tech-Panic Tracker: two centuries of predictions about technology replacing human labour",
+  "profile": "tabular-data-package",
+  "version": "0.0.1",
+  "licenses": [{ "name": "CC-BY-4.0", "path": "https://creativecommons.org/licenses/by/4.0/" }],
+  "contributors": [
+    { "title": "Jonathan Jayes", "role": "author" },
+    { "title": "Ben Schneider", "role": "author" }
+  ],
+  "resources": [
+    {
+      "name": "sources",
+      "path": "../data/processed/sources.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "source_id", "type": "string", "constraints": { "required": true, "pattern": "^src_[a-z0-9]+$" } },
+          { "name": "title", "type": "string", "constraints": { "required": true } },
+          { "name": "container_title", "type": "string" },
+          { "name": "pub_date", "type": "string", "constraints": { "pattern": "^\\d{4}(-\\d{2})?(-\\d{2})?$" }, "description": "Partial dates allowed: YYYY, YYYY-MM, or YYYY-MM-DD" },
+          { "name": "source_type", "type": "string", "constraints": { "required": true, "enum": ["journal_article", "working_paper", "book", "book_chapter", "government_report", "igo_report", "consultancy_report", "think_tank_report", "newspaper_article", "magazine_article", "speech_transcript", "testimony", "pamphlet", "blog_post", "other"] } },
+          { "name": "venue_country", "type": "string", "constraints": { "pattern": "^[A-Z]{2}$" } },
+          { "name": "language_original", "type": "string", "constraints": { "pattern": "^[a-z]{2}$" } },
+          { "name": "is_translation", "type": "boolean" },
+          { "name": "url", "type": "string" },
+          { "name": "archive_url", "type": "string", "description": "Permalink (Wayback/HathiTrust/etc.); required whenever url is set (pandera rule)" },
+          { "name": "doi", "type": "string" },
+          { "name": "retrieval_track", "type": "string", "constraints": { "required": true, "enum": ["database", "snowball", "expert_source", "pilot_seed"] } },
+          { "name": "search_query_id", "type": "string" },
+          { "name": "parent_source_id", "type": "string" },
+          { "name": "duplicates_of", "type": "string" },
+          { "name": "accessed_date", "type": "date" },
+          { "name": "full_text_location", "type": "string" },
+          { "name": "notes", "type": "string" }
+        ],
+        "primaryKey": ["source_id"]
+      }
+    },
+    {
+      "name": "authors",
+      "path": "../data/processed/authors.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "author_id", "type": "string", "constraints": { "required": true, "pattern": "^auth_[a-z0-9]+$" } },
+          { "name": "display_name", "type": "string", "constraints": { "required": true } },
+          { "name": "author_type", "type": "string", "constraints": { "required": true, "enum": ["academic", "government_agency", "igo", "consultancy", "think_tank", "journalist", "futurist", "industry_executive", "labor_organization", "politician", "anonymous_institutional", "other"] }, "description": "Canonical/most-associated type; analyses use prediction_authors.author_type_at_prediction" },
+          { "name": "orcid_or_viaf", "type": "string" },
+          { "name": "notes", "type": "string" }
+        ],
+        "primaryKey": ["author_id"]
+      }
+    },
+    {
+      "name": "prediction_authors",
+      "path": "../data/processed/prediction_authors.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "prediction_id", "type": "string", "constraints": { "required": true } },
+          { "name": "author_id", "type": "string", "constraints": { "required": true } },
+          { "name": "author_role", "type": "string", "constraints": { "required": true, "enum": ["sole", "lead", "coauthor", "institutional"] } },
+          { "name": "author_type_at_prediction", "type": "string", "constraints": { "required": true, "enum": ["academic", "government_agency", "igo", "consultancy", "think_tank", "journalist", "futurist", "industry_executive", "labor_organization", "politician", "anonymous_institutional", "other"] } }
+        ],
+        "primaryKey": ["prediction_id", "author_id"],
+        "foreignKeys": [
+          { "fields": ["prediction_id"], "reference": { "resource": "predictions", "fields": ["prediction_id"] } },
+          { "fields": ["author_id"], "reference": { "resource": "authors", "fields": ["author_id"] } }
+        ]
+      }
+    },
+    {
+      "name": "technologies",
+      "path": "../data/vocab/technologies.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "tech_id", "type": "string", "constraints": { "required": true, "pattern": "^[a-z0-9_]+$" } },
+          { "name": "label", "type": "string", "constraints": { "required": true } },
+          { "name": "generality", "type": "string", "constraints": { "required": true, "enum": ["narrow", "domain", "general_purpose"] } },
+          { "name": "parent_tech_id", "type": "string" },
+          { "name": "first_commercial_year", "type": "integer" },
+          { "name": "definition", "type": "string", "constraints": { "required": true } },
+          { "name": "vocab_version", "type": "string", "constraints": { "required": true } }
+        ],
+        "primaryKey": ["tech_id"]
+      }
+    },
+    {
+      "name": "prediction_technologies",
+      "path": "../data/processed/prediction_technologies.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "prediction_id", "type": "string", "constraints": { "required": true } },
+          { "name": "tech_id", "type": "string", "constraints": { "required": true } },
+          { "name": "is_primary", "type": "boolean", "constraints": { "required": true } }
+        ],
+        "primaryKey": ["prediction_id", "tech_id"],
+        "foreignKeys": [
+          { "fields": ["prediction_id"], "reference": { "resource": "predictions", "fields": ["prediction_id"] } },
+          { "fields": ["tech_id"], "reference": { "resource": "technologies", "fields": ["tech_id"] } }
+        ]
+      }
+    },
+    {
+      "name": "predictions",
+      "path": "../data/processed/predictions.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "prediction_id", "type": "string", "constraints": { "required": true, "pattern": "^pred_[a-z0-9]+$" } },
+          { "name": "source_id", "type": "string", "constraints": { "required": true } },
+          { "name": "quote_verbatim", "type": "string", "constraints": { "required": true } },
+          { "name": "quote_locator", "type": "string", "constraints": { "required": true } },
+          { "name": "prediction_date", "type": "string", "constraints": { "required": true, "pattern": "^\\d{4}(-\\d{2})?(-\\d{2})?$" } },
+          { "name": "claim_summary", "type": "string", "constraints": { "required": true } },
+          { "name": "claim_type", "type": "string", "constraints": { "required": true, "enum": ["employment_outcome", "exposure_risk", "capability_milestone"] } },
+          { "name": "level", "type": "string", "constraints": { "required": true, "enum": ["task", "firm", "occupation", "industry", "country_region", "global"] } },
+          { "name": "geography", "type": "string", "description": "ISO 3166 alpha-2 codes ;-separated, or GLOBAL" },
+          { "name": "geography_text", "type": "string", "description": "Historical region as stated when no ISO code fits" },
+          { "name": "occupation_code", "type": "string" },
+          { "name": "occupation_system", "type": "string", "constraints": { "enum": ["soc2018", "hisco", "none"] } },
+          { "name": "industry_code", "type": "string" },
+          { "name": "industry_system", "type": "string", "constraints": { "enum": ["naics2022", "sic1987", "none"] } },
+          { "name": "direction", "type": "string", "constraints": { "required": true, "enum": ["displacement", "creation", "net_negative", "net_positive", "transformation_neutral", "ambiguous"] } },
+          { "name": "magnitude_type", "type": "string", "constraints": { "enum": ["percent_of_jobs", "absolute_jobs", "share_of_tasks", "qualitative_total", "qualitative_partial", "none"] } },
+          { "name": "estimate_type", "type": "string", "constraints": { "enum": ["point", "range", "scenario_conditional", "none"] } },
+          { "name": "magnitude_value", "type": "number" },
+          { "name": "magnitude_low", "type": "number" },
+          { "name": "magnitude_high", "type": "number" },
+          { "name": "magnitude_headline", "type": "number" },
+          { "name": "magnitude_unit", "type": "string" },
+          { "name": "specificity_tier", "type": "string", "constraints": { "required": true, "enum": ["T1_quantified", "T2_semi_quantified", "T3_directional", "T4_rhetorical"] } },
+          { "name": "horizon_stated_text", "type": "string" },
+          { "name": "horizon_type", "type": "string", "constraints": { "required": true, "enum": ["explicit_year", "explicit_duration", "vague_phrase", "conditional", "none"] } },
+          { "name": "horizon_start_year", "type": "integer" },
+          { "name": "horizon_end_year", "type": "integer" },
+          { "name": "horizon_operationalized", "type": "boolean" },
+          { "name": "mechanism_specified", "type": "boolean", "constraints": { "required": true } },
+          { "name": "mechanism_text", "type": "string" },
+          { "name": "mechanism_type", "type": "string", "constraints": { "enum": ["cost_substitution", "capability_parity", "scale_speed", "deskilling", "demand_shift", "other"] } },
+          { "name": "is_conditional", "type": "boolean" },
+          { "name": "panic_valence", "type": "string", "constraints": { "required": true, "enum": ["alarm", "reassurance", "neutral_forecast"] } },
+          { "name": "is_secondary_report", "type": "boolean" },
+          { "name": "primary_source_status", "type": "string", "constraints": { "enum": ["primary_located", "secondary_only", "not_chased"] } },
+          { "name": "derived_from_prediction_id", "type": "string", "description": "Citation lineage: set when this prediction's estimate derives from an upstream study (e.g. PwC 2017 from Frey-Osborne 2013); such predictions are not independent" },
+          { "name": "extraction_method", "type": "string", "constraints": { "required": true, "enum": ["llm_assisted", "human_manual"] } },
+          { "name": "llm_model", "type": "string", "description": "Exact dated model snapshot ID, never a floating alias" },
+          { "name": "llm_prompt_version", "type": "string" },
+          { "name": "created_by", "type": "string", "constraints": { "required": true } },
+          { "name": "created_date", "type": "date", "constraints": { "required": true } },
+          { "name": "verified_by", "type": "string" },
+          { "name": "verified_date", "type": "date" },
+          { "name": "record_status", "type": "string", "constraints": { "required": true, "enum": ["draft", "verified", "locked", "deprecated"] } }
+        ],
+        "primaryKey": ["prediction_id"],
+        "foreignKeys": [
+          { "fields": ["source_id"], "reference": { "resource": "sources", "fields": ["source_id"] } }
+        ]
+      }
+    },
+    {
+      "name": "evaluations",
+      "path": "../data/processed/evaluations.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "evaluation_id", "type": "string", "constraints": { "required": true, "pattern": "^eval_[a-z0-9]+$" } },
+          { "name": "prediction_id", "type": "string", "constraints": { "required": true } },
+          { "name": "verdict", "type": "string", "constraints": { "required": true, "enum": ["clearly_correct", "mostly_correct", "mixed", "mostly_wrong", "clearly_wrong", "too_early_to_tell", "unfalsifiable", "insufficient_evidence"] } },
+          { "name": "verdict_rationale", "type": "string", "constraints": { "required": true } },
+          { "name": "resolution_year_used", "type": "integer" },
+          { "name": "evaluated_as_of", "type": "date", "constraints": { "required": true } },
+          { "name": "evaluator_id", "type": "string", "constraints": { "required": true } },
+          { "name": "second_evaluator_id", "type": "string" },
+          { "name": "second_verdict", "type": "string", "constraints": { "enum": ["clearly_correct", "mostly_correct", "mixed", "mostly_wrong", "clearly_wrong", "too_early_to_tell", "unfalsifiable", "insufficient_evidence"] } },
+          { "name": "blinding_status", "type": "string", "constraints": { "required": true, "enum": ["blinded", "partially_blinded", "unblindable"] } },
+          { "name": "evaluator_confidence", "type": "string", "constraints": { "enum": ["high", "medium", "low"] } },
+          { "name": "attribution_confidence", "type": "string", "constraints": { "enum": ["high", "medium", "low", "not_assessed"] }, "description": "Exploratory only; never gates a verdict" },
+          { "name": "reading_defaulted", "type": "boolean", "description": "True when the gross-vs-net default reading was applied" },
+          { "name": "created_by", "type": "string", "constraints": { "required": true } },
+          { "name": "created_date", "type": "date", "constraints": { "required": true } },
+          { "name": "verified_by", "type": "string" },
+          { "name": "verified_date", "type": "date" },
+          { "name": "record_status", "type": "string", "constraints": { "required": true, "enum": ["draft", "verified", "locked", "deprecated"] } }
+        ],
+        "primaryKey": ["evaluation_id"],
+        "foreignKeys": [
+          { "fields": ["prediction_id"], "reference": { "resource": "predictions", "fields": ["prediction_id"] } }
+        ]
+      }
+    },
+    {
+      "name": "outcome_evidence",
+      "path": "../data/processed/outcome_evidence.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "evidence_id", "type": "string", "constraints": { "required": true, "pattern": "^evid_[a-z0-9]+$" } },
+          { "name": "evaluation_id", "type": "string", "constraints": { "required": true } },
+          { "name": "evidence_type", "type": "string", "constraints": { "required": true, "enum": ["official_statistics", "census_series", "industry_association", "academic_study", "news_retrospective", "other"] } },
+          { "name": "dataset_name", "type": "string" },
+          { "name": "series_or_table_id", "type": "string" },
+          { "name": "citation", "type": "string", "constraints": { "required": true } },
+          { "name": "url", "type": "string" },
+          { "name": "value_summary", "type": "string", "constraints": { "required": true } },
+          { "name": "covers_years", "type": "string" },
+          { "name": "notes", "type": "string" }
+        ],
+        "primaryKey": ["evidence_id"],
+        "foreignKeys": [
+          { "fields": ["evaluation_id"], "reference": { "resource": "evaluations", "fields": ["evaluation_id"] } }
+        ]
+      }
+    },
+    {
+      "name": "revisits",
+      "path": "../data/processed/revisits.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "revisit_id", "type": "string", "constraints": { "required": true, "pattern": "^rev_[a-z0-9]+$" } },
+          { "name": "prediction_id", "type": "string", "constraints": { "required": true } },
+          { "name": "revisit_source_id", "type": "string", "constraints": { "required": true } },
+          { "name": "revisit_date", "type": "string", "constraints": { "pattern": "^\\d{4}(-\\d{2})?(-\\d{2})?$" } },
+          { "name": "revisit_stance", "type": "string", "constraints": { "required": true, "enum": ["reaffirmed", "moderated", "deadline_extended", "retracted", "reversed", "silent_contradiction"] } },
+          { "name": "quote_verbatim", "type": "string", "constraints": { "required": true } },
+          { "name": "quote_locator", "type": "string", "constraints": { "required": true } },
+          { "name": "created_by", "type": "string", "constraints": { "required": true } },
+          { "name": "created_date", "type": "date", "constraints": { "required": true } },
+          { "name": "verified_by", "type": "string" },
+          { "name": "verified_date", "type": "date" },
+          { "name": "record_status", "type": "string", "constraints": { "required": true, "enum": ["draft", "verified", "locked", "deprecated"] } }
+        ],
+        "primaryKey": ["revisit_id"],
+        "foreignKeys": [
+          { "fields": ["prediction_id"], "reference": { "resource": "predictions", "fields": ["prediction_id"] } },
+          { "fields": ["revisit_source_id"], "reference": { "resource": "sources", "fields": ["source_id"] } }
+        ]
+      }
+    },
+    {
+      "name": "coders",
+      "path": "../data/processed/coders.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "coder_id", "type": "string", "constraints": { "required": true } },
+          { "name": "name", "type": "string", "constraints": { "required": true } },
+          { "name": "role", "type": "string", "constraints": { "required": true, "enum": ["pi", "ra", "llm"] } }
+        ],
+        "primaryKey": ["coder_id"]
+      }
+    },
+    {
+      "name": "search_log",
+      "path": "../data/logs/search_log.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "query_id", "type": "string", "constraints": { "required": true } },
+          { "name": "track", "type": "string", "constraints": { "required": true, "enum": ["database", "snowball", "expert_source"] } },
+          { "name": "database", "type": "string", "constraints": { "required": true } },
+          { "name": "era_stratum", "type": "string", "constraints": { "enum": ["E1", "E2", "E3", "E4", "E5"] } },
+          { "name": "query_string", "type": "string", "constraints": { "required": true } },
+          { "name": "filters", "type": "string" },
+          { "name": "date_run", "type": "date", "constraints": { "required": true } },
+          { "name": "n_results", "type": "integer" },
+          { "name": "n_exported", "type": "integer" },
+          { "name": "sampled", "type": "boolean", "description": "True when the stratified sampling cap applied" },
+          { "name": "sampling_fraction", "type": "number" },
+          { "name": "sampling_seed", "type": "integer" },
+          { "name": "exporter", "type": "string" }
+        ],
+        "primaryKey": ["query_id"]
+      }
+    },
+    {
+      "name": "screening_log",
+      "path": "../data/logs/screening_log.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "screening_id", "type": "string", "constraints": { "required": true } },
+          { "name": "source_id", "type": "string", "constraints": { "required": true } },
+          { "name": "stage", "type": "string", "constraints": { "required": true, "enum": ["S1_title", "S2_fulltext", "S3_extraction"] } },
+          { "name": "decision", "type": "string", "constraints": { "required": true, "enum": ["include", "exclude"] } },
+          { "name": "exclusion_reason", "type": "string", "constraints": { "enum": ["no_prediction", "not_labor_replacement", "out_of_scope_language", "out_of_period", "duplicate", "inaccessible"] } },
+          { "name": "screener_id", "type": "string", "constraints": { "required": true } },
+          { "name": "dual_screened", "type": "boolean" },
+          { "name": "second_screener_id", "type": "string" },
+          { "name": "second_decision", "type": "string", "constraints": { "enum": ["include", "exclude"] } },
+          { "name": "date", "type": "date", "constraints": { "required": true } }
+        ],
+        "primaryKey": ["screening_id"]
+      }
+    },
+    {
+      "name": "verification_log",
+      "path": "../data/logs/verification_log.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          { "name": "log_id", "type": "string", "constraints": { "required": true } },
+          { "name": "record_id", "type": "string", "constraints": { "required": true } },
+          { "name": "table_name", "type": "string", "constraints": { "required": true } },
+          { "name": "field", "type": "string", "constraints": { "required": true } },
+          { "name": "llm_value", "type": "string" },
+          { "name": "human_value", "type": "string" },
+          { "name": "changed", "type": "boolean", "constraints": { "required": true } },
+          { "name": "coder_id", "type": "string", "constraints": { "required": true } },
+          { "name": "date", "type": "date", "constraints": { "required": true } }
+        ],
+        "primaryKey": ["log_id"]
+      }
+    }
+  ]
+}

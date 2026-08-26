@@ -1,0 +1,28 @@
+tech_id,label,generality,parent_tech_id,first_commercial_year,definition,vocab_version
+steam_power,Steam power,general_purpose,,1776,"Stationary and mobile steam engines as motive power for industry and transport",0.1-draft
+power_loom,Power loom,narrow,steam_power,1785,"Mechanised weaving loom displacing hand-loom weavers",0.1-draft
+shearing_frame,Shearing frame / gig mill,narrow,,1787,"Cloth-finishing machinery targeted by Luddite protests",0.1-draft
+spinning_machinery,Spinning machinery,narrow,,1769,"Water frame, spinning jenny, mule and successors",0.1-draft
+agricultural_machinery,Agricultural machinery,domain,,1834,"Reapers, threshers, harvesters and general farm mechanisation",0.1-draft
+labour_saving_machinery,Labour-saving machinery (unspecified),domain,,,"Umbrella category used when a source names no specific machine; 19th-century 'the machinery question'",0.1-draft
+electricity,Electricity / electrification,general_purpose,,1882,"Electric power generation and distribution as a production input",0.1-draft
+telephone_automatic_exchange,Automatic telephone exchange,narrow,electricity,1892,"Strowger and successor automatic switching, displacing telephone operators",0.1-draft
+tractor,Tractor,narrow,,1902,"Internal-combustion farm traction, displacing horses and farm labour",0.1-draft
+assembly_line,Assembly line / mass production,domain,,1913,"Moving assembly line and Fordist production methods",0.1-draft
+mechanization_general,Mechanisation (unspecified),domain,,,"Umbrella for interwar 'rationalisation'/mechanisation claims naming no single machine",0.1-draft
+computing,Computing,general_purpose,,1951,"Electronic digital computers as a general technology class",0.1-draft
+automation_general,Automation (unspecified),domain,computing,1947,"Umbrella for 1950s-70s 'automation'/'cybernation' claims naming no specific system",0.1-draft
+numerical_control,Numerical control machine tools,narrow,automation_general,1958,"NC/CNC machine tools in manufacturing",0.1-draft
+industrial_robot,Industrial robot,domain,automation_general,1961,"Programmable manipulators in manufacturing (Unimate and successors)",0.1-draft
+containerization,Containerisation,domain,,1956,"Standardised shipping containers, displacing longshore labour",0.1-draft
+atm,Automated teller machine,narrow,computing,1967,"Cash-dispensing and self-service banking terminals",0.1-draft
+microelectronics,Microelectronics / the microchip,general_purpose,computing,1971,"Semiconductor microprocessors as a pervasive input (late-1970s 'chips' scare)",0.1-draft
+word_processor,Word processor,narrow,computing,1976,"Dedicated and software word processing, displacing typists/secretaries",0.1-draft
+telematics,Telematics,domain,computing,1978,"Computing + telecommunications convergence (Nora-Minc framing)",0.1-draft
+expert_system,Expert system,domain,artificial_intelligence,1980,"Rule-based decision systems of the 1980s AI wave",0.1-draft
+personal_computer,Personal computer,domain,computing,1977,"Desktop computing in offices",0.1-draft
+internet,Internet / e-commerce,general_purpose,computing,1995,"Networked digital communication and commerce",0.1-draft
+artificial_intelligence,Artificial intelligence,general_purpose,computing,,"Machine performance of tasks requiring intelligence; umbrella for ML, expert systems, generative AI",0.1-draft
+machine_learning,Machine learning,domain,artificial_intelligence,,"Statistical learning systems incl. deep learning; basis of 2010s automation-risk estimates",0.1-draft
+self_driving_vehicle,Autonomous vehicle,domain,artificial_intelligence,,"Self-driving cars and trucks, displacing drivers",0.1-draft
+generative_ai,Generative AI,domain,artificial_intelligence,2022,"Large language and diffusion models (ChatGPT era)",0.1-draft
