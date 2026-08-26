@@ -1,3 +1,4 @@
 coder_id,name,role
 jj,Jonathan Jayes,pi
 bs,Ben Schneider,pi
+cc,"Claude (claude-fable-5), AI assistant",llm

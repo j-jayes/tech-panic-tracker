@@ -1,1 +1,26 @@
 author_id,display_name,author_type,orcid_or_viaf,notes
+auth_nedludd,"""Ned Ludd"" / Army of Redressers",labor_organization,,Pseudonymous collective signature used by Luddite framework-breakers
+auth_byron,"George Gordon Byron, Lord Byron",politician,,Speaking in the House of Lords; poet by profession
+auth_ricardo,David Ricardo,academic,,Political economist; also an MP from 1819
+auth_ure,Andrew Ure,academic,,Chemist and factory-system advocate
+auth_wright,Carroll D. Wright,government_agency,,US Commissioner of Labor 1885-1905
+auth_wells,David A. Wells,academic,,Economist; former US Special Commissioner of the Revenue
+auth_gompers,Samuel Gompers,labor_organization,,"President, American Federation of Labor"
+auth_keynes,John Maynard Keynes,academic,,
+auth_compton,Karl T. Compton,academic,,President of MIT 1930-1948
+auth_wiener,Norbert Wiener,academic,,Founder of cybernetics
+auth_reuther,Walter Reuther,labor_organization,,"President, United Automobile Workers; CIO"
+auth_simon,Herbert A. Simon,academic,,Nobel laureate in economics 1978
+auth_leontief,Wassily Leontief,academic,,Nobel laureate in economics 1973
+auth_rifkin,Jeremy Rifkin,futurist,,"Economic and social theorist, Foundation on Economic Trends"
+auth_frey,Carl Benedikt Frey,academic,,Oxford Martin School
+auth_osborne,Michael A. Osborne,academic,,"Department of Engineering Science, University of Oxford"
+auth_deloitte,Deloitte LLP,consultancy,,UK practice
+auth_autor,David H. Autor,academic,,MIT Department of Economics
+auth_arntz,Melanie Arntz,academic,,ZEW Mannheim; lead author of OECD WP 189
+auth_oecd,Organisation for Economic Co-operation and Development,igo,,"Publisher of the Social, Employment and Migration Working Paper series"
+auth_hinton,Geoffrey Hinton,academic,,University of Toronto; Nobel laureate in physics 2024
+auth_pwc,PricewaterhouseCoopers,consultancy,,PwC UK Economic Outlook team
+auth_atkinson,Robert D. Atkinson,think_tank_private,,"President, Information Technology and Innovation Foundation"
+auth_goldman,Goldman Sachs Global Investment Research,financial_institution,,"Briggs and Kodnani, Global Economics Analyst"
+auth_amodei,Dario Amodei,industry_executive,,"CEO, Anthropic"
