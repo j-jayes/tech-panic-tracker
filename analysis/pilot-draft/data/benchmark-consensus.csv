@@ -1,0 +1,209 @@
+pass,study_id,gold_site_subgroup,field,field_group,models_unanimous,n_models_match_gold
+1,jtpa,Adult women,training_role,classification,True,5
+1,jtpa,Adult women,mandatory_voluntary,classification,True,5
+1,jtpa,Adult women,funding_public_private,classification,True,5
+1,jtpa,Adult women,admin_public_private,classification,False,4
+1,jtpa,Adult women,has_classroom,classification,True,5
+1,jtpa,Adult women,has_ojt,classification,False,4
+1,jtpa,Adult women,has_jsa,classification,True,5
+1,jtpa,Adult women,has_multiple_components,classification,True,5
+1,jtpa,Adult women,sector_program,classification,True,5
+1,jtpa,Adult women,randomization_period,design,False,4
+1,jtpa,Adult women,n_treatment,design,True,5
+1,jtpa,Adult women,n_control,design,True,5
+1,jtpa,Adult women,treatment_duration_months,design,True,5
+1,jtpa,Adult women,st_emp_impact,employment,True,5
+1,jtpa,Adult women,st_emp_stars,employment,True,5
+1,jtpa,Adult women,st_emp_control_mean,employment,True,5
+1,jtpa,Adult women,mt_emp_impact,employment,True,5
+1,jtpa,Adult women,mt_emp_stars,employment,True,5
+1,jtpa,Adult women,mt_emp_control_mean,employment,True,0
+1,jtpa,Adult women,lt_emp_impact,employment,False,4
+1,jtpa,Adult women,lt_emp_stars,employment,True,5
+1,jtpa,Adult women,lt_emp_control_mean,employment,True,5
+1,jtpa,Adult women,st_earn_impact,earnings,True,5
+1,jtpa,Adult women,st_earn_se,earnings,True,5
+1,jtpa,Adult women,st_earn_stars,earnings,True,0
+1,jtpa,Adult women,st_earn_control_mean,earnings,True,5
+1,jtpa,Adult women,mt_earn_impact,earnings,True,0
+1,jtpa,Adult women,mt_earn_se,earnings,True,5
+1,jtpa,Adult women,mt_earn_stars,earnings,True,0
+1,jtpa,Adult women,mt_earn_control_mean,earnings,True,0
+1,jtpa,Adult women,lt_earn_impact,earnings,False,0
+1,jtpa,Adult women,lt_earn_se,earnings,True,5
+1,jtpa,Adult women,lt_earn_stars,earnings,False,4
+1,jtpa,Adult women,lt_earn_control_mean,earnings,False,4
+1,jtpa,Adult women,cost_per_treated,cost,True,0
+1,jtpa,Adult men,training_role,classification,True,5
+1,jtpa,Adult men,mandatory_voluntary,classification,True,5
+1,jtpa,Adult men,funding_public_private,classification,True,5
+1,jtpa,Adult men,admin_public_private,classification,False,4
+1,jtpa,Adult men,has_classroom,classification,True,5
+1,jtpa,Adult men,has_ojt,classification,False,4
+1,jtpa,Adult men,has_jsa,classification,True,5
+1,jtpa,Adult men,has_multiple_components,classification,True,5
+1,jtpa,Adult men,sector_program,classification,True,5
+1,jtpa,Adult men,randomization_period,design,False,4
+1,jtpa,Adult men,n_treatment,design,True,5
+1,jtpa,Adult men,n_control,design,True,5
+1,jtpa,Adult men,treatment_duration_months,design,True,5
+1,jtpa,Adult men,st_emp_impact,employment,True,5
+1,jtpa,Adult men,st_emp_stars,employment,True,5
+1,jtpa,Adult men,st_emp_control_mean,employment,True,5
+1,jtpa,Adult men,mt_emp_impact,employment,True,0
+1,jtpa,Adult men,mt_emp_stars,employment,True,0
+1,jtpa,Adult men,mt_emp_control_mean,employment,True,0
+1,jtpa,Adult men,lt_emp_impact,employment,False,0
+1,jtpa,Adult men,lt_emp_stars,employment,False,1
+1,jtpa,Adult men,lt_emp_control_mean,employment,True,5
+1,jtpa,Adult men,st_earn_impact,earnings,True,5
+1,jtpa,Adult men,st_earn_se,earnings,True,5
+1,jtpa,Adult men,st_earn_stars,earnings,True,5
+1,jtpa,Adult men,st_earn_control_mean,earnings,True,5
+1,jtpa,Adult men,mt_earn_impact,earnings,True,0
+1,jtpa,Adult men,mt_earn_se,earnings,True,5
+1,jtpa,Adult men,mt_earn_stars,earnings,True,5
+1,jtpa,Adult men,mt_earn_control_mean,earnings,True,5
+1,jtpa,Adult men,lt_earn_impact,earnings,False,0
+1,jtpa,Adult men,lt_earn_se,earnings,True,5
+1,jtpa,Adult men,lt_earn_stars,earnings,True,5
+1,jtpa,Adult men,lt_earn_control_mean,earnings,False,4
+1,jtpa,Adult men,cost_per_treated,cost,True,0
+1,jtpa,Female out-of-school youths,training_role,classification,True,5
+1,jtpa,Female out-of-school youths,mandatory_voluntary,classification,True,5
+1,jtpa,Female out-of-school youths,funding_public_private,classification,True,5
+1,jtpa,Female out-of-school youths,admin_public_private,classification,False,4
+1,jtpa,Female out-of-school youths,has_classroom,classification,True,5
+1,jtpa,Female out-of-school youths,has_ojt,classification,False,4
+1,jtpa,Female out-of-school youths,has_jsa,classification,True,5
+1,jtpa,Female out-of-school youths,has_multiple_components,classification,True,5
+1,jtpa,Female out-of-school youths,sector_program,classification,True,5
+1,jtpa,Female out-of-school youths,randomization_period,design,False,4
+1,jtpa,Female out-of-school youths,n_treatment,design,True,5
+1,jtpa,Female out-of-school youths,n_control,design,True,5
+1,jtpa,Female out-of-school youths,treatment_duration_months,design,True,5
+1,jtpa,Female out-of-school youths,st_emp_impact,employment,True,5
+1,jtpa,Female out-of-school youths,st_emp_stars,employment,True,5
+1,jtpa,Female out-of-school youths,st_emp_control_mean,employment,True,5
+1,jtpa,Female out-of-school youths,mt_emp_impact,employment,True,0
+1,jtpa,Female out-of-school youths,mt_emp_stars,employment,True,5
+1,jtpa,Female out-of-school youths,mt_emp_control_mean,employment,True,5
+1,jtpa,Female out-of-school youths,lt_emp_impact,employment,True,0
+1,jtpa,Female out-of-school youths,lt_emp_stars,employment,True,5
+1,jtpa,Female out-of-school youths,lt_emp_control_mean,employment,True,5
+1,jtpa,Female out-of-school youths,st_earn_impact,earnings,True,5
+1,jtpa,Female out-of-school youths,st_earn_se,earnings,True,5
+1,jtpa,Female out-of-school youths,st_earn_stars,earnings,True,5
+1,jtpa,Female out-of-school youths,st_earn_control_mean,earnings,True,5
+1,jtpa,Female out-of-school youths,mt_earn_impact,earnings,True,0
+1,jtpa,Female out-of-school youths,mt_earn_se,earnings,True,0
+1,jtpa,Female out-of-school youths,mt_earn_stars,earnings,True,5
+1,jtpa,Female out-of-school youths,mt_earn_control_mean,earnings,True,0
+1,jtpa,Female out-of-school youths,lt_earn_impact,earnings,False,0
+1,jtpa,Female out-of-school youths,lt_earn_se,earnings,True,5
+1,jtpa,Female out-of-school youths,lt_earn_stars,earnings,True,5
+1,jtpa,Female out-of-school youths,lt_earn_control_mean,earnings,False,4
+1,jtpa,Female out-of-school youths,cost_per_treated,cost,True,0
+1,jtpa,Male out-of-school youths,training_role,classification,True,5
+1,jtpa,Male out-of-school youths,mandatory_voluntary,classification,True,5
+1,jtpa,Male out-of-school youths,funding_public_private,classification,True,5
+1,jtpa,Male out-of-school youths,admin_public_private,classification,False,4
+1,jtpa,Male out-of-school youths,has_classroom,classification,True,5
+1,jtpa,Male out-of-school youths,has_ojt,classification,False,4
+1,jtpa,Male out-of-school youths,has_jsa,classification,True,5
+1,jtpa,Male out-of-school youths,has_multiple_components,classification,True,5
+1,jtpa,Male out-of-school youths,sector_program,classification,True,5
+1,jtpa,Male out-of-school youths,randomization_period,design,False,4
+1,jtpa,Male out-of-school youths,n_treatment,design,True,5
+1,jtpa,Male out-of-school youths,n_control,design,True,5
+1,jtpa,Male out-of-school youths,treatment_duration_months,design,True,5
+1,jtpa,Male out-of-school youths,st_emp_impact,employment,True,5
+1,jtpa,Male out-of-school youths,st_emp_stars,employment,True,5
+1,jtpa,Male out-of-school youths,st_emp_control_mean,employment,True,5
+1,jtpa,Male out-of-school youths,mt_emp_impact,employment,True,0
+1,jtpa,Male out-of-school youths,mt_emp_stars,employment,True,5
+1,jtpa,Male out-of-school youths,mt_emp_control_mean,employment,True,0
+1,jtpa,Male out-of-school youths,lt_emp_impact,employment,False,4
+1,jtpa,Male out-of-school youths,lt_emp_stars,employment,True,5
+1,jtpa,Male out-of-school youths,lt_emp_control_mean,employment,True,5
+1,jtpa,Male out-of-school youths,st_earn_impact,earnings,True,5
+1,jtpa,Male out-of-school youths,st_earn_se,earnings,True,5
+1,jtpa,Male out-of-school youths,st_earn_stars,earnings,True,5
+1,jtpa,Male out-of-school youths,st_earn_control_mean,earnings,True,5
+1,jtpa,Male out-of-school youths,mt_earn_impact,earnings,True,0
+1,jtpa,Male out-of-school youths,mt_earn_se,earnings,True,0
+1,jtpa,Male out-of-school youths,mt_earn_stars,earnings,True,5
+1,jtpa,Male out-of-school youths,mt_earn_control_mean,earnings,True,0
+1,jtpa,Male out-of-school youths,lt_earn_impact,earnings,False,0
+1,jtpa,Male out-of-school youths,lt_earn_se,earnings,True,5
+1,jtpa,Male out-of-school youths,lt_earn_stars,earnings,True,5
+1,jtpa,Male out-of-school youths,lt_earn_control_mean,earnings,False,5
+1,jtpa,Male out-of-school youths,cost_per_treated,cost,True,0
+1,quest,San Antonio,training_role,classification,True,5
+1,quest,San Antonio,mandatory_voluntary,classification,True,5
+1,quest,San Antonio,funding_public_private,classification,True,5
+1,quest,San Antonio,admin_public_private,classification,True,5
+1,quest,San Antonio,has_classroom,classification,True,5
+1,quest,San Antonio,has_ojt,classification,True,5
+1,quest,San Antonio,has_jsa,classification,True,5
+1,quest,San Antonio,has_multiple_components,classification,True,5
+1,quest,San Antonio,sector_program,classification,True,5
+1,quest,San Antonio,randomization_period,design,True,5
+1,quest,San Antonio,n_treatment,design,True,5
+1,quest,San Antonio,n_control,design,True,5
+1,quest,San Antonio,st_emp_impact,employment,True,5
+1,quest,San Antonio,st_emp_se,employment,True,5
+1,quest,San Antonio,st_emp_stars,employment,True,5
+1,quest,San Antonio,mt_emp_impact,employment,True,5
+1,quest,San Antonio,mt_emp_se,employment,True,5
+1,quest,San Antonio,mt_emp_stars,employment,True,5
+1,quest,San Antonio,lt_emp_impact,employment,True,0
+1,quest,San Antonio,lt_emp_stars,employment,True,5
+1,quest,San Antonio,lt_emp_control_mean,employment,True,5
+1,quest,San Antonio,st_earn_impact,earnings,True,5
+1,quest,San Antonio,st_earn_se,earnings,True,5
+1,quest,San Antonio,st_earn_stars,earnings,True,5
+1,quest,San Antonio,st_earn_control_mean,earnings,False,4
+1,quest,San Antonio,mt_earn_impact,earnings,True,5
+1,quest,San Antonio,mt_earn_se,earnings,True,5
+1,quest,San Antonio,mt_earn_stars,earnings,True,5
+1,quest,San Antonio,mt_earn_control_mean,earnings,False,4
+1,quest,San Antonio,lt_earn_impact,earnings,True,0
+1,quest,San Antonio,lt_earn_se,earnings,True,5
+1,quest,San Antonio,lt_earn_stars,earnings,True,0
+1,quest,San Antonio,lt_earn_control_mean,earnings,False,4
+1,quest,San Antonio,cost_per_treated,cost,False,0
+2,quest,San Antonio,training_role,classification,True,5
+2,quest,San Antonio,mandatory_voluntary,classification,True,5
+2,quest,San Antonio,funding_public_private,classification,False,4
+2,quest,San Antonio,admin_public_private,classification,True,5
+2,quest,San Antonio,has_classroom,classification,True,5
+2,quest,San Antonio,has_ojt,classification,True,5
+2,quest,San Antonio,has_jsa,classification,True,5
+2,quest,San Antonio,has_multiple_components,classification,True,5
+2,quest,San Antonio,sector_program,classification,True,5
+2,quest,San Antonio,randomization_period,design,True,5
+2,quest,San Antonio,n_treatment,design,True,5
+2,quest,San Antonio,n_control,design,True,5
+2,quest,San Antonio,st_emp_impact,employment,True,5
+2,quest,San Antonio,st_emp_se,employment,True,5
+2,quest,San Antonio,st_emp_stars,employment,True,5
+2,quest,San Antonio,mt_emp_impact,employment,True,5
+2,quest,San Antonio,mt_emp_se,employment,True,5
+2,quest,San Antonio,mt_emp_stars,employment,True,5
+2,quest,San Antonio,lt_emp_impact,employment,True,0
+2,quest,San Antonio,lt_emp_stars,employment,True,5
+2,quest,San Antonio,lt_emp_control_mean,employment,True,5
+2,quest,San Antonio,st_earn_impact,earnings,True,5
+2,quest,San Antonio,st_earn_se,earnings,True,5
+2,quest,San Antonio,st_earn_stars,earnings,True,5
+2,quest,San Antonio,st_earn_control_mean,earnings,False,4
+2,quest,San Antonio,mt_earn_impact,earnings,True,5
+2,quest,San Antonio,mt_earn_se,earnings,True,5
+2,quest,San Antonio,mt_earn_stars,earnings,True,5
+2,quest,San Antonio,mt_earn_control_mean,earnings,False,4
+2,quest,San Antonio,lt_earn_impact,earnings,True,0
+2,quest,San Antonio,lt_earn_se,earnings,True,5
+2,quest,San Antonio,lt_earn_stars,earnings,True,0
+2,quest,San Antonio,lt_earn_control_mean,earnings,False,4
+2,quest,San Antonio,cost_per_treated,cost,False,0

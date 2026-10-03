@@ -1,0 +1,406 @@
+study_id,model,pass,gold_site_subgroup,field,gold_class,model_class,agree
+green-jobs,deepseek-v4.1-flash,1,AIOIC (Minneapolis),st_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,AIOIC (Minneapolis),st_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,AIOIC (Minneapolis),mt_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,AIOIC (Minneapolis),mt_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,GRCC (Grand Rapids),st_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,GRCC (Grand Rapids),st_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,GRCC (Grand Rapids),mt_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,GRCC (Grand Rapids),mt_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,KCCD (Bakersfield),st_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,KCCD (Bakersfield),st_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,KCCD (Bakersfield),mt_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,KCCD (Bakersfield),mt_earn_impact,pos_sig,pos_sig,True
+green-jobs,deepseek-v4.1-flash,1,"NCTC (Gainesville, TX)",st_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,"NCTC (Gainesville, TX)",st_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,"NCTC (Gainesville, TX)",mt_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,1,"NCTC (Gainesville, TX)",mt_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,AIOIC (Minneapolis),st_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,AIOIC (Minneapolis),st_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,AIOIC (Minneapolis),mt_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,AIOIC (Minneapolis),mt_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,GRCC (Grand Rapids),st_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,GRCC (Grand Rapids),st_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,GRCC (Grand Rapids),mt_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,GRCC (Grand Rapids),mt_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,KCCD (Bakersfield),st_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,KCCD (Bakersfield),st_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,KCCD (Bakersfield),mt_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,KCCD (Bakersfield),mt_earn_impact,pos_sig,pos_sig,True
+green-jobs,deepseek-v4.1-flash,2,"NCTC (Gainesville, TX)",st_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,"NCTC (Gainesville, TX)",st_earn_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,"NCTC (Gainesville, TX)",mt_emp_impact,ns,ns,True
+green-jobs,deepseek-v4.1-flash,2,"NCTC (Gainesville, TX)",mt_earn_impact,ns,ns,True
+jtpa,claude-opus-5,1,Adult women,st_emp_impact,pos_sig,pos_sig,True
+jtpa,claude-opus-5,1,Adult women,st_earn_impact,pos_sig,pos_sig,True
+jtpa,claude-opus-5,1,Adult women,mt_emp_impact,pos_sig,pos_sig,True
+jtpa,claude-opus-5,1,Adult women,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,claude-opus-5,1,Adult women,lt_emp_impact,ns,ns,True
+jtpa,claude-opus-5,1,Adult women,lt_earn_impact,pos_sig,pos_sig,True
+jtpa,claude-opus-5,1,Adult men,st_emp_impact,ns,ns,True
+jtpa,claude-opus-5,1,Adult men,st_earn_impact,pos_sig,pos_sig,True
+jtpa,claude-opus-5,1,Adult men,mt_emp_impact,pos_sig,ns,False
+jtpa,claude-opus-5,1,Adult men,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,claude-opus-5,1,Adult men,lt_emp_impact,ns,pos_sig,False
+jtpa,claude-opus-5,1,Adult men,lt_earn_impact,ns,pos_sig,False
+jtpa,claude-opus-5,1,Female out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,claude-opus-5,1,Female out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,claude-opus-5,1,Female out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,claude-opus-5,1,Female out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,claude-opus-5,1,Female out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,claude-opus-5,1,Female out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,claude-opus-5,1,Male out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,claude-opus-5,1,Male out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,claude-opus-5,1,Male out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,claude-opus-5,1,Male out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,claude-opus-5,1,Male out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,claude-opus-5,1,Male out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Adult women,st_emp_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,1,Adult women,st_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,1,Adult women,mt_emp_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,1,Adult women,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,1,Adult women,lt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Adult women,lt_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,1,Adult men,st_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Adult men,st_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,1,Adult men,mt_emp_impact,pos_sig,ns,False
+jtpa,deepseek-v4.1-flash,1,Adult men,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,1,Adult men,lt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Adult men,lt_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Female out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Female out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Female out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Female out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Female out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Female out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Male out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Male out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Male out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Male out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Male out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,1,Male out-of-school youths,lt_earn_impact,ns,pos_sig,False
+jtpa,deepseek-v4.1-flash,2,Adult women,st_emp_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,2,Adult women,st_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,2,Adult women,mt_emp_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,2,Adult women,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,2,Adult women,lt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Adult women,lt_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,2,Adult men,st_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Adult men,st_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,2,Adult men,mt_emp_impact,pos_sig,ns,False
+jtpa,deepseek-v4.1-flash,2,Adult men,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,deepseek-v4.1-flash,2,Adult men,lt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Adult men,lt_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Female out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Female out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Female out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Female out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Female out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Female out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Male out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Male out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Male out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Male out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Male out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,deepseek-v4.1-flash,2,Male out-of-school youths,lt_earn_impact,ns,pos_sig,False
+jtpa,gemini-3.1-pro,1,Adult women,st_emp_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,1,Adult women,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,1,Adult women,mt_emp_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,1,Adult women,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,1,Adult women,lt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Adult women,lt_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,1,Adult men,st_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Adult men,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,1,Adult men,mt_emp_impact,pos_sig,ns,False
+jtpa,gemini-3.1-pro,1,Adult men,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,1,Adult men,lt_emp_impact,ns,pos_sig,False
+jtpa,gemini-3.1-pro,1,Adult men,lt_earn_impact,ns,pos_sig,False
+jtpa,gemini-3.1-pro,1,Female out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Female out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Female out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Female out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Female out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Female out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Male out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Male out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Male out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Male out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Male out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,1,Male out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Adult women,st_emp_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,2,Adult women,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,2,Adult women,mt_emp_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,2,Adult women,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,2,Adult women,lt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Adult women,lt_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,2,Adult men,st_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Adult men,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,2,Adult men,mt_emp_impact,pos_sig,ns,False
+jtpa,gemini-3.1-pro,2,Adult men,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.1-pro,2,Adult men,lt_emp_impact,ns,pos_sig,False
+jtpa,gemini-3.1-pro,2,Adult men,lt_earn_impact,ns,pos_sig,False
+jtpa,gemini-3.1-pro,2,Female out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Female out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Female out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Female out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Female out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Female out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Male out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Male out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Male out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Male out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Male out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gemini-3.1-pro,2,Male out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Adult women,st_emp_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.8-flash,1,Adult women,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.8-flash,1,Adult women,mt_emp_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.8-flash,1,Adult women,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.8-flash,1,Adult women,lt_emp_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Adult women,lt_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.8-flash,1,Adult men,st_emp_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Adult men,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.8-flash,1,Adult men,mt_emp_impact,pos_sig,ns,False
+jtpa,gemini-3.8-flash,1,Adult men,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gemini-3.8-flash,1,Adult men,lt_emp_impact,ns,pos_sig,False
+jtpa,gemini-3.8-flash,1,Adult men,lt_earn_impact,ns,pos_sig,False
+jtpa,gemini-3.8-flash,1,Female out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Female out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Female out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Female out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Female out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Female out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Male out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Male out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Male out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Male out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Male out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gemini-3.8-flash,1,Male out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Adult women,st_emp_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,1,Adult women,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,1,Adult women,mt_emp_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,1,Adult women,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,1,Adult women,lt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Adult women,lt_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,1,Adult men,st_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Adult men,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,1,Adult men,mt_emp_impact,pos_sig,ns,False
+jtpa,gpt-5.6-terra,1,Adult men,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,1,Adult men,lt_emp_impact,ns,pos_sig,False
+jtpa,gpt-5.6-terra,1,Adult men,lt_earn_impact,ns,pos_sig,False
+jtpa,gpt-5.6-terra,1,Female out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Female out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Female out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Female out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Female out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Female out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Male out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Male out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Male out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Male out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Male out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,1,Male out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Adult women,st_emp_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,2,Adult women,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,2,Adult women,mt_emp_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,2,Adult women,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,2,Adult women,lt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Adult women,lt_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,2,Adult men,st_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Adult men,st_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,2,Adult men,mt_emp_impact,pos_sig,ns,False
+jtpa,gpt-5.6-terra,2,Adult men,mt_earn_impact,pos_sig,pos_sig,True
+jtpa,gpt-5.6-terra,2,Adult men,lt_emp_impact,ns,pos_sig,False
+jtpa,gpt-5.6-terra,2,Adult men,lt_earn_impact,ns,pos_sig,False
+jtpa,gpt-5.6-terra,2,Female out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Female out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Female out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Female out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Female out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Female out-of-school youths,lt_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Male out-of-school youths,st_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Male out-of-school youths,st_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Male out-of-school youths,mt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Male out-of-school youths,mt_earn_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Male out-of-school youths,lt_emp_impact,ns,ns,True
+jtpa,gpt-5.6-terra,2,Male out-of-school youths,lt_earn_impact,ns,ns,True
+nsw,deepseek-v4.1-flash,1,Ex-addicts,st_emp_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,1,Ex-addicts,st_earn_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,1,Ex-addicts,mt_emp_impact,ns,pos_sig,False
+nsw,deepseek-v4.1-flash,1,Ex-addicts,mt_earn_impact,ns,pos_sig,False
+nsw,deepseek-v4.1-flash,1,Ex-addicts,lt_emp_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,1,Ex-addicts,lt_earn_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,1,Ex-offenders,st_emp_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,1,Ex-offenders,st_earn_impact,ns,pos_sig,False
+nsw,deepseek-v4.1-flash,1,Ex-offenders,mt_emp_impact,ns,pos_sig,False
+nsw,deepseek-v4.1-flash,1,Ex-offenders,mt_earn_impact,ns,ns,True
+nsw,deepseek-v4.1-flash,1,Ex-offenders,lt_emp_impact,ns,ns,True
+nsw,deepseek-v4.1-flash,1,Ex-offenders,lt_earn_impact,ns,ns,True
+nsw,deepseek-v4.1-flash,1,Women on AFDC long-term,st_emp_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,1,Women on AFDC long-term,mt_emp_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,2,Ex-addicts,st_emp_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,2,Ex-addicts,st_earn_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,2,Ex-addicts,mt_emp_impact,ns,pos_sig,False
+nsw,deepseek-v4.1-flash,2,Ex-addicts,mt_earn_impact,ns,pos_sig,False
+nsw,deepseek-v4.1-flash,2,Ex-addicts,lt_emp_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,2,Ex-addicts,lt_earn_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,2,Ex-offenders,st_emp_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,2,Ex-offenders,st_earn_impact,ns,pos_sig,False
+nsw,deepseek-v4.1-flash,2,Ex-offenders,mt_emp_impact,ns,pos_sig,False
+nsw,deepseek-v4.1-flash,2,Ex-offenders,mt_earn_impact,ns,ns,True
+nsw,deepseek-v4.1-flash,2,Ex-offenders,lt_emp_impact,ns,ns,True
+nsw,deepseek-v4.1-flash,2,Ex-offenders,lt_earn_impact,ns,ns,True
+nsw,deepseek-v4.1-flash,2,Women on AFDC long-term,st_emp_impact,pos_sig,pos_sig,True
+nsw,deepseek-v4.1-flash,2,Women on AFDC long-term,mt_emp_impact,pos_sig,pos_sig,True
+quest,claude-opus-5,1,San Antonio,st_emp_impact,ns,ns,True
+quest,claude-opus-5,1,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,claude-opus-5,1,San Antonio,mt_emp_impact,ns,ns,True
+quest,claude-opus-5,1,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,claude-opus-5,1,San Antonio,lt_emp_impact,ns,ns,True
+quest,claude-opus-5,1,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+quest,claude-opus-5,2,San Antonio,st_emp_impact,ns,ns,True
+quest,claude-opus-5,2,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,claude-opus-5,2,San Antonio,mt_emp_impact,ns,ns,True
+quest,claude-opus-5,2,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,claude-opus-5,2,San Antonio,lt_emp_impact,ns,ns,True
+quest,claude-opus-5,2,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+quest,deepseek-v4.1-flash,1,San Antonio,st_emp_impact,ns,ns,True
+quest,deepseek-v4.1-flash,1,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,deepseek-v4.1-flash,1,San Antonio,mt_emp_impact,ns,ns,True
+quest,deepseek-v4.1-flash,1,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,deepseek-v4.1-flash,1,San Antonio,lt_emp_impact,ns,ns,True
+quest,deepseek-v4.1-flash,1,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+quest,deepseek-v4.1-flash,2,San Antonio,st_emp_impact,ns,ns,True
+quest,deepseek-v4.1-flash,2,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,deepseek-v4.1-flash,2,San Antonio,mt_emp_impact,ns,ns,True
+quest,deepseek-v4.1-flash,2,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,deepseek-v4.1-flash,2,San Antonio,lt_emp_impact,ns,ns,True
+quest,deepseek-v4.1-flash,2,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+quest,gemini-3.1-pro,1,San Antonio,st_emp_impact,ns,ns,True
+quest,gemini-3.1-pro,1,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,gemini-3.1-pro,1,San Antonio,mt_emp_impact,ns,ns,True
+quest,gemini-3.1-pro,1,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,gemini-3.1-pro,1,San Antonio,lt_emp_impact,ns,ns,True
+quest,gemini-3.1-pro,1,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+quest,gemini-3.1-pro,2,San Antonio,st_emp_impact,ns,ns,True
+quest,gemini-3.1-pro,2,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,gemini-3.1-pro,2,San Antonio,mt_emp_impact,ns,ns,True
+quest,gemini-3.1-pro,2,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,gemini-3.1-pro,2,San Antonio,lt_emp_impact,ns,ns,True
+quest,gemini-3.1-pro,2,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+quest,gemini-3.8-flash,1,San Antonio,st_emp_impact,ns,ns,True
+quest,gemini-3.8-flash,1,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,gemini-3.8-flash,1,San Antonio,mt_emp_impact,ns,ns,True
+quest,gemini-3.8-flash,1,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,gemini-3.8-flash,1,San Antonio,lt_emp_impact,ns,ns,True
+quest,gemini-3.8-flash,1,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+quest,gemini-3.8-flash,2,San Antonio,st_emp_impact,ns,ns,True
+quest,gemini-3.8-flash,2,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,gemini-3.8-flash,2,San Antonio,mt_emp_impact,ns,ns,True
+quest,gemini-3.8-flash,2,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,gemini-3.8-flash,2,San Antonio,lt_emp_impact,ns,ns,True
+quest,gemini-3.8-flash,2,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+quest,gpt-5.6-terra,1,San Antonio,st_emp_impact,ns,ns,True
+quest,gpt-5.6-terra,1,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,gpt-5.6-terra,1,San Antonio,mt_emp_impact,ns,ns,True
+quest,gpt-5.6-terra,1,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,gpt-5.6-terra,1,San Antonio,lt_emp_impact,ns,ns,True
+quest,gpt-5.6-terra,1,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+quest,gpt-5.6-terra,2,San Antonio,st_emp_impact,ns,ns,True
+quest,gpt-5.6-terra,2,San Antonio,st_earn_impact,neg_sig,neg_sig,True
+quest,gpt-5.6-terra,2,San Antonio,mt_emp_impact,ns,ns,True
+quest,gpt-5.6-terra,2,San Antonio,mt_earn_impact,neg_sig,neg_sig,True
+quest,gpt-5.6-terra,2,San Antonio,lt_emp_impact,ns,ns,True
+quest,gpt-5.6-terra,2,San Antonio,lt_earn_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,1,JVS-Boston,mt_emp_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,1,JVS-Boston,mt_earn_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,1,WRTP (Milwaukee),mt_emp_impact,ns,ns,True
+seis,deepseek-v4.1-flash,1,WRTP (Milwaukee),mt_earn_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,1,"Per Scholas (Bronx, IT) [SEIS]",mt_emp_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,1,"Per Scholas (Bronx, IT) [SEIS]",mt_earn_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,2,JVS-Boston,mt_emp_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,2,JVS-Boston,mt_earn_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,2,WRTP (Milwaukee),mt_emp_impact,ns,ns,True
+seis,deepseek-v4.1-flash,2,WRTP (Milwaukee),mt_earn_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,2,"Per Scholas (Bronx, IT) [SEIS]",mt_emp_impact,pos_sig,pos_sig,True
+seis,deepseek-v4.1-flash,2,"Per Scholas (Bronx, IT) [SEIS]",mt_earn_impact,pos_sig,pos_sig,True
+texas-wad,deepseek-v4.1-flash,1,"Houston men, TEC/HCC: Tier I/II vs Tier I",st_emp_impact,ns,ns,True
+texas-wad,deepseek-v4.1-flash,1,"Houston men, TEC/HCC: Tier I/II vs Tier I",st_earn_impact,ns,ns,True
+texas-wad,deepseek-v4.1-flash,1,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",st_emp_impact,pos_sig,pos_sig,True
+texas-wad,deepseek-v4.1-flash,1,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",st_earn_impact,pos_sig,ns,False
+texas-wad,deepseek-v4.1-flash,2,"Houston men, TEC/HCC: Tier I/II vs Tier I",st_emp_impact,ns,ns,True
+texas-wad,deepseek-v4.1-flash,2,"Houston men, TEC/HCC: Tier I/II vs Tier I",st_earn_impact,ns,ns,True
+texas-wad,deepseek-v4.1-flash,2,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",st_emp_impact,pos_sig,pos_sig,True
+texas-wad,deepseek-v4.1-flash,2,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",st_earn_impact,pos_sig,ns,False
+texas-wad,gpt-5.6-terra,1,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",st_emp_impact,pos_sig,pos_sig,True
+texas-wad,gpt-5.6-terra,1,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",st_earn_impact,pos_sig,ns,False
+texas-wad,gpt-5.6-terra,1,"Houston men, TEC/HCC: Tier I/II vs Tier I",st_emp_impact,ns,ns,True
+texas-wad,gpt-5.6-terra,1,"Houston men, TEC/HCC: Tier I/II vs Tier I",st_earn_impact,ns,ns,True
+texas-wad,gpt-5.6-terra,2,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",st_emp_impact,pos_sig,pos_sig,True
+texas-wad,gpt-5.6-terra,2,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",st_earn_impact,pos_sig,ns,False
+texas-wad,gpt-5.6-terra,2,"Houston men, TEC/HCC: Tier I/II vs Tier I",st_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Per Scholas (Bronx),st_emp_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,1,Per Scholas (Bronx),st_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Per Scholas (Bronx),mt_emp_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,1,Per Scholas (Bronx),mt_earn_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,1,Per Scholas (Bronx),lt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Per Scholas (Bronx),lt_earn_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,1,St. Nicks Alliance (Brooklyn),st_emp_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,1,St. Nicks Alliance (Brooklyn),st_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,St. Nicks Alliance (Brooklyn),mt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,St. Nicks Alliance (Brooklyn),mt_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,St. Nicks Alliance (Brooklyn),lt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,St. Nicks Alliance (Brooklyn),lt_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Madison Strategies Group (Tulsa),st_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Madison Strategies Group (Tulsa),st_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Madison Strategies Group (Tulsa),mt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Madison Strategies Group (Tulsa),mt_earn_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,1,Madison Strategies Group (Tulsa),lt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Madison Strategies Group (Tulsa),lt_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Towards Employment (NE Ohio),st_emp_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,1,Towards Employment (NE Ohio),st_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Towards Employment (NE Ohio),mt_emp_impact,ns,pos_sig,False
+workadvance,deepseek-v4.1-flash,1,Towards Employment (NE Ohio),mt_earn_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,1,Towards Employment (NE Ohio),lt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,1,Towards Employment (NE Ohio),lt_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Per Scholas (Bronx),st_emp_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,2,Per Scholas (Bronx),st_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Per Scholas (Bronx),mt_emp_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,2,Per Scholas (Bronx),mt_earn_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,2,Per Scholas (Bronx),lt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Per Scholas (Bronx),lt_earn_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,2,St. Nicks Alliance (Brooklyn),st_emp_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,2,St. Nicks Alliance (Brooklyn),st_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,St. Nicks Alliance (Brooklyn),mt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,St. Nicks Alliance (Brooklyn),mt_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,St. Nicks Alliance (Brooklyn),lt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,St. Nicks Alliance (Brooklyn),lt_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Madison Strategies Group (Tulsa),st_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Madison Strategies Group (Tulsa),st_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Madison Strategies Group (Tulsa),mt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Madison Strategies Group (Tulsa),mt_earn_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,2,Madison Strategies Group (Tulsa),lt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Madison Strategies Group (Tulsa),lt_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Towards Employment (NE Ohio),st_emp_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,2,Towards Employment (NE Ohio),st_earn_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Towards Employment (NE Ohio),mt_emp_impact,ns,pos_sig,False
+workadvance,deepseek-v4.1-flash,2,Towards Employment (NE Ohio),mt_earn_impact,pos_sig,pos_sig,True
+workadvance,deepseek-v4.1-flash,2,Towards Employment (NE Ohio),lt_emp_impact,ns,ns,True
+workadvance,deepseek-v4.1-flash,2,Towards Employment (NE Ohio),lt_earn_impact,ns,ns,True
+year-up,deepseek-v4.1-flash,1,Full sample (8 offices pooled),st_emp_impact,ns,neg_sig,False
+year-up,deepseek-v4.1-flash,1,Full sample (8 offices pooled),st_earn_impact,pos_sig,neg_sig,False
+year-up,deepseek-v4.1-flash,1,Full sample (8 offices pooled),mt_emp_impact,ns,pos_sig,False
+year-up,deepseek-v4.1-flash,1,Full sample (8 offices pooled),mt_earn_impact,pos_sig,pos_sig,True
+year-up,deepseek-v4.1-flash,1,Full sample (8 offices pooled),lt_emp_impact,ns,pos_sig,False
+year-up,deepseek-v4.1-flash,1,Full sample (8 offices pooled),lt_earn_impact,pos_sig,pos_sig,True
+youthbuild,deepseek-v4.1-flash,1,Pooled (75 programs nationwide),st_emp_impact,ns,ns,True
+youthbuild,deepseek-v4.1-flash,1,Pooled (75 programs nationwide),st_earn_impact,neg_sig,neg_sig,True
+youthbuild,deepseek-v4.1-flash,1,Pooled (75 programs nationwide),mt_emp_impact,pos_sig,pos_sig,True
+youthbuild,deepseek-v4.1-flash,1,Pooled (75 programs nationwide),mt_earn_impact,ns,ns,True
+youthbuild,deepseek-v4.1-flash,1,Pooled (75 programs nationwide),lt_emp_impact,ns,ns,True
+youthbuild,deepseek-v4.1-flash,1,Pooled (75 programs nationwide),lt_earn_impact,ns,ns,True
+youthbuild,deepseek-v4.1-flash,2,Pooled (75 programs nationwide),st_emp_impact,ns,ns,True
+youthbuild,deepseek-v4.1-flash,2,Pooled (75 programs nationwide),st_earn_impact,neg_sig,neg_sig,True
+youthbuild,deepseek-v4.1-flash,2,Pooled (75 programs nationwide),mt_emp_impact,pos_sig,pos_sig,True
+youthbuild,deepseek-v4.1-flash,2,Pooled (75 programs nationwide),mt_earn_impact,ns,ns,True
+youthbuild,deepseek-v4.1-flash,2,Pooled (75 programs nationwide),lt_emp_impact,ns,ns,True
+youthbuild,deepseek-v4.1-flash,2,Pooled (75 programs nationwide),lt_earn_impact,ns,ns,True

@@ -1,0 +1,143 @@
+study_id,model_key,model_requested,pass,api,status,error,run_utc,model_version,provider,input_tokens,output_tokens,reasoning_tokens,cost_usd,latency_s,structured_mode,pass_
+jtpa,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",2026-09-22T12:39:25+00:00,,,,,,,,,
+jtpa,gemini-3.8-flash,gemini-3.8-flash,1.0,openrouter,ok,,2026-09-22T12:41:20+00:00,google/gemini-3.8-flash,Google AI Studio,21398.0,33084.0,27334.0,0.1401135,115.8155038356781,json_schema,
+jtpa,gemini-3.8-flash,gemini-3.8-flash,2.0,openrouter,ok,,2026-09-22T12:42:52+00:00,google/gemini-3.8-flash,Google AI Studio,27564.0,27095.0,21001.0,0.12227925,91.08651399612427,json_schema,
+jtpa,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-22T12:43:19+00:00,deepseek/deepseek-v4.1-flash,DeepInfra,19501.0,16744.0,11801.0,0.00976262,356.6673491001129,json_schema,
+jtpa,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,ok,,2026-09-22T12:47:42+00:00,deepseek/deepseek-v4.1-flash,Wafer,24845.0,45110.0,38925.0,0.032035,262.81080389022827,json_schema,
+quest,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:30+00:00,,,,,,,,,
+jtpa,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:31+00:00,,,,,,,,,
+texas-wad,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:32+00:00,,,,,,,,,
+nsw,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:33+00:00,,,,,,,,,
+quest,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:34+00:00,typesafe/jev-1.13-20260917,TypeSafe,12223.0,304.0,0.0,0.000513366,,decisions,1.0
+youthbuild,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:35+00:00,,,,,,,,,
+jtpa,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:35+00:00,typesafe/jev-1.13-20260917,TypeSafe,11682.0,304.0,0.0,0.000490644,,decisions,1.0
+jtpa,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:35+00:00,typesafe/jev-1.13-20260917,TypeSafe,11682.0,304.0,0.0,0.000490644,,decisions,1.0
+jtpa,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:36+00:00,typesafe/jev-1.13-20260917,TypeSafe,11685.0,304.0,0.0,0.00049077,,decisions,1.0
+seis,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:36+00:00,,,,,,,,,
+jtpa,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:36+00:00,typesafe/jev-1.13-20260917,TypeSafe,11685.0,304.0,0.0,0.00049077,,decisions,1.0
+texas-wad,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:37+00:00,typesafe/jev-1.13-20260917,TypeSafe,13867.0,304.0,0.0,0.000582414,,decisions,1.0
+year-up,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:37+00:00,,,,,,,,,
+texas-wad,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:38+00:00,typesafe/jev-1.13-20260917,TypeSafe,13871.0,304.0,0.0,0.000582582,,decisions,1.0
+nsw,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:38+00:00,typesafe/jev-1.13-20260917,TypeSafe,14402.0,304.0,0.0,0.000604884,,decisions,1.0
+nsw,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:39+00:00,typesafe/jev-1.13-20260917,TypeSafe,14399.0,304.0,0.0,0.000604758,,decisions,1.0
+stets,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:39+00:00,,,,,,,,,
+nsw,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:39+00:00,typesafe/jev-1.13-20260917,TypeSafe,14399.0,304.0,0.0,0.000604758,,decisions,1.0
+nsw,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:40+00:00,typesafe/jev-1.13-20260917,TypeSafe,14400.0,304.0,0.0,0.0006048,,decisions,1.0
+youthbuild,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:40+00:00,typesafe/jev-1.13-20260917,TypeSafe,14017.0,304.0,0.0,0.000588714,,decisions,1.0
+seis,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:41+00:00,typesafe/jev-1.13-20260917,TypeSafe,10693.0,304.0,0.0,0.000449106,,decisions,1.0
+green-jobs,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:41+00:00,,,,,,,,,
+seis,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:41+00:00,typesafe/jev-1.13-20260917,TypeSafe,10691.0,304.0,0.0,0.000449022,,decisions,1.0
+seis,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:42+00:00,typesafe/jev-1.13-20260917,TypeSafe,10699.0,304.0,0.0,0.000449358,,decisions,1.0
+year-up,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:42+00:00,typesafe/jev-1.13-20260917,TypeSafe,13896.0,304.0,0.0,0.000583632,,decisions,1.0
+stets,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:43+00:00,typesafe/jev-1.13-20260917,TypeSafe,14412.0,304.0,0.0,0.000605304,,decisions,1.0
+workadvance,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,RuntimeError: OpenRouter error 400: Provider returned error,2026-09-22T12:48:43+00:00,,,,,,,,,
+green-jobs,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:43+00:00,typesafe/jev-1.13-20260917,TypeSafe,13018.0,304.0,0.0,0.000546756,,decisions,1.0
+green-jobs,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:44+00:00,typesafe/jev-1.13-20260917,TypeSafe,13015.0,304.0,0.0,0.00054663,,decisions,1.0
+green-jobs,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:44+00:00,typesafe/jev-1.13-20260917,TypeSafe,13017.0,304.0,0.0,0.000546714,,decisions,1.0
+green-jobs,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:45+00:00,typesafe/jev-1.13-20260917,TypeSafe,13020.0,304.0,0.0,0.00054684,,decisions,1.0
+workadvance,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:45+00:00,typesafe/jev-1.13-20260917,TypeSafe,13139.0,304.0,0.0,0.000551838,,decisions,1.0
+workadvance,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:46+00:00,typesafe/jev-1.13-20260917,TypeSafe,13142.0,304.0,0.0,0.000551964,,decisions,1.0
+workadvance,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:46+00:00,typesafe/jev-1.13-20260917,TypeSafe,13139.0,304.0,0.0,0.000551838,,decisions,1.0
+workadvance,jev-1.13,typesafe/jev-1.13,,openrouter,ok,,2026-09-22T12:48:47+00:00,typesafe/jev-1.13-20260917,TypeSafe,13138.0,304.0,0.0,0.000551796,,decisions,1.0
+quest,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,ok,,2026-09-22T12:49:09+00:00,openai/gpt-5.6-terra,OpenAI,18748.0,2543.0,951.0,0.0773845,40.913352251052856,json_schema,
+quest,gpt-5.6-terra,openai/gpt-5.6-terra,2.0,openrouter,ok,,2026-09-22T12:49:51+00:00,openai/gpt-5.6-terra,OpenAI,20935.0,2782.0,870.0,0.08572,41.34874606132507,json_schema,
+quest,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,ok,,2026-09-22T12:50:38+00:00,anthropic/claude-opus-5,Claude Platform on AWS,30995.0,3209.0,0.0,0.2352,42.644690990448,tool_call,
+jtpa,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,ok,,2026-09-22T12:50:42+00:00,openai/gpt-5.6-terra,OpenAI,21177.0,5027.0,740.0,0.110206,51.674046993255615,json_schema,
+quest,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,ok,,2026-09-22T12:50:43+00:00,gemini-3.8-flash,Google AI Studio,19741.0,6986.0,5630.0,0.04100325,35.66107702255249,response_schema,
+quest,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",2026-09-22T12:51:29+00:00,,,,,,,,,
+quest,claude-opus-5,anthropic/claude-opus-5,2.0,openrouter,ok,,2026-09-22T12:51:43+00:00,anthropic/claude-opus-5,Claude Platform on AWS,34976.0,6177.0,0.0,0.329305,65.54763698577881,tool_call,
+jtpa,gpt-5.6-terra,openai/gpt-5.6-terra,2.0,openrouter,ok,,2026-09-22T12:52:09+00:00,openai/gpt-5.6-terra,OpenAI,26702.0,6441.0,1370.0,0.1407841,86.45364618301392,json_schema,
+quest,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,openrouter,ok,,2026-09-22T12:52:19+00:00,google/gemini-3.1-pro-preview,Google,23412.0,6960.0,5795.0,0.130344,49.977277994155884,json_schema,
+quest,gemini-3.8-flash,gemini-3.8-flash,2.0,gemini,error,"ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",2026-09-22T12:52:26+00:00,,,,,,,,,
+quest,gemini-3.8-flash,gemini-3.8-flash,2.0,openrouter,ok,,2026-09-22T12:52:54+00:00,google/gemini-3.8-flash,Google AI Studio,21439.0,10425.0,8883.0,0.055173,28.0194571018219,json_schema,
+jtpa,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,ok,,2026-09-22T12:53:06+00:00,anthropic/claude-opus-5,Claude Platform on AWS,32997.0,7912.0,0.0,0.362785,82.50033187866211,tool_call,
+quest,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-22T12:53:10+00:00,deepseek/deepseek-v4.1-flash,Wafer,17496.0,58954.0,57367.0,0.0388716,281.56947803497314,json_schema,
+quest,gemini-3.1-pro,gemini-3.1-pro-preview,2.0,openrouter,ok,,2026-09-22T12:53:19+00:00,google/gemini-3.1-pro-preview,Google,25175.0,8424.0,6779.0,0.151438,59.14534401893616,json_schema,
+texas-wad,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,ok,,2026-09-22T12:53:45+00:00,openai/gpt-5.6-terra,OpenAI,77716.0,6642.0,1551.0,0.2709335,95.84056997299194,json_schema,
+jtpa,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,openrouter,ok,,2026-09-22T12:54:22+00:00,google/gemini-3.1-pro-preview,Google,25114.0,9910.0,5583.0,0.169148,63.56719493865967,json_schema,
+jtpa,gemini-3.8-flash,gemini-3.8-flash,1.0,openrouter,ok,,2026-09-22T12:54:29+00:00,google/gemini-3.8-flash,Google AI Studio,21443.0,28864.0,23557.0,0.12432225,95.36748504638672,json_schema,
+jtpa,gemini-3.8-flash,gemini-3.8-flash,2.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:54:30+00:00,,,,,,,,,
+texas-wad,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:54:30+00:00,,,,,,,,,
+nsw,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:54:30+00:00,,,,,,,,,
+youthbuild,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:54:31+00:00,,,,,,,,,
+seis,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:54:31+00:00,,,,,,,,,
+year-up,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:54:32+00:00,,,,,,,,,
+stets,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:54:32+00:00,,,,,,,,,
+green-jobs,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:54:33+00:00,,,,,,,,,
+workadvance,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:54:33+00:00,,,,,,,,,
+texas-wad,gpt-5.6-terra,openai/gpt-5.6-terra,2.0,openrouter,ok,,2026-09-22T12:55:08+00:00,openai/gpt-5.6-terra,OpenAI,84172.0,8540.0,1337.0,0.3096471,83.59786415100098,json_schema,
+nsw,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:09+00:00,,,,,,,,,
+youthbuild,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:09+00:00,,,,,,,,,
+seis,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:09+00:00,,,,,,,,,
+year-up,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:09+00:00,,,,,,,,,
+stets,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:10+00:00,,,,,,,,,
+green-jobs,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:10+00:00,,,,,,,,,
+workadvance,gpt-5.6-terra,openai/gpt-5.6-terra,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:11+00:00,,,,,,,,,
+jtpa,claude-opus-5,anthropic/claude-opus-5,2.0,openrouter,error,"ValidationError: 3 validation errors for ReviewOutput
+records
+  Field required [type=missing, input_value={'parameter_name': {'records': []}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+changes
+  Field required [type=missing, input_value={'parameter_name': {'records': []}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+review_notes
+  Field required [type=missing, input_value={'parameter_name': {'records': []}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing",2026-09-22T12:55:47+00:00,,,,,,,,,
+texas-wad,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:47+00:00,,,,,,,,,
+nsw,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:48+00:00,,,,,,,,,
+youthbuild,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:48+00:00,,,,,,,,,
+seis,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:48+00:00,,,,,,,,,
+year-up,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:49+00:00,,,,,,,,,
+stets,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:49+00:00,,,,,,,,,
+green-jobs,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:50+00:00,,,,,,,,,
+jtpa,gemini-3.1-pro,gemini-3.1-pro-preview,2.0,openrouter,ok,,2026-09-22T12:55:50+00:00,google/gemini-3.1-pro-preview,Google,30141.0,14343.0,9771.0,0.232398,87.52677917480469,json_schema,
+texas-wad,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:50+00:00,,,,,,,,,
+workadvance,claude-opus-5,anthropic/claude-opus-5,1.0,openrouter,error,"RuntimeError: OpenRouter error 402: This request's maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.",2026-09-22T12:55:51+00:00,,,,,,,,,
+nsw,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:51+00:00,,,,,,,,,
+youthbuild,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:51+00:00,,,,,,,,,
+seis,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:51+00:00,,,,,,,,,
+year-up,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:52+00:00,,,,,,,,,
+stets,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:52+00:00,,,,,,,,,
+green-jobs,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:52+00:00,,,,,,,,,
+workadvance,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"RuntimeError: OpenRouter error 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.",2026-09-22T12:55:53+00:00,,,,,,,,,
+quest,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,error,"ValidationError: 1 validation error for ReviewOutput
+  Invalid JSON: EOF while parsing a value at line 1 column 0 [type=json_invalid, input_value='', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/json_invalid",2026-09-22T12:56:00+00:00,,,,,,,,,
+jtpa,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-22T12:57:33+00:00,deepseek/deepseek-v4.1-flash,Wafer,19545.0,16141.0,11487.0,0.0135936,92.69493675231934,json_schema,
+jtpa,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,ok,,2026-09-22T13:12:19+00:00,deepseek/deepseek-v4.1-flash,Morph,26929.0,5097.0,0.0,0.00567804,886.6074628829956,json_schema,
+jtpa,gemini-3.8-flash,gemini-3.8-flash,2.0,gemini,error,"ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",2026-09-22T13:24:22+00:00,,,,,,,,,
+texas-wad,gemini-3.1-pro,gemini-3.1-pro-preview,1.0,gemini,error,"ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",2026-09-22T13:33:40+00:00,,,,,,,,,
+texas-wad,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-22T13:33:46+00:00,deepseek/deepseek-v4.1-flash,Morph,77126.0,8524.0,0.0,0.01334664,1286.3658800125122,json_schema,
+texas-wad,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,ok,,2026-09-22T13:39:17+00:00,deepseek/deepseek-v4.1-flash,Wafer,84326.0,43344.0,30868.0,0.0428716,331.0984311103821,json_schema,
+nsw,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-22T13:40:34+00:00,deepseek/deepseek-v4.1-flash,Together,89609.0,25921.0,20332.0,0.0579879,77.57218098640442,json_schema,
+texas-wad,gemini-3.8-flash,gemini-3.8-flash,1.0,gemini,error,"ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",2026-09-22T13:46:47+00:00,,,,,,,,,
+nsw,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,ok,,2026-09-22T14:00:27+00:00,deepseek/deepseek-v4.1-flash,Morph,97867.0,6817.0,0.0,0.0150162,1192.75528216362,json_schema,
+youthbuild,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-22T20:31:00+00:00,deepseek/deepseek-v4.1-flash,Morph,83298.0,2715.0,0.0,0.00161448,23432.637442827225,json_schema,
+youthbuild,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,error,JSONDecodeError: Expecting value: line 209 column 1 (char 1144),2026-09-22T20:36:14+00:00,,,,,,,,,
+seis,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-22T20:37:36+00:00,deepseek/deepseek-v4.1-flash,Wafer,74915.0,13198.0,9727.0,0.0229018,82.14278483390808,json_schema,
+seis,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,ok,,2026-09-22T20:45:05+00:00,deepseek/deepseek-v4.1-flash,DeepInfra,78712.0,22203.0,17601.0,0.02034494,448.7605209350586,json_schema,
+year-up,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-23T19:42:56+00:00,deepseek/deepseek-v4.1-flash,DeepInfra,170909.0,30226.0,20610.0,0.03662218,82671.71798205376,json_schema,
+year-up,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,error,"ValidationError: 1 validation error for ReviewOutput
+  Invalid JSON: expected value at line 1 column 1 [type=json_invalid, input_value='Let me carefully review ...mm. Hmm, hmm. Hmm, hmm.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/json_invalid",2026-09-23T19:46:02+00:00,,,,,,,,,
+stets,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,error,"ValidationError: 1 validation error for ExtractionOutput
+  Invalid JSON: EOF while parsing a value at line 1 column 0 [type=json_invalid, input_value='', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/json_invalid",2026-09-23T19:59:25+00:00,,,,,,,,,
+green-jobs,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-23T21:39:01+00:00,deepseek/deepseek-v4.1-flash,Together,193265.0,23838.0,18648.0,0.0865851,5975.532472848892,json_schema,
+green-jobs,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,ok,,2026-09-23T21:41:16+00:00,deepseek/deepseek-v4.1-flash,AtlasCloud,198850.0,28361.0,19634.0,0.0936882,134.9242880344391,json_schema,
+workadvance,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,ok,,2026-09-23T21:42:53+00:00,deepseek/deepseek-v4.1-flash,Together,269969.0,26547.0,20626.0,0.1128471,96.73662304878235,json_schema,
+workadvance,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,ok,,2026-09-23T21:47:45+00:00,deepseek/deepseek-v4.1-flash,AtlasCloud,276269.0,60640.0,51211.0,0.1556487,292.5416929721832,json_schema,
+quest,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,ok,,2026-09-23T23:29:29+00:00,deepseek/deepseek-v4.1-flash,DeepInfra,19413.0,23680.0,21753.0,0.01266342,5105.151041030884,json_schema,
+youthbuild,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,ok,,2026-09-23T23:32:14+00:00,deepseek/deepseek-v4.1-flash,AtlasCloud,84225.0,33244.0,27858.0,0.0651603,164.7829818725586,json_schema,
+year-up,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,error,"ValidationError (retrying once): 1 validation error for ReviewOutput
+  Invalid JSON: expected value at line 1 column 1 [type=json_invalid, input_value='Let me carefully review ...mm. Hmm. Hmm. Hmm. Hmm.', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/json_invalid",2026-09-23T23:34:32+00:00,,,,,,,,,
+year-up,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,2.0,openrouter,error,"ValidationError: 1 validation error for ReviewOutput
+  Invalid JSON: EOF while parsing a value at line 1 column 0 [type=json_invalid, input_value='', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/json_invalid",2026-09-23T23:39:39+00:00,,,,,,,,,
+stets,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,error,"ValidationError (retrying once): 1 validation error for ExtractionOutput
+  Invalid JSON: expected value at line 1 column 1 [type=json_invalid, input_value='Let me work through this...te.\n\nHmm, OK. Writing', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/json_invalid",2026-09-23T23:42:39+00:00,,,,,,,,,
+stets,deepseek-v4.1-flash,deepseek/deepseek-v4.1-flash,1.0,openrouter,error,"ValidationError: 1 validation error for ExtractionOutput
+  Invalid JSON: EOF while parsing a value at line 1 column 0 [type=json_invalid, input_value='', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/json_invalid",2026-09-23T23:53:16+00:00,,,,,,,,,

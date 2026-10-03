@@ -1,0 +1,226 @@
+study_id,gold_site_subgroup,field,gold,jev,p_gold,confidence,match
+green-jobs,AIOIC (Minneapolis),training_role,primary,primary,1.0,0.99,True
+green-jobs,AIOIC (Minneapolis),has_classroom,yes,yes,1.0,0.99,True
+green-jobs,AIOIC (Minneapolis),has_ojt,no,no,0.95,0.89,True
+green-jobs,AIOIC (Minneapolis),has_jsa,yes,yes,1.0,1.0,True
+green-jobs,AIOIC (Minneapolis),has_multiple_components,yes,yes,1.0,0.99,True
+green-jobs,AIOIC (Minneapolis),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+green-jobs,AIOIC (Minneapolis),funding_public_private,public,public,1.0,0.99,True
+green-jobs,AIOIC (Minneapolis),admin_public_private,private,mixed,0.04,0.81,False
+green-jobs,AIOIC (Minneapolis),sector_program,no,yes,0.36,0.27,False
+green-jobs,GRCC (Grand Rapids),training_role,primary,primary,1.0,1.0,True
+green-jobs,GRCC (Grand Rapids),has_classroom,yes,yes,1.0,1.0,True
+green-jobs,GRCC (Grand Rapids),has_ojt,no,no,0.94,0.88,True
+green-jobs,GRCC (Grand Rapids),has_jsa,yes,yes,1.0,1.0,True
+green-jobs,GRCC (Grand Rapids),has_multiple_components,yes,yes,0.99,0.99,True
+green-jobs,GRCC (Grand Rapids),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+green-jobs,GRCC (Grand Rapids),funding_public_private,public,public,1.0,0.99,True
+green-jobs,GRCC (Grand Rapids),admin_public_private,public,mixed,0.18,0.7,False
+green-jobs,GRCC (Grand Rapids),sector_program,no,no,0.52,0.03,True
+green-jobs,KCCD (Bakersfield),training_role,primary,primary,1.0,1.0,True
+green-jobs,KCCD (Bakersfield),has_classroom,yes,yes,1.0,1.0,True
+green-jobs,KCCD (Bakersfield),has_ojt,no,no,0.95,0.9,True
+green-jobs,KCCD (Bakersfield),has_jsa,yes,yes,1.0,1.0,True
+green-jobs,KCCD (Bakersfield),has_multiple_components,yes,yes,1.0,0.99,True
+green-jobs,KCCD (Bakersfield),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+green-jobs,KCCD (Bakersfield),funding_public_private,public,public,1.0,0.99,True
+green-jobs,KCCD (Bakersfield),admin_public_private,public,mixed,0.17,0.72,False
+green-jobs,KCCD (Bakersfield),sector_program,no,no,0.52,0.04,True
+green-jobs,"NCTC (Gainesville, TX)",training_role,primary,primary,0.67,0.5,True
+green-jobs,"NCTC (Gainesville, TX)",has_classroom,yes,yes,0.99,0.99,True
+green-jobs,"NCTC (Gainesville, TX)",has_ojt,no,no,0.94,0.88,True
+green-jobs,"NCTC (Gainesville, TX)",has_jsa,yes,yes,1.0,1.0,True
+green-jobs,"NCTC (Gainesville, TX)",has_multiple_components,yes,yes,1.0,0.99,True
+green-jobs,"NCTC (Gainesville, TX)",mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+green-jobs,"NCTC (Gainesville, TX)",funding_public_private,public,public,0.99,0.99,True
+green-jobs,"NCTC (Gainesville, TX)",admin_public_private,public,mixed,0.18,0.7,False
+green-jobs,"NCTC (Gainesville, TX)",sector_program,no,yes,0.49,0.02,False
+jtpa,Adult women,training_role,primary,primary,1.0,1.0,True
+jtpa,Adult women,has_classroom,yes,yes,0.97,0.94,True
+jtpa,Adult women,has_ojt,yes,yes,0.5,0.01,True
+jtpa,Adult women,has_jsa,yes,yes,0.94,0.88,True
+jtpa,Adult women,has_multiple_components,yes,yes,0.98,0.96,True
+jtpa,Adult women,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+jtpa,Adult women,funding_public_private,public,public,1.0,1.0,True
+jtpa,Adult women,admin_public_private,mixed,mixed,0.89,0.84,True
+jtpa,Adult women,sector_program,no,no,0.99,0.99,True
+jtpa,Adult men,training_role,primary,primary,1.0,1.0,True
+jtpa,Adult men,has_classroom,yes,yes,0.97,0.94,True
+jtpa,Adult men,has_ojt,yes,yes,0.53,0.06,True
+jtpa,Adult men,has_jsa,yes,yes,0.93,0.85,True
+jtpa,Adult men,has_multiple_components,yes,yes,0.98,0.95,True
+jtpa,Adult men,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+jtpa,Adult men,funding_public_private,public,public,1.0,1.0,True
+jtpa,Adult men,admin_public_private,mixed,mixed,0.91,0.87,True
+jtpa,Adult men,sector_program,no,no,0.99,0.99,True
+jtpa,Female out-of-school youths,training_role,primary,primary,1.0,1.0,True
+jtpa,Female out-of-school youths,has_classroom,yes,yes,0.96,0.92,True
+jtpa,Female out-of-school youths,has_ojt,yes,yes,0.54,0.09,True
+jtpa,Female out-of-school youths,has_jsa,yes,yes,0.93,0.86,True
+jtpa,Female out-of-school youths,has_multiple_components,yes,yes,0.98,0.96,True
+jtpa,Female out-of-school youths,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+jtpa,Female out-of-school youths,funding_public_private,public,public,1.0,1.0,True
+jtpa,Female out-of-school youths,admin_public_private,mixed,mixed,0.91,0.87,True
+jtpa,Female out-of-school youths,sector_program,no,no,0.99,0.98,True
+jtpa,Male out-of-school youths,training_role,primary,primary,1.0,1.0,True
+jtpa,Male out-of-school youths,has_classroom,yes,yes,0.96,0.92,True
+jtpa,Male out-of-school youths,has_ojt,yes,yes,0.53,0.05,True
+jtpa,Male out-of-school youths,has_jsa,yes,yes,0.92,0.85,True
+jtpa,Male out-of-school youths,has_multiple_components,yes,yes,0.98,0.96,True
+jtpa,Male out-of-school youths,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+jtpa,Male out-of-school youths,funding_public_private,public,public,1.0,1.0,True
+jtpa,Male out-of-school youths,admin_public_private,mixed,mixed,0.91,0.85,True
+jtpa,Male out-of-school youths,sector_program,no,no,0.99,0.99,True
+nsw,Women on AFDC long-term,training_role,primary,secondary,0.01,0.79,False
+nsw,Women on AFDC long-term,has_classroom,no,no,0.96,0.93,True
+nsw,Women on AFDC long-term,has_ojt,yes,yes,1.0,1.0,True
+nsw,Women on AFDC long-term,has_jsa,yes,yes,0.98,0.96,True
+nsw,Women on AFDC long-term,has_multiple_components,yes,yes,0.93,0.86,True
+nsw,Women on AFDC long-term,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+nsw,Women on AFDC long-term,funding_public_private,public,mixed,0.17,0.74,False
+nsw,Women on AFDC long-term,admin_public_private,private,private,0.51,0.26,True
+nsw,Women on AFDC long-term,sector_program,no,no,1.0,1.0,True
+nsw,Ex-addicts,training_role,primary,secondary,0.01,0.8,False
+nsw,Ex-addicts,has_classroom,no,no,0.96,0.93,True
+nsw,Ex-addicts,has_ojt,yes,yes,1.0,1.0,True
+nsw,Ex-addicts,has_jsa,yes,yes,0.98,0.96,True
+nsw,Ex-addicts,has_multiple_components,yes,yes,0.94,0.89,True
+nsw,Ex-addicts,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+nsw,Ex-addicts,funding_public_private,public,mixed,0.15,0.78,False
+nsw,Ex-addicts,admin_public_private,private,private,0.53,0.3,True
+nsw,Ex-addicts,sector_program,no,no,1.0,1.0,True
+nsw,Ex-offenders,training_role,primary,secondary,0.01,0.82,False
+nsw,Ex-offenders,has_classroom,no,no,0.97,0.93,True
+nsw,Ex-offenders,has_ojt,yes,yes,1.0,1.0,True
+nsw,Ex-offenders,has_jsa,yes,yes,0.97,0.94,True
+nsw,Ex-offenders,has_multiple_components,yes,yes,0.94,0.88,True
+nsw,Ex-offenders,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+nsw,Ex-offenders,funding_public_private,public,mixed,0.15,0.77,False
+nsw,Ex-offenders,admin_public_private,private,private,0.52,0.28,True
+nsw,Ex-offenders,sector_program,no,no,1.0,1.0,True
+nsw,Young school dropouts,training_role,primary,secondary,0.01,0.78,False
+nsw,Young school dropouts,has_classroom,no,no,0.96,0.92,True
+nsw,Young school dropouts,has_ojt,yes,yes,1.0,1.0,True
+nsw,Young school dropouts,has_jsa,yes,yes,0.98,0.95,True
+nsw,Young school dropouts,has_multiple_components,yes,yes,0.94,0.89,True
+nsw,Young school dropouts,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+nsw,Young school dropouts,funding_public_private,public,mixed,0.13,0.8,False
+nsw,Young school dropouts,admin_public_private,private,private,0.55,0.33,True
+nsw,Young school dropouts,sector_program,no,no,1.0,1.0,True
+quest,San Antonio,training_role,primary,primary,0.96,0.94,True
+quest,San Antonio,has_classroom,yes,yes,1.0,1.0,True
+quest,San Antonio,has_ojt,no,no,0.95,0.91,True
+quest,San Antonio,has_jsa,yes,yes,1.0,1.0,True
+quest,San Antonio,has_multiple_components,yes,yes,1.0,0.99,True
+quest,San Antonio,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+quest,San Antonio,funding_public_private,mixed,private,0.22,0.64,False
+quest,San Antonio,admin_public_private,private,private,0.99,0.99,True
+quest,San Antonio,sector_program,yes,yes,0.91,0.82,True
+seis,WRTP (Milwaukee),training_role,primary,primary,0.96,0.94,True
+seis,WRTP (Milwaukee),has_classroom,yes,yes,1.0,0.99,True
+seis,WRTP (Milwaukee),has_ojt,no,yes,0.03,0.94,False
+seis,WRTP (Milwaukee),has_jsa,yes,yes,0.95,0.91,True
+seis,WRTP (Milwaukee),has_multiple_components,yes,yes,1.0,1.0,True
+seis,WRTP (Milwaukee),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+seis,WRTP (Milwaukee),funding_public_private,mixed,mixed,0.94,0.91,True
+seis,WRTP (Milwaukee),admin_public_private,private,private,0.99,0.98,True
+seis,WRTP (Milwaukee),sector_program,yes,yes,0.94,0.88,True
+seis,JVS-Boston,training_role,primary,primary,0.96,0.94,True
+seis,JVS-Boston,has_classroom,yes,yes,1.0,0.99,True
+seis,JVS-Boston,has_ojt,no,yes,0.03,0.93,False
+seis,JVS-Boston,has_jsa,yes,yes,0.96,0.91,True
+seis,JVS-Boston,has_multiple_components,yes,yes,1.0,1.0,True
+seis,JVS-Boston,mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+seis,JVS-Boston,funding_public_private,mixed,mixed,0.93,0.9,True
+seis,JVS-Boston,admin_public_private,private,private,0.98,0.97,True
+seis,JVS-Boston,sector_program,yes,yes,0.96,0.92,True
+seis,"Per Scholas (Bronx, IT) [SEIS]",training_role,primary,primary,0.98,0.97,True
+seis,"Per Scholas (Bronx, IT) [SEIS]",has_classroom,yes,yes,1.0,0.99,True
+seis,"Per Scholas (Bronx, IT) [SEIS]",has_ojt,yes,yes,0.98,0.96,True
+seis,"Per Scholas (Bronx, IT) [SEIS]",has_jsa,yes,yes,0.95,0.9,True
+seis,"Per Scholas (Bronx, IT) [SEIS]",has_multiple_components,yes,yes,1.0,1.0,True
+seis,"Per Scholas (Bronx, IT) [SEIS]",mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+seis,"Per Scholas (Bronx, IT) [SEIS]",funding_public_private,mixed,mixed,0.92,0.88,True
+seis,"Per Scholas (Bronx, IT) [SEIS]",admin_public_private,private,private,0.98,0.98,True
+seis,"Per Scholas (Bronx, IT) [SEIS]",sector_program,yes,yes,0.96,0.91,True
+stets,Pooled (5 cities),training_role,primary,secondary,0.17,0.74,False
+stets,Pooled (5 cities),has_classroom,no,yes,0.44,0.11,False
+stets,Pooled (5 cities),has_ojt,yes,yes,1.0,1.0,True
+stets,Pooled (5 cities),has_jsa,yes,yes,0.65,0.3,True
+stets,Pooled (5 cities),has_multiple_components,yes,yes,1.0,0.99,True
+stets,Pooled (5 cities),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+stets,Pooled (5 cities),funding_public_private,public,public,0.84,0.75,True
+stets,Pooled (5 cities),admin_public_private,private,mixed,0.26,0.6,False
+stets,Pooled (5 cities),sector_program,no,no,1.0,1.0,True
+texas-wad,"Houston men, TEC/HCC: Tier I/II vs Tier I",training_role,primary,secondary,0.06,0.9,False
+texas-wad,"Houston men, TEC/HCC: Tier I/II vs Tier I",has_classroom,yes,yes,1.0,0.99,True
+texas-wad,"Houston men, TEC/HCC: Tier I/II vs Tier I",has_ojt,yes,yes,1.0,1.0,True
+texas-wad,"Houston men, TEC/HCC: Tier I/II vs Tier I",has_jsa,yes,yes,1.0,1.0,True
+texas-wad,"Houston men, TEC/HCC: Tier I/II vs Tier I",has_multiple_components,yes,yes,1.0,1.0,True
+texas-wad,"Houston men, TEC/HCC: Tier I/II vs Tier I",mandatory_voluntary,mandatory,voluntary,0.0,1.0,False
+texas-wad,"Houston men, TEC/HCC: Tier I/II vs Tier I",funding_public_private,public,public,0.94,0.9,True
+texas-wad,"Houston men, TEC/HCC: Tier I/II vs Tier I",admin_public_private,mixed,mixed,0.96,0.94,True
+texas-wad,"Houston men, TEC/HCC: Tier I/II vs Tier I",sector_program,no,no,0.98,0.96,True
+texas-wad,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",training_role,secondary,secondary,0.96,0.93,True
+texas-wad,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",has_classroom,yes,yes,1.0,0.99,True
+texas-wad,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",has_ojt,yes,yes,1.0,1.0,True
+texas-wad,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",has_jsa,yes,yes,1.0,1.0,True
+texas-wad,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",has_multiple_components,yes,yes,1.0,1.0,True
+texas-wad,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",mandatory_voluntary,mandatory,voluntary,0.0,1.0,False
+texas-wad,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",funding_public_private,public,public,0.93,0.89,True
+texas-wad,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",admin_public_private,mixed,mixed,0.96,0.95,True
+texas-wad,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",sector_program,no,no,0.97,0.94,True
+workadvance,Per Scholas (Bronx),training_role,primary,primary,0.99,0.98,True
+workadvance,Per Scholas (Bronx),has_classroom,yes,yes,1.0,0.99,True
+workadvance,Per Scholas (Bronx),has_ojt,yes,yes,0.61,0.22,True
+workadvance,Per Scholas (Bronx),has_jsa,yes,yes,1.0,1.0,True
+workadvance,Per Scholas (Bronx),has_multiple_components,yes,yes,1.0,1.0,True
+workadvance,Per Scholas (Bronx),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+workadvance,Per Scholas (Bronx),funding_public_private,mixed,mixed,0.93,0.9,True
+workadvance,Per Scholas (Bronx),admin_public_private,private,private,0.68,0.51,True
+workadvance,Per Scholas (Bronx),sector_program,yes,yes,0.99,0.98,True
+workadvance,St. Nicks Alliance (Brooklyn),training_role,primary,primary,0.95,0.92,True
+workadvance,St. Nicks Alliance (Brooklyn),has_classroom,yes,yes,1.0,0.99,True
+workadvance,St. Nicks Alliance (Brooklyn),has_ojt,no,yes,0.42,0.16,False
+workadvance,St. Nicks Alliance (Brooklyn),has_jsa,yes,yes,1.0,1.0,True
+workadvance,St. Nicks Alliance (Brooklyn),has_multiple_components,yes,yes,1.0,1.0,True
+workadvance,St. Nicks Alliance (Brooklyn),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+workadvance,St. Nicks Alliance (Brooklyn),funding_public_private,mixed,mixed,0.95,0.92,True
+workadvance,St. Nicks Alliance (Brooklyn),admin_public_private,private,private,0.67,0.5,True
+workadvance,St. Nicks Alliance (Brooklyn),sector_program,yes,yes,0.98,0.95,True
+workadvance,Madison Strategies Group (Tulsa),training_role,primary,primary,0.95,0.93,True
+workadvance,Madison Strategies Group (Tulsa),has_classroom,yes,yes,1.0,0.99,True
+workadvance,Madison Strategies Group (Tulsa),has_ojt,no,yes,0.43,0.14,False
+workadvance,Madison Strategies Group (Tulsa),has_jsa,yes,yes,1.0,1.0,True
+workadvance,Madison Strategies Group (Tulsa),has_multiple_components,yes,yes,1.0,1.0,True
+workadvance,Madison Strategies Group (Tulsa),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+workadvance,Madison Strategies Group (Tulsa),funding_public_private,mixed,mixed,0.95,0.91,True
+workadvance,Madison Strategies Group (Tulsa),admin_public_private,private,private,0.71,0.56,True
+workadvance,Madison Strategies Group (Tulsa),sector_program,yes,yes,0.98,0.97,True
+workadvance,Towards Employment (NE Ohio),training_role,primary,primary,0.97,0.95,True
+workadvance,Towards Employment (NE Ohio),has_classroom,yes,yes,1.0,0.99,True
+workadvance,Towards Employment (NE Ohio),has_ojt,no,yes,0.38,0.23,False
+workadvance,Towards Employment (NE Ohio),has_jsa,yes,yes,1.0,1.0,True
+workadvance,Towards Employment (NE Ohio),has_multiple_components,yes,yes,1.0,1.0,True
+workadvance,Towards Employment (NE Ohio),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+workadvance,Towards Employment (NE Ohio),funding_public_private,mixed,mixed,0.94,0.91,True
+workadvance,Towards Employment (NE Ohio),admin_public_private,private,private,0.74,0.6,True
+workadvance,Towards Employment (NE Ohio),sector_program,yes,yes,0.99,0.98,True
+year-up,Full sample (8 offices pooled),training_role,primary,primary,0.89,0.84,True
+year-up,Full sample (8 offices pooled),has_classroom,yes,yes,0.99,0.99,True
+year-up,Full sample (8 offices pooled),has_ojt,yes,yes,1.0,1.0,True
+year-up,Full sample (8 offices pooled),has_jsa,yes,yes,0.97,0.95,True
+year-up,Full sample (8 offices pooled),has_multiple_components,yes,yes,1.0,1.0,True
+year-up,Full sample (8 offices pooled),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+year-up,Full sample (8 offices pooled),funding_public_private,mixed,private,0.3,0.55,False
+year-up,Full sample (8 offices pooled),admin_public_private,private,private,1.0,1.0,True
+year-up,Full sample (8 offices pooled),sector_program,yes,yes,0.69,0.38,True
+youthbuild,Pooled (75 programs nationwide),training_role,primary,secondary,0.47,0.3,False
+youthbuild,Pooled (75 programs nationwide),has_classroom,yes,yes,1.0,1.0,True
+youthbuild,Pooled (75 programs nationwide),has_ojt,yes,yes,0.94,0.89,True
+youthbuild,Pooled (75 programs nationwide),has_jsa,no,yes,0.17,0.67,False
+youthbuild,Pooled (75 programs nationwide),has_multiple_components,yes,yes,1.0,1.0,True
+youthbuild,Pooled (75 programs nationwide),mandatory_voluntary,voluntary,voluntary,1.0,1.0,True
+youthbuild,Pooled (75 programs nationwide),funding_public_private,public,mixed,0.27,0.59,False
+youthbuild,Pooled (75 programs nationwide),admin_public_private,private,mixed,0.3,0.55,False
+youthbuild,Pooled (75 programs nationwide),sector_program,no,no,0.97,0.94,True

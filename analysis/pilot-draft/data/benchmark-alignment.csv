@@ -1,0 +1,114 @@
+study_id,model,pass,gold_site_subgroup,model_site_subgroup,method,score
+green-jobs,deepseek-v4.1-flash,1,AIOIC (Minneapolis),"AIOIC — Soil to Sky (Minneapolis, MN)",overlap,1.0
+green-jobs,deepseek-v4.1-flash,1,GRCC (Grand Rapids),"GRCC — Pathways to Prosperity (Grand Rapids, MI)",overlap,1.0
+green-jobs,deepseek-v4.1-flash,1,KCCD (Bakersfield),"KCCD — Clean Energy Center (Bakersfield, CA)",overlap,1.0
+green-jobs,deepseek-v4.1-flash,1,"NCTC (Gainesville, TX)","NCTC — Health Matrix Grant scholarship (Gainesville, TX)",overlap,1.0
+green-jobs,deepseek-v4.1-flash,2,AIOIC (Minneapolis),"AIOIC — Soil to Sky (Minneapolis, MN)",overlap,1.0
+green-jobs,deepseek-v4.1-flash,2,GRCC (Grand Rapids),"GRCC — Pathways to Prosperity (Grand Rapids, MI)",overlap,1.0
+green-jobs,deepseek-v4.1-flash,2,KCCD (Bakersfield),"KCCD — Clean Energy Center (Bakersfield, CA)",overlap,1.0
+green-jobs,deepseek-v4.1-flash,2,"NCTC (Gainesville, TX)","NCTC — Health Matrix Grant scholarship (Gainesville, TX)",overlap,1.0
+jtpa,claude-opus-5,1,Adult women,"Adult women (JTPA Title II-A, 16 SDAs pooled)",overlap,1.0
+jtpa,claude-opus-5,1,Adult men,"Adult men (JTPA Title II-A, 16 SDAs pooled)",overlap,1.0
+jtpa,claude-opus-5,1,Female out-of-school youths,"Female youths (JTPA Title II-A, 16 SDAs pooled)",overlap,0.5
+jtpa,claude-opus-5,1,Male out-of-school youths,"Male youths (JTPA Title II-A, 16 SDAs pooled)",overlap,0.5
+jtpa,deepseek-v4.1-flash,1,Adult women,Adult women,exact,1.0
+jtpa,deepseek-v4.1-flash,1,Adult men,Adult men,exact,1.0
+jtpa,deepseek-v4.1-flash,1,Female out-of-school youths,Female youths,overlap,1.0
+jtpa,deepseek-v4.1-flash,1,Male out-of-school youths,Male youths,overlap,1.0
+jtpa,deepseek-v4.1-flash,2,Adult women,Adult women,exact,1.0
+jtpa,deepseek-v4.1-flash,2,Adult men,Adult men,exact,1.0
+jtpa,deepseek-v4.1-flash,2,Female out-of-school youths,Female youths,overlap,1.0
+jtpa,deepseek-v4.1-flash,2,Male out-of-school youths,Male youths,overlap,1.0
+jtpa,gemini-3.1-pro,1,Adult women,Adult Women,exact,1.0
+jtpa,gemini-3.1-pro,1,Adult men,Adult Men,exact,1.0
+jtpa,gemini-3.1-pro,1,Female out-of-school youths,Female Youths,overlap,1.0
+jtpa,gemini-3.1-pro,1,Male out-of-school youths,Male Youths,overlap,1.0
+jtpa,gemini-3.1-pro,2,Adult women,Adult Women,exact,1.0
+jtpa,gemini-3.1-pro,2,Adult men,Adult Men,exact,1.0
+jtpa,gemini-3.1-pro,2,Female out-of-school youths,Female Youths,overlap,1.0
+jtpa,gemini-3.1-pro,2,Male out-of-school youths,Male Youths,overlap,1.0
+jtpa,gemini-3.8-flash,1,Adult women,Adult Women,exact,1.0
+jtpa,gemini-3.8-flash,1,Adult men,Adult Men,exact,1.0
+jtpa,gemini-3.8-flash,1,Female out-of-school youths,Female Youths,overlap,1.0
+jtpa,gemini-3.8-flash,1,Male out-of-school youths,Male Youths,overlap,1.0
+jtpa,gpt-5.6-terra,1,Adult women,Adult women,exact,1.0
+jtpa,gpt-5.6-terra,1,Adult men,Adult men,exact,1.0
+jtpa,gpt-5.6-terra,1,Female out-of-school youths,Female youths,overlap,1.0
+jtpa,gpt-5.6-terra,1,Male out-of-school youths,Male youths,overlap,1.0
+jtpa,gpt-5.6-terra,2,Adult women,Adult women,exact,1.0
+jtpa,gpt-5.6-terra,2,Adult men,Adult men,exact,1.0
+jtpa,gpt-5.6-terra,2,Female out-of-school youths,Female youths,overlap,1.0
+jtpa,gpt-5.6-terra,2,Male out-of-school youths,Male youths,overlap,1.0
+nsw,deepseek-v4.1-flash,1,Ex-addicts,Ex-Addicts,exact,1.0
+nsw,deepseek-v4.1-flash,1,Ex-offenders,Ex-Offenders,exact,1.0
+nsw,deepseek-v4.1-flash,1,Women on AFDC long-term,AFDC,overlap,1.0
+nsw,deepseek-v4.1-flash,1,Young school dropouts,,gold_missing,0.0
+nsw,deepseek-v4.1-flash,1,,Youth,extra,0.0
+nsw,deepseek-v4.1-flash,2,Ex-addicts,Ex-Addicts,exact,1.0
+nsw,deepseek-v4.1-flash,2,Ex-offenders,Ex-Offenders,exact,1.0
+nsw,deepseek-v4.1-flash,2,Women on AFDC long-term,AFDC,overlap,1.0
+nsw,deepseek-v4.1-flash,2,Young school dropouts,,gold_missing,0.0
+nsw,deepseek-v4.1-flash,2,,Youth,extra,0.0
+quest,claude-opus-5,1,San Antonio,"Project QUEST, San Antonio TX (pooled)",overlap,1.0
+quest,claude-opus-5,2,San Antonio,"Project QUEST, San Antonio TX (pooled)",overlap,1.0
+quest,deepseek-v4.1-flash,1,San Antonio,Project QUEST health-care career tracks (pooled),singleton,0.0
+quest,deepseek-v4.1-flash,2,San Antonio,Project QUEST health-care career tracks (pooled),singleton,0.0
+quest,gemini-3.1-pro,1,San Antonio,Project QUEST,singleton,0.0
+quest,gemini-3.1-pro,2,San Antonio,Project QUEST,singleton,0.0
+quest,gemini-3.8-flash,1,San Antonio,Project QUEST,singleton,0.0
+quest,gemini-3.8-flash,2,San Antonio,Project QUEST,singleton,0.0
+quest,gpt-5.6-terra,1,San Antonio,Pooled San Antonio health-care applicants,overlap,1.0
+quest,gpt-5.6-terra,2,San Antonio,Pooled San Antonio health-care applicants,overlap,1.0
+seis,deepseek-v4.1-flash,1,JVS-Boston,JVS-Boston,exact,1.0
+seis,deepseek-v4.1-flash,1,WRTP (Milwaukee),WRTP,overlap,1.0
+seis,deepseek-v4.1-flash,1,"Per Scholas (Bronx, IT) [SEIS]",Per Scholas,overlap,1.0
+seis,deepseek-v4.1-flash,2,JVS-Boston,JVS-Boston,exact,1.0
+seis,deepseek-v4.1-flash,2,WRTP (Milwaukee),WRTP,overlap,1.0
+seis,deepseek-v4.1-flash,2,"Per Scholas (Bronx, IT) [SEIS]",Per Scholas,overlap,1.0
+texas-wad,deepseek-v4.1-flash,1,"Houston men, TEC/HCC: Tier I/II vs Tier I",TEC/HCC Houston men (Tier I/II vs control),overlap,1.0
+texas-wad,deepseek-v4.1-flash,1,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",SEE El Paso women,overlap,1.0
+texas-wad,deepseek-v4.1-flash,1,,TEC/HCC Houston men (Tier I Only vs control),extra,0.0
+texas-wad,deepseek-v4.1-flash,1,,SEE El Paso men,extra,0.0
+texas-wad,deepseek-v4.1-flash,1,,SER/JOBS El Paso men,extra,0.0
+texas-wad,deepseek-v4.1-flash,1,,SER/JOBS El Paso women,extra,0.0
+texas-wad,deepseek-v4.1-flash,1,,"All men (pooled across TEC/HCC, SEE, SER/JOBS)",extra,0.0
+texas-wad,deepseek-v4.1-flash,1,,El Paso women (pooled across SEE and SER/JOBS),extra,0.0
+texas-wad,deepseek-v4.1-flash,2,"Houston men, TEC/HCC: Tier I/II vs Tier I",TEC/HCC Houston men (Tier I/II vs control),overlap,1.0
+texas-wad,deepseek-v4.1-flash,2,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",SEE El Paso women,overlap,1.0
+texas-wad,deepseek-v4.1-flash,2,,TEC/HCC Houston men (Tier I Only vs control),extra,0.0
+texas-wad,deepseek-v4.1-flash,2,,SEE El Paso men,extra,0.0
+texas-wad,deepseek-v4.1-flash,2,,SER/JOBS El Paso men,extra,0.0
+texas-wad,deepseek-v4.1-flash,2,,SER/JOBS El Paso women,extra,0.0
+texas-wad,deepseek-v4.1-flash,2,,"All men (pooled across TEC/HCC, SEE, SER/JOBS)",extra,0.0
+texas-wad,deepseek-v4.1-flash,2,,El Paso women (pooled across SEE and SER/JOBS),extra,0.0
+texas-wad,gpt-5.6-terra,1,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",SEE El Paso women,overlap,1.0
+texas-wad,gpt-5.6-terra,1,"Houston men, TEC/HCC: Tier I/II vs Tier I",TEC/HCC Houston men—Tier I/II,overlap,0.83
+texas-wad,gpt-5.6-terra,1,,TEC/HCC Houston men—Tier I only,extra,0.0
+texas-wad,gpt-5.6-terra,1,,SEE El Paso men,extra,0.0
+texas-wad,gpt-5.6-terra,1,,SER/JOBS El Paso men,extra,0.0
+texas-wad,gpt-5.6-terra,1,,SER/JOBS El Paso women,extra,0.0
+texas-wad,gpt-5.6-terra,2,"El Paso women, Tier I/II vs Control (pooled SEE + SER/JOBS)",SEE El Paso women,overlap,1.0
+texas-wad,gpt-5.6-terra,2,"Houston men, TEC/HCC: Tier I/II vs Tier I",TEC/HCC Houston men—Tier I/II,overlap,0.83
+texas-wad,gpt-5.6-terra,2,,TEC/HCC Houston men—Tier I only,extra,0.0
+texas-wad,gpt-5.6-terra,2,,SEE El Paso men,extra,0.0
+texas-wad,gpt-5.6-terra,2,,SER/JOBS El Paso men,extra,0.0
+texas-wad,gpt-5.6-terra,2,,SER/JOBS El Paso women,extra,0.0
+workadvance,deepseek-v4.1-flash,1,Per Scholas (Bronx),"Per Scholas (Bronx, NY; IT sector)",overlap,1.0
+workadvance,deepseek-v4.1-flash,1,St. Nicks Alliance (Brooklyn),"St. Nicks Alliance (Brooklyn, NY; environmental remediation)",overlap,1.0
+workadvance,deepseek-v4.1-flash,1,Madison Strategies Group (Tulsa),"Madison Strategies Group (Tulsa, OK; transportation and manufacturing)",overlap,1.0
+workadvance,deepseek-v4.1-flash,1,Towards Employment (NE Ohio),"Towards Employment (Cleveland, OH; health care and manufacturing)",overlap,0.5
+workadvance,deepseek-v4.1-flash,2,Per Scholas (Bronx),"Per Scholas (Bronx, NY; IT sector)",overlap,1.0
+workadvance,deepseek-v4.1-flash,2,St. Nicks Alliance (Brooklyn),"St. Nicks Alliance (Brooklyn, NY; environmental remediation)",overlap,1.0
+workadvance,deepseek-v4.1-flash,2,Madison Strategies Group (Tulsa),"Madison Strategies Group (Tulsa, OK; transportation and manufacturing)",overlap,1.0
+workadvance,deepseek-v4.1-flash,2,Towards Employment (NE Ohio),"Towards Employment (Cleveland, OH; health care and manufacturing)",overlap,0.5
+year-up,deepseek-v4.1-flash,1,Full sample (8 offices pooled),All sites (pooled),overlap,1.0
+year-up,deepseek-v4.1-flash,1,,Office A,extra,0.0
+year-up,deepseek-v4.1-flash,1,,Office B,extra,0.0
+year-up,deepseek-v4.1-flash,1,,Office C,extra,0.0
+year-up,deepseek-v4.1-flash,1,,Office D,extra,0.0
+year-up,deepseek-v4.1-flash,1,,Office E,extra,0.0
+year-up,deepseek-v4.1-flash,1,,Office F,extra,0.0
+year-up,deepseek-v4.1-flash,1,,Office G,extra,0.0
+year-up,deepseek-v4.1-flash,1,,Office H,extra,0.0
+youthbuild,deepseek-v4.1-flash,1,Pooled (75 programs nationwide),"Pooled (75 YouthBuild programs, national)",overlap,0.67
+youthbuild,deepseek-v4.1-flash,2,Pooled (75 programs nationwide),"Pooled (national YouthBuild evaluation, 72 programs)",singleton,0.0

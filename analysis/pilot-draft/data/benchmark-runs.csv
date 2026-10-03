@@ -1,0 +1,34 @@
+study_id,model,pass,route,structured_mode,provider,model_version,input_tokens,output_tokens,reasoning_tokens,cost_usd,latency_s,n_records,n_changes
+green-jobs,deepseek-v4.1-flash,1,openrouter,json_schema,Together,deepseek/deepseek-v4.1-flash,193265,23838,18648,0.0865851,5975.532472848892,4,0
+green-jobs,deepseek-v4.1-flash,2,openrouter,json_schema,AtlasCloud,deepseek/deepseek-v4.1-flash,198850,28361,19634,0.0936882,134.9242880344391,4,4
+jtpa,claude-opus-5,1,openrouter,tool_call,Claude Platform on AWS,anthropic/claude-opus-5,32997,7912,0,0.362785,82.50033187866211,4,0
+jtpa,deepseek-v4.1-flash,1,openrouter,json_schema,Wafer,deepseek/deepseek-v4.1-flash,19545,16141,11487,0.0135936,92.69493675231934,4,0
+jtpa,deepseek-v4.1-flash,2,openrouter,json_schema,Morph,deepseek/deepseek-v4.1-flash,26929,5097,0,0.00567804,886.6074628829956,4,0
+jtpa,gemini-3.1-pro,1,openrouter,json_schema,Google,google/gemini-3.1-pro-preview,25114,9910,5583,0.169148,63.56719493865967,4,0
+jtpa,gemini-3.1-pro,2,openrouter,json_schema,Google,google/gemini-3.1-pro-preview,30141,14343,9771,0.232398,87.52677917480469,4,0
+jtpa,gemini-3.8-flash,1,openrouter,json_schema,Google AI Studio,google/gemini-3.8-flash,21443,28864,23557,0.12432225,95.36748504638672,4,0
+jtpa,gpt-5.6-terra,1,openrouter,json_schema,OpenAI,openai/gpt-5.6-terra,21177,5027,740,0.110206,51.674046993255615,4,0
+jtpa,gpt-5.6-terra,2,openrouter,json_schema,OpenAI,openai/gpt-5.6-terra,26702,6441,1370,0.1407841,86.45364618301392,4,8
+nsw,deepseek-v4.1-flash,1,openrouter,json_schema,Together,deepseek/deepseek-v4.1-flash,89609,25921,20332,0.0579879,77.57218098640442,4,0
+nsw,deepseek-v4.1-flash,2,openrouter,json_schema,Morph,deepseek/deepseek-v4.1-flash,97867,6817,0,0.0150162,1192.75528216362,4,8
+quest,claude-opus-5,1,openrouter,tool_call,Claude Platform on AWS,anthropic/claude-opus-5,30995,3209,0,0.2352,42.644690990448,1,0
+quest,claude-opus-5,2,openrouter,tool_call,Claude Platform on AWS,anthropic/claude-opus-5,34976,6177,0,0.329305,65.54763698577881,1,5
+quest,deepseek-v4.1-flash,1,openrouter,json_schema,Wafer,deepseek/deepseek-v4.1-flash,17496,58954,57367,0.0388716,281.56947803497314,1,0
+quest,deepseek-v4.1-flash,2,openrouter,json_schema,DeepInfra,deepseek/deepseek-v4.1-flash,19413,23680,21753,0.01266342,5105.151041030884,1,1
+quest,gemini-3.1-pro,1,openrouter,json_schema,Google,google/gemini-3.1-pro-preview,23412,6960,5795,0.130344,49.977277994155884,1,0
+quest,gemini-3.1-pro,2,openrouter,json_schema,Google,google/gemini-3.1-pro-preview,25175,8424,6779,0.151438,59.14534401893616,1,3
+quest,gemini-3.8-flash,1,gemini,response_schema,Google AI Studio,gemini-3.8-flash,19741,6986,5630,0.04100325,35.66107702255249,1,0
+quest,gemini-3.8-flash,2,openrouter,json_schema,Google AI Studio,google/gemini-3.8-flash,21439,10425,8883,0.055173,28.0194571018219,1,0
+quest,gpt-5.6-terra,1,openrouter,json_schema,OpenAI,openai/gpt-5.6-terra,18748,2543,951,0.0773845,40.913352251052856,1,0
+quest,gpt-5.6-terra,2,openrouter,json_schema,OpenAI,openai/gpt-5.6-terra,20935,2782,870,0.08572,41.34874606132507,1,1
+seis,deepseek-v4.1-flash,1,openrouter,json_schema,Wafer,deepseek/deepseek-v4.1-flash,74915,13198,9727,0.0229018,82.14278483390808,3,0
+seis,deepseek-v4.1-flash,2,openrouter,json_schema,DeepInfra,deepseek/deepseek-v4.1-flash,78712,22203,17601,0.02034494,448.7605209350586,3,6
+texas-wad,deepseek-v4.1-flash,1,openrouter,json_schema,Morph,deepseek/deepseek-v4.1-flash,77126,8524,0,0.01334664,1286.3658800125122,8,0
+texas-wad,deepseek-v4.1-flash,2,openrouter,json_schema,Wafer,deepseek/deepseek-v4.1-flash,84326,43344,30868,0.0428716,331.0984311103821,8,22
+texas-wad,gpt-5.6-terra,1,openrouter,json_schema,OpenAI,openai/gpt-5.6-terra,77716,6642,1551,0.2709335,95.84056997299194,6,0
+texas-wad,gpt-5.6-terra,2,openrouter,json_schema,OpenAI,openai/gpt-5.6-terra,84172,8540,1337,0.3096471,83.59786415100098,6,15
+workadvance,deepseek-v4.1-flash,1,openrouter,json_schema,Together,deepseek/deepseek-v4.1-flash,269969,26547,20626,0.1128471,96.73662304878235,4,0
+workadvance,deepseek-v4.1-flash,2,openrouter,json_schema,AtlasCloud,deepseek/deepseek-v4.1-flash,276269,60640,51211,0.1556487,292.5416929721832,4,7
+year-up,deepseek-v4.1-flash,1,openrouter,json_schema,DeepInfra,deepseek/deepseek-v4.1-flash,170909,30226,20610,0.03662218,82671.71798205376,9,0
+youthbuild,deepseek-v4.1-flash,1,openrouter,json_schema,Morph,deepseek/deepseek-v4.1-flash,83298,2715,0,0.00161448,23432.637442827225,1,0
+youthbuild,deepseek-v4.1-flash,2,openrouter,json_schema,AtlasCloud,deepseek/deepseek-v4.1-flash,84225,33244,27858,0.0651603,164.7829818725586,1,7

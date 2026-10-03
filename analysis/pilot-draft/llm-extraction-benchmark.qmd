@@ -1,0 +1,474 @@
+---
+title: "Replicating a Language-Model Evidence Extraction"
+subtitle: "Five Models Against the Worker-Retraining Review of Roodman and Massenkoff"
+date: 2026-09-22
+format:
+  typst:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    papersize: a4
+    fontsize: 10pt
+    margin:
+      x: 2.2cm
+      y: 2.4cm
+    fig-format: png
+    fig-dpi: 200
+# A separate bibliography: references.bib is cited in full by the pilot draft
+# through `nocite: @*`, so benchmark sources would otherwise leak into it.
+bibliography: references-benchmark.bib
+citeproc: true
+link-citations: true
+engine: knitr
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(dplyr)
+library(readr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+library(knitr)
+library(jsonlite)
+
+# Every table below is written by benchmark/score.py from the run outputs in
+# data/interim/benchmark/ (git-ignored); only these derived CSVs are tracked.
+rd <- function(f) read_csv(file.path("data", f), show_col_types = FALSE)
+
+man     <- rd("benchmark-manifest.csv")
+meta    <- rd("benchmark-gold-meta.csv")
+summ    <- rd("benchmark-summary.csv")
+groups  <- rd("benchmark-field-groups.csv")
+fkappa  <- rd("benchmark-field-kappa.csv")
+delta   <- rd("benchmark-pass-delta.csv")
+cells   <- rd("benchmark-cell-scores.csv")
+align   <- rd("benchmark-alignment.csv")
+ssig    <- rd("benchmark-signsig.csv")
+calls   <- rd("benchmark-calls.csv")
+jev     <- rd("benchmark-jev.csv")
+jevc    <- rd("benchmark-jev-cells.csv")
+goldsub <- rd("benchmark-gold-subset.csv")
+
+model_levels <- c("gemini-3.8-flash", "gemini-3.1-pro", "claude-opus-5",
+                  "gpt-5.6-terra", "deepseek-v4.1-flash")
+model_label <- c("gemini-3.8-flash" = "Gemini 3.8 Flash",
+                 "gemini-3.1-pro" = "Gemini 3.1 Pro",
+                 "claude-opus-5" = "Claude Opus 5",
+                 "gpt-5.6-terra" = "GPT-5.6 Terra",
+                 "deepseek-v4.1-flash" = "DeepSeek V4.1 Flash")
+lab <- function(k) unname(model_label[k])
+
+model_cols <- c("Gemini 3.8 Flash" = "#4C78A8", "Gemini 3.1 Pro" = "#1F3F66",
+                "Claude Opus 5" = "#B5443A", "GPT-5.6 Terra" = "#2E6F73",
+                "DeepSeek V4.1 Flash" = "#8A7B4F")
+
+theme_tpt <- theme_minimal(base_size = 9) +
+  theme(panel.grid.minor = element_blank(),
+        axis.title = element_text(size = 8.5, colour = "grey25"),
+        legend.position = "bottom", legend.title = element_blank())
+
+# Narrative prose spells out integers below one hundred; tables use numerals.
+spell <- function(n) {
+  units <- c("one", "two", "three", "four", "five", "six", "seven", "eight",
+             "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
+             "fifteen", "sixteen", "seventeen", "eighteen", "nineteen")
+  tens <- c("twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+            "eighty", "ninety")
+  if (n == 0) return("zero")
+  if (n >= 1 && n <= 19) return(units[n])
+  if (n >= 20 && n <= 99) {
+    t <- tens[n %/% 10 - 1]
+    u <- n %% 10
+    return(if (u == 0) t else paste0(t, "-", units[u]))
+  }
+  format(n, big.mark = ",")
+}
+Spell <- function(n) { s <- spell(n); paste0(toupper(substr(s, 1, 1)), substring(s, 2)) }
+pct <- function(x, d = 0) paste0(format(round(100 * x, d), nsmall = d), " per cent")
+usd <- function(x) paste0("$", formatC(x, format = "f", digits = 2, big.mark = ","))
+
+n_studies   <- nrow(man)
+n_gold_rows <- meta$gold_rows_benchmark
+n_pages     <- sum(man$n_pages)
+n_ocr       <- sum(man$n_ocr_pages)
+n_fields    <- meta$scored_fields
+p2 <- summ |> filter(pass == 2) |> mutate(model = factor(model, model_levels)) |> arrange(model)
+p1 <- summ |> filter(pass == 1) |> mutate(model = factor(model, model_levels)) |> arrange(model)
+```
+
+# Introduction
+
+Language models are now used to extract data from research reports at a scale that would be impractical by hand, and the most visible recent instance is an evidence review of worker retraining published by Anthropic in August 2026 [@roodman2026]. Its authors synthesise `r meta$gold_projects_total` randomised evaluations of United States job-training programmes, most of them documented in long reports to government agencies rather than in journal articles, and they state plainly that the traits and impacts of each experiment were extracted by Claude Opus under human supervision. The extracted dataset, including a reasoning table that records where each value came from, is public. However, the review does not report how accurate the extraction was, and there is no independent check of whether a different model, or the same procedure run again, would have produced the same numbers.
+
+This report replicates that extraction on `r spell(n_studies)` of the `r meta$gold_projects_total` studies with five language models and scores each against the published dataset. The exercise matters for the Tech-Panic Tracker for a practical reason: the pilot draft leaves open whether a language model should draft the first pass of every prediction record, and a benchmark in which the correct answers are already known is the cheapest way to learn what such a draft is worth before any registered data depend on it. It matters more generally because the published dataset allows a rare comparison. Most evaluations of machine extraction score models against a small hand-coded sample; here the reference is a complete, documented extraction that has already fed a published meta-analysis, and the source reports are the same thousands of pages its authors worked from.
+
+Section 2 describes the extraction procedure that Roodman and Massenkoff report, because the replication is only as faithful as the account of the original. Section 3 sets out what the published dataset contains and why it is a reference rather than a gold standard in the strict sense, since it is itself a supervised model extraction. Section 4 describes the design: the choice of studies, the preparation of the source text, the registered prompts, the models, and the scoring rules. Section 5 reports agreement with the reference by model and by field, the one model that read most of the sample, what the adversarial second pass changed, and what the extraction cost. Section 6 follows one study through the whole procedure. Section 7 draws out the implications for the Tracker.
+
+# The Extraction in Roodman and Massenkoff
+
+The review assembles its sample from six earlier syntheses and adds recent follow-up reports: the studies are the United States randomised trials of interventions that include training found in six reviews, among them the *Digest of Social Experiments*, @card2018, and @peck2021 [@roodman2026, 53]. The resulting sample comprises `r meta$gold_projects_total` studies, of which twenty-four report results separately for several demographic groups, implementing organisations, or localities, which brings the number of impact estimates to 146 [@roodman2026, 54]. The unit of observation is therefore the pre-randomisation experiment unit, a site or a target group within a study, and not the study itself.
+
+The extraction procedure is described in a single paragraph. The authors "deploy Claude Opus - with engaged oversight - to extract the needed information on each experiment from the thousands of pages of reports", and instruct the model to do two things: to produce a reasoning table documenting the sources and logic behind each extracted value, and to perform an adversarial review of all extractions by reading the reasoning table and returning to the sources [@roodman2026, 53]. The humans then spot-check and revise the extraction as they analyse the data. The authors quote the warning of @card2010 that "there are likely to be measurement errors and errors of interpretation in the extraction of information from the studies", and note that the judgement calls involved, such as whether training is primary in a programme or whether an impact measured over months seven to eighteen belongs to the first or the second year, were made partly by humans and partly by the model [@roodman2026, 53]. The public repository is more candid still: its front page states that most data extraction was done by Claude under supervision and that Claude can make mistakes [@roodman2026data].
+
+Three features of this procedure shape the replication. The first is that the model reads whole reports, often several hundred pages, rather than passages selected by a human. The second is the two-pass structure, in which the model's own audit trail becomes the input to a hostile re-reading. The third is that classification and numerical extraction are done together: the same pass that copies an earnings impact from a table also decides whether the programme was mandatory, publicly administered, or a sector programme. The replication keeps all three.
+
+# The Reference Dataset
+
+The published workbook has four sheets [@roodman2026data]. The data table holds `r meta$gold_rows_total` rows, one per experiment unit, across `r meta$data_table_columns` columns; the reasoning table holds the corresponding audit trail in `r meta$reasoning_columns` columns, including the table and page references for design and impact values, the reasoning behind each time-horizon assignment, and the derivation of every standard error; a data dictionary defines `r meta$dictionary_fields` fields; and a long table holds `r format(meta$impact_estimate_rows_total, big.mark = ",")` impact estimates at the finest time resolution the sources report. The replication uses the first three. The field definitions in the dictionary are copied verbatim into the extraction prompt, so that the models receive the same instructions, word for word, that define the reference values.
+
+The reference is not a gold standard in the strict sense, and the distinction governs how every agreement rate below should be read. It is a model extraction checked by two economists, and neither the review nor the repository reports how many values were changed at the checking stage. A disagreement between a replicating model and the reference therefore has three possible explanations: the replicating model is wrong, the reference is wrong, or the source is ambiguous enough to support both readings. The benchmark measures agreement, not accuracy. Where the worked example in Section 6 returns to the source to adjudicate, the adjudication is reported as such.
+
+Two features of the reference also constrain the scoring. The reference often records significance stars without a standard error, because many of the evaluation reports print only stars; the review imputes standard errors from the stars in its meta-analysis rather than in the workbook [@roodman2026, 53]. The follow-up-length fields are defined in the dictionary as the length of the follow-up window, but the values do not follow one rule: an estimate covering months ten to eighteen is recorded as 1.25 years in one study, and a year-two estimate as three years in another. The follow-up-length fields are therefore not scored.
+
+# Design
+
+The design follows the original procedure as closely as its public description allows, and departs from it only where the description is silent or where a model's interface forces a change. This section describes the studies, the preparation of the source text, the schema and prompts, the models, and the scoring rules in turn.
+
+## Studies and Sources
+
+`r Spell(n_studies)` studies were chosen to span the five decades of the sample, the distinction between sector programmes and others, single-unit and multi-unit designs, and short and long reports (@tbl-studies). Together they contribute `r n_gold_rows` of the reference rows. Every source report was obtained from an open repository, which rules out one study that would otherwise have been included: the summary volume of the Minority Female Single Parent Demonstration [@burghardt1992] is not openly available, and WorkAdvance [@hendra2016; @schaberg2020] replaced it. One further gap was accepted. The reference takes the long-run earnings impacts for two of the four target groups in the National Supported Work Demonstration from @couch1992, a journal article that is not openly available and was not supplied to the models. Those cells are excluded from scoring.
+
+```{r tbl-studies}
+#| tbl-cap: "The ten studies in the benchmark. Notes: Units is the number of experiment units (sites or target groups) in the reference dataset. Randomised is the midpoint of the randomisation period recorded in the reference. Sector is 1 when the reference codes at least one unit as a sector programme. Pages is the total across all source reports supplied for the study; OCR is the number of those pages whose embedded text failed the quality check and was transcribed from the page image instead (Section 4.2). Sources are listed in benchmark/manifest.csv with their retrieval URLs."
+man |>
+  arrange(gold_randomization_midpoint) |>
+  transmute(Study = project, Units = gold_rows,
+            Randomised = sprintf("%.0f", gold_randomization_midpoint),
+            Sector = as.integer(gold_sector_program),
+            Pages = n_pages, OCR = n_ocr_pages) |>
+  mutate(Study = gsub(" \\(STETS\\)", "", Study),
+         Study = gsub("Structured Training and Employment Transitional Services", "STETS", Study),
+         Study = gsub("–", "-", Study)) |>
+  kable(align = "lrrrrr")
+```
+
+## Text Preparation
+
+Each report was converted to text page by page with the `pdftotext` utility in layout mode, which preserves the column alignment of tables. A page whose text failed a quality check was transcribed from its image by a language model instead. The check flags a page with fewer than forty alphabetic words, fewer than 70 per cent of words found in a standard English dictionary, or more than 1 per cent replacement characters. `r Spell(n_ocr)` of the `r format(n_pages, big.mark = ",")` pages were transcribed this way, all `r man$n_pages[man$study_id == "nsw"]` pages of the 1980 Supported Work report, which has no embedded text layer at all, and otherwise mostly covers, figures, and blank pages. The transcription model was Gemini 3.7 Flash at temperature zero, the model registered for the Tracker's own extraction. Pages were concatenated with a marker naming the file and page, so that a model's cell references can be checked against the source.
+
+## Schema and Prompts
+
+The extraction schema holds `r n_fields` scored fields per experiment unit, a subset of the reference dictionary chosen to cover what a meta-analysis consumes: the classification of the intervention, the design and sample, employment and earnings impacts at three horizons with their standard errors, significance, and control-group means, take-up, and cost. Three fields were added to make scoring arithmetic rather than a matter of string-matching: significance stars for every impact, the length in months of the period each earnings figure covers, and a coded version of the outcome data source. Every record also carries a reasoning block that mirrors the columns of the reference reasoning table.
+
+The prompts are registered as versioned files in the protocol directory. The extraction prompt restates the dictionary definitions, the rule that impacts are intention-to-treat estimates, the rule for assigning an estimate to the nearest of three horizons centred on six, eighteen, and forty-eight months after random assignment, and the instruction to record a null rather than guess. The review prompt reproduces the extraction instructions and asks the model to assume that the draft contains errors, to return to the cited location for every value, to search the text before accepting any null, and to log every change with its reason. Both passes send the same short system message and the full source text first, with the registered instructions after the document. This order places the task where long-context guidance recommends it, and lets providers serve the second pass's long prefix from their prompt caches.
+
+## Models
+
+Five general-purpose models were run (@tbl-models). Two are Google models called through the Gemini API; three are called through OpenRouter, a routing service that exposes many providers behind one interface. Claude Opus 5 is the closest available successor to the model the original extraction used. All five advertise context windows of a million tokens, which is enough to hold the longest study in the sample, WorkAdvance, at roughly `r format(round(man$n_chars[man$study_id == "workadvance"] / 4 / 1000) * 1000, big.mark = ",")` tokens.
+
+```{r tbl-models}
+#| tbl-cap: "The five models. Notes: Output route is the mechanism that constrained each model's reply to the schema. A strict JSON schema constrains generation itself. Claude Opus 5 received the same schema as a forced tool call, because Anthropic's schema compiler refuses more than sixteen nullable fields and the extraction schema has forty-two; its replies were validated against the schema afterwards. Temperature is zero where the provider accepts the parameter; the OpenAI and Anthropic reasoning models reject it and ran at their defaults. Both Gemini models were requested from the Gemini API, which was persistently overloaded on the day of the run; after the first refusal the same model was reached through OpenRouter's Google route instead, and the runs column counts completed passes by the route actually used. When the direct API did answer, Gemini's own response-schema mechanism constrained the output. Price is the list price in dollars per million input and output tokens on 22 September 2026."
+runs_tab <- rd("benchmark-runs.csv")
+route_n <- runs_tab |> count(model_key = model, route) |>
+  mutate(route = recode(route, gemini = "Gemini API", openrouter = "OpenRouter")) |>
+  group_by(model_key) |>
+  summarise(Runs = paste0(n, " ", route, collapse = "; "), .groups = "drop")
+mode_by <- runs_tab |> distinct(model_key = model, structured_mode) |>
+  mutate(structured_mode = recode(structured_mode, response_schema = "response schema",
+                                  json_schema = "strict JSON schema", tool_call = "forced tool call")) |>
+  group_by(model_key) |> summarise(`Output route` = paste(unique(structured_mode), collapse = "; "))
+tibble(model_key = model_levels,
+       Model = lab(model_levels),
+       Price = c("0.75/3.75", "2.00/12.00", "5.00/25.00", "2.00/12.00", "0.15/0.60"),
+       Temp. = c("0", "0", "default", "default", "0")) |>
+  left_join(mode_by, by = "model_key") |>
+  left_join(route_n, by = "model_key") |>
+  select(Model, Price, Temp., `Output route`, Runs) |>
+  kable()
+```
+
+A sixth model entered on different terms. Jev, released by TypeSafe in September 2026, is a decision model rather than a text generator: it takes a description of a state and a set of typed questions, and returns a choice with a probability for each question. It cannot enumerate experiment units or copy numbers out of a table, and its context window of thirty-two thousand tokens holds only the opening pages of a report. It was therefore given the name of each reference unit and the first sixty thousand characters of the report, and asked the nine classification questions only. Its results are reported separately (Section 5.5).
+
+## Scoring
+
+Each model's records were aligned to the reference units by name: exact matches first, then the pair with the largest share of shared words, and a single remaining record was matched to a single remaining unit regardless of name. Reference units with no matching record count as missed, and records with no matching unit as extra. The alignment table is kept with the results so that every match can be checked by hand.
+
+Each aligned cell was then scored against the reference. Categorical fields must match exactly. Sample sizes must agree within 2 per cent, employment impacts and control-group rates within half a percentage point or 5 per cent, earnings, cost, and control-group earnings within 5 per cent, and the start and end of the randomisation period within one month. Earnings are compared after both sides are converted to annual amounts, because the same impact reported monthly by one coder and annually by another is not a disagreement about the source. Four outcomes are kept apart. A match or mismatch requires values on both sides. A model that returns a null where the reference has a value has abstained, which is a gap but not an error. A model that returns a value where the reference has none has added a value, which may be an error or may be a gap in the reference.
+
+Three summary rates follow from these outcomes. Accuracy is the share of matches among cells where both sides have a value. Coverage is the share of reference values for which the model returned any value. Recall is the share of all reference values that the model matched, the product of the two. The agreement of sign and significance is also reported for every impact, classifying each estimate as significantly positive, significantly negative, or not significant at the 10 per cent level; this is the property of an estimate that a vote count or a meta-analytic sign test consumes, and it is robust to the differences in rounding and horizon assignment that dominate the numerical mismatches.
+
+# Results
+
+```{r results-setup}
+# Comparisons across models use only the studies that all five models completed
+# in pass 1, so that no model is scored on an easier subset.
+runs_done <- cells |> distinct(study_id, model, pass)
+common <- runs_done |> filter(pass == 1) |> count(study_id) |>
+  filter(n == length(model_levels)) |> pull(study_id)
+common_p2 <- runs_done |> filter(pass == 2) |> count(study_id) |>
+  filter(n == length(model_levels)) |> pull(study_id)
+n_common <- length(common)
+common_names <- man$project[match(common, man$study_id)]
+units_common <- goldsub |> filter(study_id %in% common) |> nrow()
+
+scored <- cells |> filter(outcome %in% c("match", "mismatch", "abstained", "gold_missing"))
+rate <- function(d) d |> summarise(
+  n = sum(outcome %in% c("match", "mismatch")),
+  accuracy = mean(outcome[outcome %in% c("match", "mismatch")] == "match"),
+  coverage = mean(outcome %in% c("match", "mismatch")),
+  recall = mean(outcome == "match"), .groups = "drop")
+
+main <- scored |> filter(pass == 1, study_id %in% common) |>
+  group_by(model) |> rate() |>
+  left_join(ssig |> filter(pass == 1, study_id %in% common) |>
+              group_by(model) |> summarise(signsig = mean(agree)), by = "model") |>
+  mutate(model = factor(model, model_levels)) |> arrange(model)
+
+pairs <- rd("benchmark-model-pairs.csv") |> filter(pass == 1)
+cons  <- rd("benchmark-consensus.csv") |> filter(pass == 1)
+mm_agree <- mean(pairs$match)
+mg_agree <- scored |> filter(pass == 1, study_id %in% common,
+                              outcome %in% c("match", "mismatch")) |>
+  summarise(a = mean(outcome == "match")) |> pull(a)
+n_cons <- nrow(cons)
+n_unan <- sum(cons$models_unanimous)
+n_unan_wrong <- sum(cons$models_unanimous & cons$n_models_match_gold == 0)
+n_unan_right <- sum(cons$models_unanimous & cons$n_models_match_gold == 5)
+
+best <- main |> slice_max(recall, n = 1, with_ties = FALSE)
+worst <- main |> slice_min(recall, n = 1, with_ties = FALSE)
+```
+
+The results below come from an incomplete run, and the gaps are the first thing to report. The OpenRouter account that carried three of the five models held `r usd(40)` of credit, most of it already spent by other work before the benchmark began, and it ran out partway through; at the same time the Gemini API refused requests for every Gemini model on the project with overload errors for several hours. @tbl-coverage shows which study-model-pass combinations completed. All five models completed the first pass for `r spell(n_common)` studies (`r paste(common_names, collapse = " and ")`), covering `r spell(units_common)` experiment units, and the comparisons between models below are restricted to those studies; one model, DeepSeek V4.1 Flash, completed most of the sample, and Section 5.2 reports it separately. Every run skips work already done, so the missing cells can be filled by rerunning one command once credit is restored, and every table in this report is regenerated from the run files.
+
+```{r tbl-coverage}
+#| tbl-cap: "Completed runs by study, model, and pass. Notes: 1 means the extraction pass completed and produced a valid record set; 2 means the adversarial review pass also completed; a dash means neither did. Failed calls are logged with their error in benchmark-calls.csv: most failures are credit refusals from OpenRouter (HTTP 402) and overload refusals from the Gemini API (HTTP 503), and a few are replies that failed schema validation. Studies are ordered by length, shortest first, which was also the order in which they were run."
+ord <- man |> arrange(n_chars) |> pull(study_id)
+grid <- expand_grid(study_id = ord, model = model_levels) |>
+  left_join(runs_done |> group_by(study_id, model) |>
+              summarise(p = paste(sort(pass), collapse = ""), .groups = "drop"),
+            by = c("study_id", "model")) |>
+  mutate(p = ifelse(is.na(p), "-", p), model = lab(model)) |>
+  pivot_wider(names_from = model, values_from = p) |>
+  mutate(study_id = man$project[match(study_id, man$study_id)],
+         study_id = gsub("Structured Training and Employment Transitional Services \\(STETS\\)", "STETS", study_id),
+         study_id = gsub("–", "-", study_id),
+         study_id = gsub(" Demonstration| Study", "", study_id)) |>
+  rename(Study = study_id)
+kable(grid, align = c("l", rep("c", 5)))
+```
+
+## Agreement with the Reference
+
+@tbl-main reports agreement with the reference for the first pass on the common studies. Accuracy is similar for every model and the differences between them are small: recall ranges from `r pct(worst$recall)` for `r lab(as.character(worst$model))` to `r pct(best$recall)` for `r lab(as.character(best$model))`, and on `r spell(units_common)` experiment units that spread is well within what a handful of cells can move. The agreement of sign and significance, which is what a vote count or a meta-analytic sign test would consume, is higher than numerical accuracy for every model, which indicates that most numerical disagreements do not change the qualitative reading of an estimate.
+
+```{r tbl-main}
+#| tbl-cap: "Agreement with the reference dataset, first pass, studies completed by all five models. Notes: Cells is the number of reference values for which the model also returned a value. Accuracy is the share of those cells that match within the tolerances set out in Section 4.5. Coverage is the share of all non-missing reference values for which the model returned any value; the remainder are abstentions or units the model did not return. Recall is the share of all non-missing reference values that the model matched, and equals accuracy times coverage. Sign and significance is the share of impact estimates classified identically as significantly positive, significantly negative, or not significant at the 10 per cent level. Follow-up lengths and two National Supported Work earnings series taken from a source not supplied to the models are excluded."
+main |> transmute(Model = lab(as.character(model)), Cells = n,
+                  Accuracy = percent(accuracy, 1), Coverage = percent(coverage, 1),
+                  Recall = percent(recall, 1), `Sign and significance` = percent(signsig, 1)) |>
+  kable(align = "lrrrrr")
+```
+
+Agreement differs sharply by kind of field (@fig-groups). Classification fields, such as whether training is the primary service, whether participation was mandatory, and whether the programme is a sector programme, match the reference almost everywhere. Design fields rarely disagree, and most misses there are abstentions rather than errors. Employment and earnings impacts account for most of the disagreement, and cost matches for no model at all.
+
+```{r fig-groups, fig.width=7.2, fig.height=3.2}
+#| fig-cap: "Accuracy by field group and model, first pass, studies completed by all five models. Notes: Accuracy is the share of cells matching the reference among cells where both the reference and the model have a value. Classification comprises the four categorical and five binary intervention traits; design comprises the randomisation period, sample sizes, outcome data source, programme duration, and take-up; employment and earnings each comprise the impact, standard error, significance, and control-group mean at three horizons; cost is cost per treatment-group member. Point labels give the number of cells scored."
+g1 <- scored |> filter(pass == 1, study_id %in% common) |>
+  group_by(model, field_group) |> rate() |>
+  mutate(model = factor(lab(model), rev(lab(model_levels))),
+         field_group = factor(field_group, c("classification", "design", "employment", "earnings", "cost"),
+                              c("Classification", "Design", "Employment", "Earnings", "Cost")))
+ggplot(g1, aes(accuracy, model, colour = model)) +
+  geom_point(size = 2.2) +
+  geom_text(aes(label = n), nudge_y = 0.35, size = 2.3, colour = "grey40") +
+  facet_wrap(~field_group, nrow = 1) +
+  scale_x_continuous(labels = function(x) x * 100, limits = c(0, 1), breaks = c(0, 0.5, 1)) +
+  scale_colour_manual(values = model_cols, guide = "none") +
+  labs(x = "Accuracy against the reference (per cent)", y = NULL) + theme_tpt +
+  theme(panel.spacing = unit(1.2, "lines"))
+```
+
+## One Model Across the Whole Sample
+
+```{r ds-setup}
+ds_key <- "deepseek-v4.1-flash"
+ds <- scored |> filter(model == ds_key, pass == 1)
+ds_studies <- n_distinct(ds$study_id)
+ds_rate <- ds |> rate()
+ds_align <- align |> filter(model == ds_key, pass == 1)
+ds_matched <- sum(ds_align$method %in% c("exact", "overlap", "singleton", "pooled_guess"))
+ds_extra <- sum(ds_align$method == "extra")
+ds_by <- ds |> group_by(study_id) |> rate() |>
+  left_join(man |> select(study_id, project, n_ocr_pages, n_pages), by = "study_id") |>
+  arrange(desc(accuracy))
+ds_ocr <- ds |> filter(study_id == "nsw") |> rate()
+ds_rest <- ds |> filter(study_id != "nsw") |> rate()
+```
+
+DeepSeek V4.1 Flash was the only model to read most of the sample before its provider credit ran out, and its results give a first view of how agreement varies across studies. It completed the extraction pass for `r spell(ds_studies)` of the `r spell(n_studies)` studies, matched `r spell(ds_matched)` of the `r n_gold_rows` reference units, and agreed with the reference on `r pct(ds_rate$accuracy)` of the cells where both have a value, close to its rate on the two common studies. It also returned `r spell(ds_extra)` records with no counterpart in the reference, and these fall into two kinds. In the Texas Worker Adjustment Demonstration the reference keeps two particular contrasts of treatment tiers, and the model returned every site-by-tier combination the report tabulates, including pooled ones. In the Year Up evaluation the reference holds a single pooled record for eight offices, and the model returned one record per office.
+
+Agreement varies more across studies than across models (@tbl-ds). The two studies where it is lowest are the Texas demonstration, whose reference units are unusual contrasts rather than sites, and the Year Up evaluation, where the model's horizons are offset by a year: it treats the programme year itself as the short term and reports the large negative impact earned during training, where the reference starts its clock after the programme year, so that the model's medium-term earnings impact and the reference's short-term one are the same number. The 1980 Supported Work report, every page of which reached the model through optical character recognition, gives `r pct(ds_ocr$accuracy)` agreement against `r pct(ds_rest$accuracy)` for the born-digital reports, which suggests that transcription from page images is not the binding constraint, although one study cannot settle the question. The one study missing from the table failed in a different way. On the longest report in the sample, and again on one review pass, the model returned prose instead of the required JSON, on one attempt repeating a single syllable until it reached the token limit, and did so on both attempts; a schema that constrains generation prevents invalid fields but cannot prevent a model from abandoning the format altogether.
+
+```{r tbl-ds}
+#| tbl-cap: "DeepSeek V4.1 Flash against the reference, by study, extraction pass. Notes: Cells is the number of reference values for which the model also returned a value; accuracy is the share of those that match. Coverage is the share of all non-missing reference values for which the model returned any value, so the gap between coverage and one is made up of abstentions and units the model did not return. OCR pages is the number of pages of that study's reports transcribed from page images. The study not listed, STETS, is the one whose extraction pass returned prose rather than a valid record set on both attempts."
+ds_by |> transmute(Study = gsub("–", "-", gsub(" \\(STETS\\)| Demonstration| Study", "", project)),
+                   Cells = n, Accuracy = percent(accuracy, 1), Coverage = percent(coverage, 1),
+                   `OCR pages` = n_ocr_pages) |>
+  kable(align = "lrrrr")
+```
+
+## Agreement Among the Models
+
+The more revealing comparison is between the models themselves. Across every pair of models and every cell both returned, the models agree with one another `r pct(mm_agree)` of the time, against `r pct(mg_agree)` agreement between each model and the reference on the same studies. Of the `r spell(n_cons)` cells for which all five models and the reference have a value, the five models return the same value in `r spell(n_unan)`, and in `r spell(n_unan_wrong)` of those the unanimous value disagrees with the reference. Five models from four developers, reading the same text independently, are unlikely to converge on the same wrong number by chance. These cells are therefore the natural place to look for conventions in the reference that the extraction instructions did not capture, and Section 6 examines them.
+
+```{r fig-consensus, fig.width=7.2, fig.height=2.8}
+#| fig-cap: "Agreement between models and agreement with the reference, by field group, first pass, studies completed by all five models. Notes: Between models is the share of matching cells across all ten pairs of models, scored with the same tolerances used against the reference. With the reference is the share of matching cells between each model and the reference, pooled across models. The outcome data source is excluded because the reference records it as free text."
+bg <- bind_rows(
+  pairs |> group_by(field_group) |> summarise(a = mean(match)) |> mutate(k = "Between models"),
+  scored |> filter(pass == 1, study_id %in% common, outcome %in% c("match", "mismatch")) |>
+    group_by(field_group) |> summarise(a = mean(outcome == "match")) |> mutate(k = "With the reference")) |>
+  mutate(field_group = factor(field_group, rev(c("classification", "design", "employment", "earnings", "cost")),
+                              rev(c("Classification", "Design", "Employment", "Earnings", "Cost"))))
+ggplot(bg, aes(a, field_group, colour = k, shape = k)) +
+  geom_line(aes(group = field_group), colour = "grey75") +
+  geom_point(size = 2.4) +
+  scale_colour_manual(values = c("Between models" = "#2E6F73", "With the reference" = "#B5443A")) +
+  scale_x_continuous(labels = percent, limits = c(0, 1)) +
+  labs(x = "Share of matching cells", y = NULL) + theme_tpt
+```
+
+## What the Review Pass Changed
+
+```{r review-setup}
+both <- cells |> distinct(study_id, model, pass) |> count(study_id, model) |>
+  filter(n == 2) |> select(study_id, model)
+rev_acc <- cells |> semi_join(both, by = c("study_id", "model")) |>
+  filter(outcome %in% c("match", "mismatch")) |>
+  group_by(model, pass) |> summarise(a = mean(outcome == "match"), .groups = "drop") |>
+  pivot_wider(names_from = pass, values_from = a, names_prefix = "acc")
+n_both <- both |> count(model, name = "studies")
+d2 <- delta |> left_join(rev_acc, by = "model") |> left_join(n_both, by = "model") |>
+  mutate(model = factor(model, model_levels), studies = coalesce(studies, 0L)) |> arrange(model)
+tot_changes <- sum(d2$n_changes_logged)
+tot_fixed <- sum(d2$fixed)
+tot_broke <- sum(d2$broke)
+cells_word <- function(n) if (n == 1) "one cell" else paste(spell(n), "cells")
+top_changer <- d2 |> slice_max(n_changes_logged, n = 1, with_ties = FALSE)
+k <- c("study_id", "gold_site_subgroup", "model", "field")
+trans <- inner_join(cells |> filter(pass == 1) |> select(all_of(k), o1 = outcome),
+                    cells |> filter(pass == 2) |> select(all_of(k), o2 = outcome), by = k) |>
+  filter(o1 != o2)
+n_nulled <- sum(trans$o2 == "abstained")
+n_nulled_right <- sum(trans$o2 == "abstained" & trans$o1 == "match")
+n_changed_val <- sum(trans$o2 != "abstained")
+movers <- d2 |> filter(n_changes_logged >= 10)
+n_rev_passes <- cells |> filter(pass == 2) |> distinct(study_id, model) |> nrow()
+```
+
+The adversarial second pass did not improve the extraction. Across the `r spell(n_rev_passes)` review passes that completed, the models logged `r spell(tot_changes)` changes to their own drafts; scored against the reference, those changes turned `r cells_word(tot_fixed)` from disagreement into agreement and `r cells_word(tot_broke)` from agreement into disagreement (@tbl-delta). Two models account for almost all of the activity, `r lab(as.character(movers$model[1]))` and `r lab(as.character(movers$model[2]))`, and both moved in the same direction. Withdrawal rather than correction is the common pattern: across all models the review replaced `r spell(n_nulled)` values with nulls, `r spell(n_nulled_right)` of which had matched the reference, and changed `r spell(n_changed_val)` values outright. Accuracy therefore barely moved while coverage fell. A review that returns to the same source with the same instructions can catch a transcription slip, and transcription slips are not where the disagreement lies.
+
+```{r tbl-delta}
+#| tbl-cap: "Changes made by the adversarial review pass. Notes: Changes is the number of entries the model wrote in its own change log across all completed review passes. Fixed and broken count scored cells whose outcome against the reference moved from a mismatch or abstention to a match, or from a match to a mismatch or abstention, between the first and second pass of the same study. Studies is the number of studies for which the model completed both passes, and the two accuracy columns are computed over those studies only. A dash means no study has both passes."
+d2 |> transmute(Model = lab(as.character(model)), Studies = studies, Changes = n_changes_logged,
+                Fixed = fixed, Broken = broke,
+                `Pass 1` = ifelse(is.na(acc1), "-", percent(acc1, 1)),
+                `Pass 2` = ifelse(is.na(acc2), "-", percent(acc2, 1))) |>
+  kable(align = "lrrrrrr")
+```
+
+## A Classification-Only Model
+
+```{r jev-setup}
+field_lab <- c(training_role = "the role of training", has_classroom = "classroom training",
+               has_ojt = "on-the-job training", has_jsa = "job search assistance",
+               has_multiple_components = "multiple components", mandatory_voluntary = "mandatory participation",
+               funding_public_private = "funding source", admin_public_private = "administration",
+               sector_program = "sector programme")
+jev_all <- mean(jevc$match)
+jev_best <- jev |> slice_max(accuracy, n = 1, with_ties = FALSE)
+jev_worst <- jev |> slice_min(accuracy, n = 1, with_ties = FALSE)
+gen_class <- scored |> filter(pass == 1, study_id %in% common, field_group == "classification",
+                              outcome %in% c("match", "mismatch")) |>
+  summarise(a = mean(outcome == "match")) |> pull(a)
+jev_common <- jevc |> filter(study_id %in% common) |> summarise(a = mean(match)) |> pull(a)
+```
+
+Jev answered all nine classification questions for all `r n_gold_rows` reference units, at a total cost of well under one cent. It agreed with the reference on `r pct(jev_all)` of those answers (@tbl-jev), ranging from `r pct(jev_best$accuracy)` on `r field_lab[jev_best$field]` to `r pct(jev_worst$accuracy)` on `r field_lab[jev_worst$field]`. On the `r spell(n_common)` common studies it agreed on `r pct(jev_common)`, against `r pct(gen_class)` for the generative models reading the whole report. The comparison is not like for like, since Jev saw only the opening pages and was told which unit to classify, but on these fields a model costing a fraction of a cent per study kept pace with models costing a thousand times more. The fields on which Jev does worst across all ten studies, the role of training and who funds and runs the programme, are those whose answer depends on details scattered through a report rather than stated on its first pages, which is a limitation of the excerpt as much as of the model. The probabilities Jev attaches to its answers are also informative: its mean probability on the reference answer tracks its accuracy field by field, so a low-confidence answer could be routed to a human.
+
+```{r tbl-jev}
+#| tbl-cap: "Jev classification agreement with the reference, all ten studies. Notes: Jev received the name of each reference unit and the first 60,000 characters of the study's text, and answered one multiple-choice question per field. Agreement is the share of units whose chosen answer matches the reference. Mean probability is the average probability Jev assigned to the reference answer. Kappa is Cohen's kappa against the reference; it is undefined or zero where the reference assigns the same value to nearly every unit, as for job search assistance, which almost every programme includes."
+jev |> arrange(desc(accuracy)) |>
+  transmute(Field = tools::toTitleCase(field_lab[field]), Units = n, Agreement = percent(accuracy, 1),
+            `Mean probability` = sprintf("%.2f", mean_p_gold),
+            Kappa = ifelse(is.na(kappa), "-", sprintf("%.2f", kappa))) |>
+  kable(align = "lrrrr")
+```
+
+## Cost
+
+```{r cost-setup}
+cost_tab <- summ |> group_by(model) |>
+  summarise(runs = n_distinct(paste(pass, n_studies_run)), studies = max(n_studies_run),
+            tokens_in = sum(input_tokens), tokens_out = sum(output_tokens),
+            reasoning = sum(reasoning_tokens), usd = sum(cost_usd), hours = sum(latency_s) / 3600) |>
+  mutate(model = factor(model, model_levels)) |> arrange(model)
+per_pass <- summ |> filter(pass == 1, n_studies_run > 0) |>
+  mutate(per_study = cost_usd / n_studies_run)
+```
+
+@tbl-cost reports the tokens and spend for every completed pass. The cheapest model, DeepSeek V4.1 Flash, cost about `r usd(per_pass$per_study[per_pass$model == "deepseek-v4.1-flash"])` per study for the extraction pass, and the most expensive, Claude Opus 5, about `r usd(per_pass$per_study[per_pass$model == "claude-opus-5"])`, on the short studies that all models completed. Costs scale roughly with report length, since the whole report is read twice, and the longest study in the sample is `r round(max(man$n_chars) / min(man$n_chars))` times the length of the shortest. The reasoning models also spend many output tokens deliberating before they answer, which for Gemini 3.8 Flash came to about `r with(cost_tab[cost_tab$model == 'gemini-3.8-flash', ], round(reasoning / (tokens_out - reasoning)))` times the length of the answer itself.
+
+```{r tbl-cost}
+#| tbl-cap: "Tokens and spend by model, all completed passes. Notes: Tokens are as reported by the provider; output tokens include reasoning tokens, shown separately. Spend is the billed cost returned by OpenRouter or, for calls made directly to the Gemini API, computed from list prices. Hours is the sum of wall-clock time per call. The counts cover different numbers of studies per model (Table 3), so the rows are not comparable as totals; the per-study figures in the text are."
+cost_tab |> transmute(Model = lab(as.character(model)),
+                      `Input tokens` = format(tokens_in, big.mark = ","),
+                      `Output tokens` = format(tokens_out, big.mark = ","),
+                      `of which reasoning` = format(reasoning, big.mark = ","),
+                      `Spend (USD)` = sprintf("%.2f", usd), Hours = sprintf("%.1f", hours)) |>
+  kable(align = "lrrrrr")
+```
+
+# A Worked Example
+
+```{r example-setup}
+ex_unit <- "Adult women"
+ex <- cells |> filter(pass == 1, study_id == "jtpa", gold_site_subgroup == ex_unit)
+ex_fields <- c("st_earn_impact", "mt_earn_impact", "lt_earn_impact", "mt_emp_impact",
+               "lt_emp_impact", "cost_per_treated")
+ex_tab <- ex |> filter(field %in% ex_fields) |>
+  select(field, model, gold_value, model_value) |>
+  mutate(model_value = as.character(round(as.numeric(model_value), 1)),
+         gold_value = as.character(round(as.numeric(gold_value), 1))) |>
+  pivot_wider(names_from = model, values_from = model_value)
+jtpa_unan <- cons |> filter(study_id == "jtpa", models_unanimous, n_models_match_gold == 0) |> nrow()
+jtpa_cons <- cons |> filter(study_id == "jtpa") |> nrow()
+```
+
+The National JTPA Study shows where the disagreement comes from. The source supplied to the models is the General Accounting Office's report on long-term outcomes [@gao1996], which tabulates earnings and employment for each of five years after random assignment, separately for adult women, adult men, and female and male out-of-school youths. All five models identified the same four units as the reference, and the classification traits matched except in two respects: Gemini 3.1 Pro coded the programme's administration as public where the reference codes it as mixed, and GPT-5.6 Terra recorded no on-the-job training where the reference records some. Of the `r spell(jtpa_cons)` JTPA cells for which all five models and the reference have a value, however, `r spell(jtpa_unan)` are cells in which all five models agree with each other and disagree with the reference. @tbl-example shows the pattern for adult women.
+
+```{r tbl-example}
+#| tbl-cap: "Selected values for adult women in the National JTPA Study, reference and first-pass extractions. Notes: Earnings impacts are annual dollar differences between the treatment and control groups; employment impacts are percentage-point differences in the share with any earnings in the year. ST, MT, and LT are the short, medium, and long term as defined in the extraction instructions. Model columns are Gemini 3.8 Flash, Gemini 3.1 Pro, Claude Opus 5, GPT-5.6 Terra, and DeepSeek V4.1 Flash. Cost is cost per treatment-group member in nominal dollars. The reference takes its cost figure from Orr et al. (1994), which was not supplied to the models; the models took the GAO report's single figure for the whole sample."
+lbl <- c(st_earn_impact = "Earnings, ST", mt_earn_impact = "Earnings, MT",
+         lt_earn_impact = "Earnings, LT", mt_emp_impact = "Employment, MT",
+         lt_emp_impact = "Employment, LT", cost_per_treated = "Cost")
+ex_tab |> mutate(field = unname(lbl[field])) |>
+  select(Field = field, Reference = gold_value, any_of(model_levels)) |>
+  rename_with(function(k) c("gemini-3.8-flash" = "G 3.8 F", "gemini-3.1-pro" = "G 3.1 P", "claude-opus-5" = "Opus 5", "gpt-5.6-terra" = "GPT-5.6", "deepseek-v4.1-flash" = "DS 4.1")[k], any_of(model_levels)) |>
+  kable(align = "lrrrrrr")
+```
+
+Three distinct mechanisms produce the disagreement, and none of them is a misread number. The first is the assignment of estimates to horizons. The extraction instructions assign each estimate to the horizon whose centre, at six, eighteen, or forty-eight months, lies closest to the centre of the estimate's window, so all five models took year two as the medium term, and four of the five took year four as the long term; DeepSeek V4.1 Flash took year five. The reference's reasoning table records a different mapping for this study: "Year 1 → short-term, Year 3 → medium-term, Year 5 → long-term" [@roodman2026data, reasoning table]. Its long-term value is an average over years three to five, which the reasoning text does not mention. The short-term earnings impact, where both conventions pick year one, matches for every model. The second mechanism is sources outside the document. The reference takes its cost per treatment-group member from the Abt Associates final report on the study [@orr1994] rather than from the GAO report, and the models, which saw only the latter, all reported the GAO's single figure for the whole sample. The third is significance. The GAO report marks significance only at the 5 per cent level, while the reference derives its stars from t-statistics it computes itself, so that an estimate with a t-statistic of 2.62 carries three stars in the reference and two in every model.
+
+The same mechanisms recur in the other common study. For Project QUEST [@roder2021], four of the five models report the eleven-year report's statement that the programme cost $12,464 per participant in 2019 dollars, and GPT-5.6 Terra reports a narrower programme cost of $9,669; the reference's reasoning table quotes the same sentence and the same figure, but the cell in its data table holds $26,705, a value its reasoning does not explain. For the long-term impact the models took year four, the year closest to the centre of the bin, whereas the reference chose year six, recorded in its reasoning as "the peak significant impact", although elsewhere in the same workbook the rule is stated as picking the value closest to the centre of the bin. Adjudicating these cases requires no judgement about the source. The source is unambiguous; what differs is the rule applied to it.
+
+# Discussion
+
+This report has replicated the language-model extraction behind a published meta-analysis on part of its sample and scored five models against it. The replication is incomplete for reasons unrelated to the method, and the comparisons rest on few studies. Within those limits the results are consistent and point in one direction.
+
+The first finding is that the models agree with each other far more than any of them agrees with the reference. Classification is close to settled: the models recovered almost every intervention trait of every unit in the common studies, and so, from the first pages alone, did a model with no generative capacity at all. The numerical fields are where agreement falls, and the unanimous disagreements show why. They arise from rules about which estimate to take, from values taken from documents outside the one supplied, and from edits to the reference that its own audit trail does not record. A model that copies the right number from the right table under a different horizon rule is not making an extraction error, and a benchmark that scores it as one measures the distance between two codebooks rather than the reliability of the coder.
+
+The second finding is that the adversarial review pass did little. The original procedure presents the reasoning table and the hostile re-reading as the main safeguards of an extraction at scale [@roodman2026, 53]. In this replication the reviews that completed turned nine times as many cells from agreement into disagreement as the other way round, mostly by withdrawing values the first pass had got right. A review that applies the same instructions to the same source can catch a slip, but it cannot catch a convention that the instructions leave unstated. The reference's own history suggests the same: its reasoning table records dated corrections, such as a change in the denominator of the JTPA cost figure, that came from returning to the sources with a question the first pass had not asked.
+
+The third finding concerns cost. At current prices the whole extraction for a study costs between a few cents and around a dollar per model, and the choice among frontier models matters less than the choice of rules. DeepSeek V4.1 Flash matched the reference about as often as Claude Opus 5 at a small fraction of the cost. The binding constraints in practice were operational rather than financial: provider capacity, credit limits on a shared account, and schema features that one provider supports and another refuses.
+
+For the Tech-Panic Tracker the implications are specific. The Tracker's extraction task differs from this one in an important respect, since it extracts claims from single passages rather than tables from whole reports, but the lesson about conventions transfers directly. The fields on which Tracker records will most often disagree are those that require a rule rather than a reading: when a horizon starts, whether a restated claim is a new prediction or a revisit, which of several numbers is the headline. Those rules must be written into the codebook and the prompt before any model drafts a record, and the verification step should check the application of the rules at least as carefully as the transcription of quotations. A second model, run independently, is a cheap way to find the cells that merit a human's attention: where two models from different developers agree, the remaining disagreement with a human coder is more likely to lie in the codebook than in the source. This suggests that language models merit a place in the Tracker's first pass, as drafters and as a check on one another, provided that the analytic record remains the human-verified one.
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

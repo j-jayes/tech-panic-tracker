@@ -236,3 +236,9 @@ analysis/**/*.typ
 
 # Playwright MCP session artefacts
 .playwright-mcp/
+
+# Local-only Claude skill: personal writing-voice guide, not part of the project
+.claude/skills/ben-voice/
+
+# Working copies of copyrighted PDFs - never committed (LICENSE-DATA, PLAN §10)
+temp/
